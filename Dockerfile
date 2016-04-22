@@ -128,10 +128,11 @@ RUN cp /root/src/iipsrv/src/iipsrv.fcgi /var/www/localhost/fcgi-bin/
 ### run the script to start apache and sshd and keep the container running.
 # use "service apache2 start"
 #CMD ["/usr/sbin/sshd", "-D"]
-COPY html /var/www/html/
+#COPY html /var/www/html/
 
 #RUN service apache2 start
 
+COPY apache2-iipsrv-fcgid.conf /root/src/iip-openslide-docker/apache2-iipsrv-fcgid.conf
 
 RUN pear install http_request2
 COPY run.sh /root/run.sh
