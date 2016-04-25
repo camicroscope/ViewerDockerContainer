@@ -1,4 +1,8 @@
-* Git `git clone https://lastlegion@bitbucket.org/lastlegion/camic_viewer_docker.git`
+## Camicroscope Viewer Container
+
+
+
+* `git clone https://lastlegion@bitbucket.org/lastlegion/camic_viewer_docker.git`
 
 ** Make sure you're running the following commands from the directory that has `DockerFile` ** i.e. the root of the repository.
 
