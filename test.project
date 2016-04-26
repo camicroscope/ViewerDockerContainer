@@ -1,0 +1,1032 @@
+{
+  "profiles": {
+    "mongo1": {
+      "dataSource": {
+        "host": "localhost",
+        "port": "27017",
+        "db": "doiutils",
+        "collection": "metadata",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getByDoi": {
+          "queryTemplate": "{\"doi\": \"$doiString$\"}  ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doiString": {
+              "name": "doiString",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getByDoi",
+          "timeCreated": "Mon Oct 19 15:09:59 EDT 2015",
+          "createdBy": "admin",
+          "description": "  "
+        },
+        "getAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {} ,\n\t\t\t\t\t\t\t\"fields\" :{ \u0027_id\u0027 : 0 }\n\t\t\t\t\t\t}\n}\n",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getAll",
+          "timeCreated": "Mon Nov 09 17:01:16 EST 2015",
+          "createdBy": "admin",
+          "description": "get_all_data_except_for_id                   "
+        }
+      },
+      "deleteEndpoints": {
+        "delete_doc": {
+          "queryTemplate": "{name: \"POST\"}",
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "name": "delete_doc",
+          "timeCreated": "Fri Sep 25 16:15:29 EDT 2015",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "delete_one": {
+          "queryTemplate": " {name: \"junior\"}",
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "name": "delete_one",
+          "timeCreated": "Tue Oct 06 16:21:49 EDT 2015",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Fri Sep 25 15:04:05 EDT 2015",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Fri Sep 25 15:04:05 EDT 2015",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Fri Sep 25 15:04:05 EDT 2015",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Fri Sep 25 15:04:05 EDT 2015",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "mongo1",
+      "timeCreated": "Fri Sep 25 15:04:05 EDT 2015",
+      "createdBy": "admin",
+      "description": "mongo1"
+    },
+    "Files": {
+      "dataSource": {
+        "host": "localhost",
+        "port": "27017",
+        "db": "doiutils",
+        "collection": "files",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getFilePathClone": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\"query\" : { \"doiString\" : \"$doiString$\", \"_id\" : ObjectId(\"$ID$\") }\n\t}\n}\n                ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doiString": {
+              "name": "doiString",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "ID": {
+              "name": "ID",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getFilePathClone",
+          "timeCreated": "Wed Nov 25 14:41:11 EST 2015",
+          "createdBy": "admin",
+          "description": "get_path_of_file_given_doi_and_uid                "
+        },
+        "getFilePath": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\"query\" : { \"doiString\" : \"$doiString$\", \"uid\": $uid$} ,\n\t\t\"fields\" :{ \"_id\" : 0, \"fileType\": 0, \"fileName\": 0, \"doiString\": 0 }\n\t}\n}\n                 ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doiString": {
+              "name": "doiString",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "uid": {
+              "name": "uid",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getFilePath",
+          "timeCreated": "Tue Dec 01 17:07:05 EST 2015",
+          "createdBy": "admin",
+          "description": "get_path_of_file_given_doi_and_uid                 "
+        },
+        "getFilesByDoi": {
+          "queryTemplate": "{\"doiString\": \"$doiString$\"}",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doiString": {
+              "name": "doiString",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getFilesByDoi",
+          "timeCreated": "Tue Dec 01 17:08:07 EST 2015",
+          "createdBy": "admin",
+          "description": "   "
+        }
+      },
+      "deleteEndpoints": {},
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Mon Nov 23 17:01:06 EST 2015",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Mon Nov 23 17:01:06 EST 2015",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Mon Nov 23 17:01:06 EST 2015",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Mon Nov 23 17:01:06 EST 2015",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "Files",
+      "timeCreated": "Mon Nov 23 17:01:06 EST 2015",
+      "createdBy": "admin",
+      "description": "store_files"
+    },
+    "Metadata": {
+      "dataSource": {
+        "host": "localhost",
+        "port": "27017",
+        "db": "doiutils",
+        "collection": "metadata",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getByDoi": {
+          "queryTemplate": "{\"doi\": \"$doiString$\"}   ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doiString": {
+              "name": "doiString",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "ANY"
+          },
+          "name": "getByDoi",
+          "timeCreated": "Wed Dec 23 17:17:04 EST 2015",
+          "createdBy": "ashishof77",
+          "description": "getByDoi"
+        },
+        "getAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {} ,\n\t\t\t\t\t\t\t\"fields\" :{ \u0027_id\u0027 : 0 }\n\t\t\t\t\t\t}\n}\n  ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "ANY"
+          },
+          "name": "getAll",
+          "timeCreated": "Wed Dec 23 17:24:19 EST 2015",
+          "createdBy": "ashishof77",
+          "description": "get_all_data_except_for_id                     "
+        }
+      },
+      "deleteEndpoints": {},
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Wed Dec 23 17:16:06 EST 2015",
+          "createdBy": "ashishof77",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Wed Dec 23 17:16:06 EST 2015",
+          "createdBy": "ashishof77",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Wed Dec 23 17:16:06 EST 2015",
+          "createdBy": "ashishof77",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Wed Dec 23 17:16:06 EST 2015",
+          "createdBy": "ashishof77",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "Metadata",
+      "timeCreated": "Wed Dec 23 17:16:06 EST 2015",
+      "createdBy": "ashishof77",
+      "description": "metadata for DOIs"
+    },
+    "TCIA": {
+      "dataSource": {
+        "host": "localhost",
+        "port": "27017",
+        "db": "TCIA",
+        "collection": "doi",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {} ,\n\t\t\t\t\t\t\t\"fields\" :{ \u0027_id\u0027 : 0 }\n\t\t\t\t\t\t}\n}\n   \n",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getAll",
+          "timeCreated": "Fri Feb 05 16:36:21 EST 2016",
+          "createdBy": "ganesh.emory",
+          "description": "gets all the data"
+        },
+        "getByDoi": {
+          "queryTemplate": "{\"doi\": \"$doiString$\"}    ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doiString": {
+              "name": "doiString",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getByDoi",
+          "timeCreated": "Fri Feb 05 17:33:34 EST 2016",
+          "createdBy": "ganesh.emory",
+          "description": ""
+        }
+      },
+      "deleteEndpoints": {},
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Tue Feb 02 15:07:24 EST 2016",
+          "createdBy": "ganesh.emory",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Tue Feb 02 15:07:24 EST 2016",
+          "createdBy": "ganesh.emory",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Tue Feb 02 15:07:24 EST 2016",
+          "createdBy": "ganesh.emory",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Tue Feb 02 15:07:24 EST 2016",
+          "createdBy": "ganesh.emory",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "TCIA",
+      "timeCreated": "Tue Feb 02 15:07:24 EST 2016",
+      "createdBy": "ganesh.emory",
+      "description": "TCIA DOIs"
+    },
+    "DataLoaderApiTest": {
+      "dataSource": {
+        "host": "127.0.0.1",
+        "port": "27017",
+        "db": "DataLoaderApi",
+        "collection": "Test",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {}\n\t\t\t\t\t\t}\n}\n",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getAll",
+          "timeCreated": "Mon Feb 29 22:25:35 EST 2016",
+          "createdBy": "admin",
+          "description": "Gets all data"
+        },
+        "getImagesForSubjectId": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027sample-id\u0027 : \u0027$Subject_ID$\u0027 } ,\n\t\t\t\t\t\t\t\"fields\" :{ \u0027_id\u0027 : 0, \"file-location\": 1}\n\t\t\t\t\t\t}\n}\n ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "Subject_ID": {
+              "name": "Subject_ID",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getImagesForSubjectId",
+          "timeCreated": "Tue Mar 01 13:13:08 EST 2016",
+          "createdBy": "admin",
+          "description": "Gets a list of images for a give subject ID "
+        },
+        "getMD5forImage": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027file-location\u0027 : \u0027$File_Location$\u0027 } ,\n\t\t\t\t\t\t\t\"fields\" :{ \u0027_id\u0027 : 0, \"md5sum\": 1}\n\t\t\t\t\t\t}\n}\n ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "File_Location": {
+              "name": "File_Location",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getMD5forImage",
+          "timeCreated": "Tue Mar 01 13:31:19 EST 2016",
+          "createdBy": "admin",
+          "description": "Fetches MD5 for image give the filelocation "
+        }
+      },
+      "deleteEndpoints": {
+        "DeleteAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { }\n\t\t\t\t\t\t}\n}\n",
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "name": "DeleteAll",
+          "timeCreated": "Wed Mar 02 16:07:06 EST 2016",
+          "createdBy": "admin",
+          "description": "Deletes all the data!!!!"
+        }
+      },
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Mon Feb 29 22:24:23 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Mon Feb 29 22:24:23 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Mon Feb 29 22:24:23 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Mon Feb 29 22:24:23 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "DataLoaderApiTest",
+      "timeCreated": "Mon Feb 29 22:24:23 EST 2016",
+      "createdBy": "admin",
+      "description": ""
+    },
+    "TCIA_DOI_RESOURCES": {
+      "dataSource": {
+        "host": "127.0.0.1",
+        "port": "27017",
+        "db": "TCIA",
+        "collection": "doi_resources",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { } \n\t\t\t\t\t\t}\n}\n",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getAll",
+          "timeCreated": "Thu Mar 24 14:39:55 EDT 2016",
+          "createdBy": "admin",
+          "description": "gets all the Data"
+        },
+        "getByDoi": {
+          "queryTemplate": "{\"doi\": \"$doi$\"}         ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doi": {
+              "name": "doi",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getByDoi",
+          "timeCreated": "Thu Mar 24 17:54:57 EDT 2016",
+          "createdBy": "admin",
+          "description": "Gets data for given DOI "
+        },
+        "getByResourceID": {
+          "queryTemplate": "{\"resourceID\": \"$resourceID$\"}",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "resourceID": {
+              "name": "resourceID",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getByResourceID",
+          "timeCreated": "Fri Apr 01 11:35:03 EDT 2016",
+          "createdBy": "admin",
+          "description": "gets resource by resourceID"
+        },
+        "getFileForResource": {
+          "queryTemplate": "{\"resourceID\": \"$resourceID$\"} ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "resourceID": {
+              "name": "resourceID",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "queryResultModifiers": {
+            "name": "edu.emory.cci.bindaas.filedownload.FileDownloadQRM",
+            "properties": {
+              "fileLinkAttribute": "info.resourceData"
+            }
+          },
+          "name": "getFileForResource",
+          "timeCreated": "Fri Apr 01 16:09:17 EDT 2016",
+          "createdBy": "admin",
+          "description": "returns file given filepath"
+        },
+        "getFileForResourceClone": {
+          "queryTemplate": "{\"resourceID\": \"$resourceID$\"}                      ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "resourceID": {
+              "name": "resourceID",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "queryResultModifiers": {
+            "name": "edu.emory.cci.bindaas.blobdownload.BlobDownloadPlugin",
+            "properties": {
+              "fileLinkAttribute": "filePath",
+              "zipDownload": false
+            }
+          },
+          "name": "getFileForResourceClone",
+          "timeCreated": "Tue Apr 05 17:11:54 EDT 2016",
+          "createdBy": "admin",
+          "description": "returns file given filepath                     "
+        }
+      },
+      "deleteEndpoints": {
+        "deleteAll": {
+          "queryTemplate": "{}",
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "name": "deleteAll",
+          "timeCreated": "Thu Mar 31 18:52:05 EDT 2016",
+          "createdBy": "admin",
+          "description": "deletes all data"
+        },
+        "deleteOne": {
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027resourceData\u0027 : \u0027$x$\u0027 }\n\t\t\t\t\t\t}\n}\n",
+          "tags": [],
+          "bindVariables": {
+            "x": {
+              "name": "x",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "name": "deleteOne",
+          "timeCreated": "Fri Apr 01 16:53:23 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Thu Mar 24 14:02:20 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Thu Mar 24 14:02:20 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Thu Mar 24 14:02:20 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Thu Mar 24 14:02:20 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "TCIA_DOI_RESOURCES",
+      "timeCreated": "Thu Mar 24 14:02:20 EDT 2016",
+      "createdBy": "admin",
+      "description": "DOI files, images, shared lists and other reosources for the TCIA_DOI_APP project"
+    },
+    "TCIA_DOI_APP": {
+      "dataSource": {
+        "host": "127.0.0.1",
+        "port": "27017",
+        "db": "TCIA",
+        "collection": "doi",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {  } \n\t\t\t\t\t\t}\n}\n",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getAll",
+          "timeCreated": "Mon Feb 29 11:28:09 EST 2016",
+          "createdBy": "admin",
+          "description": "Gets all the data"
+        },
+        "getByDoi": {
+          "queryTemplate": "{\"doi\": \"$doi$\"}        ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doi": {
+              "name": "doi",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getByDoi",
+          "timeCreated": "Thu Mar 24 15:17:00 EDT 2016",
+          "createdBy": "admin",
+          "description": "Gets data for given DOI"
+        }
+      },
+      "deleteEndpoints": {
+        "deleteAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {  }\n\t\t\t\t\t\t}\n}\n",
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "name": "deleteAll",
+          "timeCreated": "Wed Mar 23 23:16:06 EDT 2016",
+          "createdBy": "admin",
+          "description": "Deletes all data"
+        },
+        "deleteByDoi": {
+          "queryTemplate": "{\"doi\": \"$doi$\"}         ",
+          "tags": [],
+          "bindVariables": {
+            "doi": {
+              "name": "doi",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "name": "deleteByDoi",
+          "timeCreated": "Fri Mar 25 08:35:20 EDT 2016",
+          "createdBy": "admin",
+          "description": "Deletes given DOI"
+        }
+      },
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Mon Feb 29 11:27:27 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Mon Feb 29 11:27:27 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Mon Feb 29 11:27:27 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Mon Feb 29 11:27:27 EST 2016",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "TCIA_DOI_APP",
+      "timeCreated": "Thu Mar 24 15:16:17 EDT 2016",
+      "createdBy": "admin",
+      "description": "App for TCIA DOIs"
+    },
+    "DOI_RESOURCE_VERSIONS": {
+      "dataSource": {
+        "host": "127.0.0.1",
+        "port": "27017",
+        "db": "TCIA",
+        "collection": "ResourceVersions",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "getAll": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { }\n\t\t\t\t\t\t}\n}",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getAll",
+          "timeCreated": "Fri Mar 25 15:13:05 EDT 2016",
+          "createdBy": "admin",
+          "description": "Get all the versions "
+        },
+        "getVersionsForDoi": {
+          "queryTemplate": "{\"doi\": \"$doi$\"}          ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doi": {
+              "name": "doi",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getVersionsForDoi",
+          "timeCreated": "Mon Mar 28 10:48:29 EDT 2016",
+          "createdBy": "admin",
+          "description": "Gets all versions for given DOI"
+        },
+        "getResources": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\"query\" : {\"doi\": \"$doi$\", \"versionID\": \"$versionID$\"}           \n\t}\n}\n    ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "doi": {
+              "name": "doi",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "versionID": {
+              "name": "versionID",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "getResources",
+          "timeCreated": "Fri Apr 01 11:26:43 EDT 2016",
+          "createdBy": "admin",
+          "description": "get resources given version and doi    "
+        }
+      },
+      "deleteEndpoints": {
+        "deleteAll": {
+          "queryTemplate": "{}",
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "name": "deleteAll",
+          "timeCreated": "Thu Mar 31 18:51:50 EDT 2016",
+          "createdBy": "admin",
+          "description": "deletes all data"
+        }
+      },
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Fri Mar 25 14:12:04 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Fri Mar 25 14:12:04 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Fri Mar 25 14:12:04 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Fri Mar 25 14:12:04 EDT 2016",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "DOI_RESOURCE_VERSIONS",
+      "timeCreated": "Fri Mar 25 14:12:04 EDT 2016",
+      "createdBy": "admin",
+      "description": "Versions for DOI Resources"
+    }
+  },
+  "params": {},
+  "name": "test",
+  "timeCreated": "Fri Sep 25 14:58:32 EDT 2015",
+  "createdBy": "admin",
+  "description": "test"
+}
