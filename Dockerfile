@@ -17,7 +17,7 @@
 #		using nearest neighbor except when generating virtual tiles (uses bilinear then). since v 0.3.1
 
 FROM     ubuntu:14.04
-MAINTAINER Tony Pan "tcp1975@gmail.com"
+MAINTAINER Ganesh Iyer "lastlegion@gmail.com"
 
 # build with
 #  sudo docker build --rm=true -t="repo/imgname" .
