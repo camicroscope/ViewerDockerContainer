@@ -22,34 +22,6 @@ require_once('config/security_config.php');
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/frontPage.css">
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
-    <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
-    <script>
-        function logInCallback(authResult) {
-            console.log("calling log in");
-            if (authResult['code']) {
-                // Send the code to the server
-                $.post("security/server.php?logIn", {code: authResult['code']},
-                        function (response) {
-                            console.log(response);
-                            if ('logIn' == response) {
-                                window.location = 'select.php';
-                            } else if ('signUp' == response) {
-                                window.location = 'security/request.php?doAction=signUp';
-                            }
-                        }
-                );
-            } else if (authResult['error']) {
-                // There was an error.
-                // Possible error codes:
-                //   "access_denied" - User denied access to your app
-                //   "immediate_failed" - Could not automatially log in the user
-                console.log('There was an error: ' + authResult['error']);
-            }
-        }
-    </script>
     <style type="text/css">
         body {
             padding-top: 50px;
@@ -63,44 +35,12 @@ require_once('config/security_config.php');
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-   <div class="container">
-   <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-         <div>
-            <div class="header">
-               <ul class="nav nav-pills pull-right">
-                  <li class="active">
-                     <a href="#">Home</a>
-                  </li>
-                  <li>
-                     <a href="#">About</a>
-                  </li>
-                  <li>
-                     <a href="#">Downloads</a>
-                  </li>
-               </ul>
-               <h3 class="text-muted"><br></h3>
-            </div>
-         </div>
-      </div>
-   </div>
-
     <div class="jumbotron">
         <h1>caMicroscope</h1>
 
         <p class="lead">A digital pathology data management, visualization and analysis platform. It consists of a set
             of web services to manage pathology images, associated clinical and imaging metadata, and human/machine
             generated annotations and markups.</p>
-
-        <h4>Login/Signup with:</h4>
-            <span class="g-signin"
-                  data-scope="email"
-                  data-clientid=<?php echo $client_id ?>
-                  data-redirecturi="postmessage"
-                  data-cookiepolicy="single_host_origin"
-                  data-callback="logInCallback"
-                  data-approvalprompt="force">
-            </span>
 
     </div>
     <div class="footer">
