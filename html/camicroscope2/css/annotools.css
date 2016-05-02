@@ -1,0 +1,262 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('../fonts/Roboto-Light.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('../fonts/Roboto-Thin.ttf');
+}
+
+.annotools
+{
+	color: #FFFFFF;
+	background: #1976D2;
+	opacity: 1;
+	font-weight: normal;
+	padding: 1px;
+	font-size: 80%;
+	height: 48px;
+        -webkit-box-shadow: 0px 0px 8px 2px #000000;
+        -moz-box-shadow: 0px 0px 8px 2px #000000;
+        box-shadow: 0px 0px 8px 2px #000000;
+}
+
+.cliked
+{
+        width:44px;
+        margin-top: 8px;
+        margin-right: 4px;
+}
+
+.selected2
+{
+	cursor: pointer;
+}
+
+#messageBox
+{
+	position:absolute;
+	width:180px;
+	left:30%;
+	top:5%;
+	margin: 1px;
+	border: 1px outset #333;
+	color: #fff;
+	background: #222;
+	opacity: 0.85;
+	font-weight: normal;
+	text-align: center;
+	padding: 1px;
+	font-size: 80%;
+	-moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	border-radius: 0.3em;
+	-moz-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	-o-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	text-shadow: 0.5px 0.5px 0 grey;
+}
+.colorButton
+{
+	width:19px;
+	height:19px;
+}
+.annotcontainer
+{
+	z-index:30;
+}
+.annotip
+{
+	width:120px;
+	margin: 1px;
+	border: 1px outset #333;
+	color: #fff;
+	background: #222;
+	opacity: 0.70;
+	font-weight: normal;
+	text-align: center;
+	padding: 1px;
+	font-size: 80%;
+	-moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	border-radius: 0.3em;
+	-moz-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	-o-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	text-shadow: 0.5px 0.5px 0 grey;
+}
+.edittip
+{
+	z-index:1000px;
+	width:180px;
+	margin: 1px;
+	border: 1px outset #333;
+	color: #fff;
+	background: #222;
+	opacity: 0.70;
+	font-weight: normal;
+	text-align: center;
+	padding: 1px;
+	font-size: 60%;
+	-moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	border-radius: 0.3em;
+	-moz-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	-o-box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	box-shadow: 4px 4px 4px rgba(0,0,0,0.75);
+	text-shadow: 0.5px 0.5px 0 grey;
+}
+.toolButton
+{
+	width:32px;
+        margin-top: 8px;
+	margin-right: 4px;
+        background:#1976D2;
+        opacity:0.6;
+}
+.toolButton:hover
+{
+        cursor: pointer;
+        opacity: 1;
+}
+
+.spacerButton
+{
+        width:24px;
+        height: 32px;
+        background:#1976D2;
+        opacity:0.7;
+}
+
+.firstToolButtonSpace
+{
+ 	margin-left: 34px;
+}
+.titleButton
+{
+        position: absolute;
+	left: 45%;
+        top: -8px;
+        font-size: 22px;
+	vertical-align: middle;
+        font-family: Roboto-Light;
+}
+.iidButton
+{
+	position: absolute;
+	right: 34px;
+	top:  0px;
+	font-size: 16px;
+	vertical-align: middle;
+	font-family: Roboto;
+}
+.magnify 
+{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	border-radius: 100px; /* Half glass max width height */
+	-moz-border-radius: 100px; /* Half glass max width height */
+	-webkit-border-radius: 0px;
+	border: 1px solid white;
+	background-color: white;
+	z-index: 1000;
+}
+
+.magnify .magnified_content 
+{
+	top: 0px;
+	left: 0px;
+	margin-left: -100px; /* Half glass width */
+	margin-top: -100px; /* Half glass height */
+	overflow: visible;
+	position: absolute;
+	display: block;
+	transform:scale(2);
+	-moz-transform:scale(2);
+	-webkit-transform:scale(2);
+	-ms-transform:scale(2);
+	-o-transform:scale(2);
+
+	transform-origin: left top;
+	-moz-transform-origin: left top;
+	-ms-transform-origin: left top;
+	-webkit-transform-origin: left top;
+	-o-transform-origin: left top;
+
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.annotationsvg:hover{
+    cursor: pointer;
+
+}
+
+    .navWindow
+    {
+        position: absolute;
+            z-index: 10001;
+            right: 0;
+            bottom: 0;
+            border: 1px solid yellow;
+    }
+    #algosel
+    {
+        width:200px;
+        height:200px;
+        background:white;
+        top:200px;
+        left:200px;
+        position:fixed;
+        cursor:move;
+        border:5px solid black;
+        margin:2px;
+    }
+    
+    #div11 {
+        cursor:move;
+        width:70px;
+        height:70px;
+        background-color:black;
+        border:1px solid black;
+        margin:2px;
+        float:left;
+    }
+
+    .draggable {
+        background-color:yellow;
+    }
+
+
+
+.colorMapButton{
+    width: 128px;
+    height: 32px;
+    padding: 2px;
+}
+
+
+#ajaxBusy{
+    margin-left: 140px;
+    transform: scale(0.7, 1);
+}
+.colorBox{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-top: 4px;
+    margin-right: 2px;
+}
+

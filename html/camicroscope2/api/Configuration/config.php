@@ -1,0 +1,39 @@
+<?php 
+
+
+///new172.17.0.1
+$baseUrl = "172.17.0.2:9099";
+$serviceUrl = "$baseUrl/services/Camicroscope_DataLoader";
+
+$imageUrl = "$serviceUrl/DataLoader";
+$templateUrl = "$serviceUrl/AnnotationTemplate";
+$markupUrl = "$serviceUrl/Annotations";
+
+
+$tempMarkupUrl = "http://localhost:9099/services/TCGABRCA_Dev";
+
+return array(
+    'auth_realm' => "$baseUrl/securityTokenService",
+    /*
+     * temp
+     */
+
+    'getMultipleAnnotations' => "$serviceUrl/GeoJSONImageMetaData/query/getMultipleMarkups?",
+    'retrieveTemplate' => "$tempMarkupUrl/AnnotationTemplate/query/RetrieveTemplate",
+    'getAllAnnotations' => "$tempMarkupUrl/Annotations/query/byUserAndImageID?iid=",
+    'getAnnotationsSpatial' => "$serviceUrl/GeoJSONImageMetaData/query/getMarkups?",
+    'getAnnotationSpatialFilter' => "$tempMarkupUrl/Annotations/query/allByFilter?iid=",
+    'postAnnotation' => "$tempMarkupUrl/Annotations/submit/singleAnnotation",
+    'retrieveAnnotation' => "$tempMarkupUrl/Annotations/query/byAnnotId?annotId=",
+    'postJobParameters' => "$tempMarkupUrl/AnalysisJobs/submit/singleJob",
+    'deleteAnnotation' => "$tempMarkupUrl/Annotations/delete/singleAnnotation?annotId=",
+
+    /* Image Metadata */
+    'getDimensions' => "$imageUrl/query/getDimensionsByIID?api_key=",
+    'getFileLocation' => "$imageUrl/query/getFileLocationByIID?api_key=",
+    'getMPP' => "$imageUrl/query/getMPPByIID?api_key=",
+    'fastcgi_server' => "/fcgi-bin/iipsrv.fcgi"
+);
+
+
+?>
