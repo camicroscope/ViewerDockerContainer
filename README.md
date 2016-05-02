@@ -15,5 +15,5 @@ The `<IMAGE_DIRECTORY>` is the same directory that you used for Camicroscope Dat
 
 ### Linking the viewer to dataloader
 
-* Open `html/camicroscope/api/Configuration` 
+* Open `html/camicroscope/api/Configuration/config.php` 
 * Change `$baseURL="<DATALOADER_CONTAINER_IP>:9099"`
