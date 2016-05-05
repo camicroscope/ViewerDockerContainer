@@ -100,7 +100,7 @@ RUN git clone https://bitbucket.org/tcpan/openslide.git
 
 ## build openslide 
 WORKDIR /root/src/openslide
-#RUN git checkout tags/v0.3.1
+RUN git checkout tags/v0.3.1
 RUN autoreconf -i 
 #RUN ./configure --enable-static --enable-shared=no
 # may need to set OPENJPEG_CFLAGS='-I/usr/local/include' and OPENJPEG_LIBS='-L/usr/local/lib -lopenjp2'
@@ -117,7 +117,7 @@ RUN git clone https://bitbucket.org/tcpan/iipsrv.git iipsrv
 
 ## build iipsrv
 WORKDIR /root/src/iipsrv
-#RUN git checkout tags/v0.3.1
+RUN git checkout tags/iip-openslide-v0.3.1
 RUN ./autogen.sh
 #RUN ./configure --enable-static --enable-shared=no
 RUN ./configure
