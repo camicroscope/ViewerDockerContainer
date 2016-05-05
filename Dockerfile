@@ -60,6 +60,9 @@ RUN git clone https://tcpan@bitbucket.org/tcpan/iip-openslide-docker.git
 RUN rm /etc/apache2/mods-enabled/fcgid.conf
 RUN ln -s /root/src/iip-openslide-docker/apache2-iipsrv-fcgid.conf /etc/apache2/mods-enabled/fcgid.conf
 
+## Add configuration file
+COPY apache2.conf /etc/apache2/apache2.conf
+
 ## expose some ports
 EXPOSE 80
 #EXPOSE 443
