@@ -26,12 +26,12 @@ ToolBar.prototype.algorithmSelector = function() {
 
 }
 
-var available_colors = ["lime", "red", "blue", "orange"];
+var available_colors = ["lime", "red", "blue", "orange", "green"];
 var algorithm_color = {};
 
 function goodalgo(data, status) {
     //console.log(data);
-    
+    console.log(data);    
 
     var blob = [];
     for (i=0;i<data.length;i++) {
@@ -39,7 +39,8 @@ function goodalgo(data, status) {
         //console.log(data[i]);
         n.title = "<div class='colorBox' style='background:"+available_colors[i]+ "'></div>" + data[i].title;
         n.key = i.toString();
-        n.refKey = data[i].analysis_execution_id;
+        //console.log(data[i]);
+        n.refKey = data[i].title;
         n.color = available_colors[i];
         algorithm_color[data[i].analysis_execution_id] = available_colors[i];
         blob.push(n);

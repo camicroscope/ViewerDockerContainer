@@ -154,7 +154,7 @@ annotools.prototype.generateSVG = function(annotations){
 
         //var offset = OpenSeadragon.getElementOffset(viewer.canvas);
         var algorithm_id = annotation.provenance.analysis.execution_id;
-        var color = algorithm_color[algorithm_id];
+        var color = algorithm_color[algorithm_id] || "lime";
 
         //var svg = 
         svgHtml += '<polygon  class="annotationsvg" id="'+"poly"+i+'" points="';
