@@ -1,7 +1,7 @@
 <?php
 //Google client info
-$client_id = '524753584657-lljrbaiq8uooccgpo1ooqpjsjbptj0pr.apps.googleusercontent.com';
-$client_secret = 'lg0IUtTRgvExLuTku05kwtLv';
+$client_id = 'xxxxxxxxx.apps.googleusercontent.com';
+$client_secret = 'xxxxxxxxx';
 $redirect_uri = 'postmessage';
 
 //Bindaas info
