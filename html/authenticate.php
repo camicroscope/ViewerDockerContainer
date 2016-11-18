@@ -2,7 +2,7 @@
 require_once('config/security_config.php');
 // start sessions
 session_start();
-$_SESSION["api_key"] = "c0327219-68b2-4a40-9801-fc99e8e1e76f";
+$_SESSION["api_key"] = "xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx";
 if (!isset($_SESSION["api_key"])) {
     session_unset();
     header("Location:http://".$_SERVER["HTTP_HOST"].$folder_path."index.php");
