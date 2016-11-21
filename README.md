@@ -20,3 +20,4 @@ The `<IMAGE_DIRECTORY>` is the same directory that you used for Camicroscope Dat
 
 ###
 Open `http://localhost:<PORT>/camicroscope/osdCamicroscope.php?tissueId=<Image_ID>`
+
