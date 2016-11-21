@@ -127,6 +127,11 @@ RUN make
 RUN mkdir -p /var/www/localhost/fcgi-bin/
 RUN cp /root/src/iipsrv/src/iipsrv.fcgi /var/www/localhost/fcgi-bin/
 
+# Security and authentication
+RUN apt-get -q -y install php5-dev
+RUN pecl install mongo
+COPY php.ini /etc/php5/apache2/php.ini
+
 
 ### run the script to start apache and sshd and keep the container running.
 # use "service apache2 start"
