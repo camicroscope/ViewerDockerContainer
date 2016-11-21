@@ -1,4 +1,4 @@
-## Camicroscope Viewer Container
+## Camicroscope Viewer Container [![Build Status](https://travis-ci.org/camicroscope/ViewerDockerContainer.svg?branch=master)](https://travis-ci.org/camicroscope/ViewerDockerContainer)
 
 
 
