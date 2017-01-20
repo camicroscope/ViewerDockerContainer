@@ -13,7 +13,7 @@ require_once('config/security_config.php');
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>QuIP DEVELOPER VERSION Login</title>
+    <title>QuIP Login</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,7 +84,7 @@ require_once('config/security_config.php');
 
     <div class="jumbotron">
         <h2>QuIP: Quantitative Imaging for Pathology</h2>
-	<div class="alert alert-danger" role="alert"><h4>DEV Version</h4></div>
+	<div class="alert alert-danger" role="alert"><h4>Alpha Version</h4></div>
         <p style="text-align: left; font-size:18px">QuIP consists of a set of web accessible applications and tools designed to support analysis, management, and exploration of whole slide tissue images for cancer research. QuIP is under active development. Stay tuned for more tools and applications!</p>
         <p style="text-align: left; font-size:18px">The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts.</p>
         <h4>Login/Signup with:</h4>

@@ -15,19 +15,3 @@ var config = {
     default_subject_id: 'TCGA-05-4244',
     default_case_id: 'TCGA-05-4245-01Z-00-DX1'
 };
-
-/*
-function portToUse() {
-    
-    var port = 3000;
-    
-    if (location.port) {
-        port = location.port;
-    }
-    else if (location.hostname === '129.49.249.191') {
-        port = 4500;
-    }
-    
-    return port;
-}
-*/

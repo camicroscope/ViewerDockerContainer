@@ -57,7 +57,7 @@ $_SESSION["name"] = "quip";
                         <li><a onclick="logOut(); return false;" href="#">Logout <?php echo $_SESSION["email"]; ?></a>
                         </li>
                     </ul>
-                    <h3 class="text-muted">QuIP-1</h3>
+                    <h3 class="text-muted">QuIP</h3>
                 </div>
                 <div></div>
             </div>
