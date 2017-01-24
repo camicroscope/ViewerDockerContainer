@@ -33,11 +33,13 @@ function buildUI(dataDivId, data) { // build User Interface
     col.innerHTML = 'caMicroscope';
     col.style.fontWeight = "bold";
     row.appendChild(col);
-
+    
+	/*
     col = document.createElement('td');
     col.innerHTML = 'cBioPortal';
     col.style.fontWeight = "bold";
     row.appendChild(col);
+	*/
 
     col = document.createElement('td');
     col.innerHTML = 'FeatureScape of sampled features';
@@ -58,6 +60,7 @@ function buildUI(dataDivId, data) { // build User Interface
             abcUtil.caMicroLink(tissueId, selection.cancer_type));
         link.setAttribute("target", "_blank");
         link.innerHTML = tissueId;
+		link.title = "View the image in caMicroscope";
 
         dCol = document.createElement('td');
         dCol.appendChild(link);
@@ -74,15 +77,19 @@ function buildUI(dataDivId, data) { // build User Interface
         link.style.color = 'red';
         link.innerHTML = 'cbio';
 
+		/*
         dCol = document.createElement('td');
         dCol.appendChild(link);
         dRow.appendChild(dCol);
+		*/
 
         // FeatureScape
         btFeature = document.createElement('button');
         dCol = document.createElement('td');
         dCol.appendChild(btFeature);
-        btFeature.textContent = "FeatureScape";
+        //btFeature.textContent = "FeatureScape";
+		btFeature.textContent = "Explore Features";
+		btFeature.title = "Explore the features of the image";
         btFeature.style.color = "blue";
 
         btFeature.onclick = function () {
