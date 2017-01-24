@@ -1,0 +1,21 @@
+{
+  "apiKey" : "",
+  "title": "TCIA",
+  "description": "Lorem ipsum dolor....",
+  "path":[
+    {
+      "name": "Collections",
+      "dataUrl": "http://172.17.0.2:9099/services/Camicroscope_DataLoader/DataLoader/query/getAll",
+      "metadataUrl": "https://services.cancerimagingarchive.net/services/v3/TCIA/query/getCollectionValues/metadata"
+    },
+    {
+      "name": "Link",
+      "type": "link",
+      "params": [{
+        "name": "tissueId",
+        "value": "case_id"
+      }],
+      "url": "http://localhost:1337/osdCamicroscope.php"
+    }
+  ]
+}
