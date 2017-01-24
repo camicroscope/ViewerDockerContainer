@@ -15,7 +15,7 @@
         "name": "tissueId",
         "value": "case_id"
       }],
-      "url": "http://localhost:1337/osdCamicroscope.php"
+      "url": "http://localhost:1337/camicroscope/osdCamicroscope.php"
     }
   ]
 }
