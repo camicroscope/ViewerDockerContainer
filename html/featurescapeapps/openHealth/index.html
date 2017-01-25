@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TCGAscope</title>
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/vendor/localforage.min.js"></script>
+    <script src="../js/config.js"></script>
+	<script src="../js/findapi_config.js"></script>
+    <style>
+        body {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .lightup:hover, li:hover {
+            background: lightcyan;
+        }
+    </style>
+    <!-- Banner -->
+    <a href="https://github.com/SBU-BMI/FeatureScapeApps" target="_blank" style="color:maroon">
+        <img src="../img/BMI.png" height="50px" style="vertical-align:bottom">
+    </a>
+    <!-- Navigation -->
+    <ul class="nav nav-pills">
+        <li class="dropdown">
+            <a class="navbar-brand" data-toggle="tooltip" title="Quantitative Imaging in Pathology"
+               href="/select.php">QuIP
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="/sbu_flex">caMicroscope</a>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">FeatureScape <b class="caret"></b></a>
+            <ul class="dropdown-menu" id="menu1">
+                <li><a href="../featurescape/fig4.html">Patient-level features</a></li>
+                <li><a href="../featurescape/">Object-level features</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="../openHealth/">TCGAScope</a>
+        </li>
+    </ul>
+    <!-- Begin Content -->
+    <script>
+        //localforage.clear();
+        if (document.location.search.length == 0) {
+            document.location.search = config.domain + "/openHealth/tcgascope.js";
+        }
+    </script>
+</head>
+<body>
+<div id="header">
+    <h3>
+        <i style="font-family:Palatino;color:maroon">
+	        <a href="https://github.com/SBU-BMI/FeatureScapeApps" target="_blank">
+                <strong>TCGAScope</strong> &ndash; Web Computing for openHealth
+                <i class="fa fa-github-alt" style="color:maroon"></i>
+            </a>
+        </i>
+    </h3>
+    <p>
+        An interactive dashboard to explore interrelations between patient demographics, pathologist-generated
+        diagnostic keywords, and outcomes based on publicly-available TCGA data. Through integration into
+        FeatureExplorer and FeatureScape individual corresponding images and results can be explored further.
+    </p>
+    <div id="info1" style="font-weight: bold;"></div>
+    <div id="info2"></div>
+    <hr>
+</div>
+<div id="msg"></div>
+<div id="select"></div>
+<br>
+<div id="section"></div>
+<br>
+<div id="ptslides"></div>
+<br>
+
+<div id="footer"></div>
+
+<script src="../js/abcUtil.js"></script>
+<script src="../js/plugins.js"></script>
+<script src="openHealth.js"></script>
+
+</body>
+</html>
