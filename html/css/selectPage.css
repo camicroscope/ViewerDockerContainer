@@ -1,0 +1,54 @@
+      body {
+          padding-top: 50px;
+          padding-bottom: 20px;
+      }
+      .navbar-default {
+          background-color: white;
+          opacity: 0.98;
+          border-bottom: 0px solid #e5e5e5;
+      }
+      .navbar > .container {
+          background-color: white;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #e5e5e5;
+      }
+      /* Everything but the jumbotron gets side spacing for mobile first views */
+      
+      .marketing,
+      .footer {
+          padding-left: 15px;
+          padding-right: 15px;
+      }
+      /* Customize container */
+      
+      @media(min-width: 768px) {
+          .container {
+              max-width: 730px;
+          }
+      }
+      .container-narrow > hr {
+          margin: 30px 0;
+      }
+      /* Supporting marketing content */
+      
+      .marketing {
+          margin: 40px 0;
+      }
+      .marketing p + h4 {
+          margin-top: 28px;
+      }
+      /* Responsive: Portrait tablets and up */
+      
+      @media screen and(min-width: 768px) {
+          /* Remove the padding we set earlier */
+          
+          .marketing,
+          .footer {
+              padding-left: 0;
+              padding-right: 0;
+          }
+      }
+      .para {
+          line-height: 200%;
+          text-indent: 50px;
+      }
