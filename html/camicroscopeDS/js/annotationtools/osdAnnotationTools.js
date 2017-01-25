@@ -2211,8 +2211,8 @@ var schema = {
       console.log(execution_id);
       console.log(roiGeoJSON);
       console.log(roi_h, roi_w, roi_x, roi_y);
-
-      self.deleteAnnotations(execution_id,roi_x, roi_y/height, (roi_x+roi_w)/width, (roi_y+roi_h)/height);
+      console.log(newAnnot);
+      self.deleteAnnotations(execution_id,newAnnot.x, newAnnot.y, newAnnot.x + newAnnot.w, newAnnot.y + newAnnot.h);
     });
 
     jQuery('#submitWorkOrder').click(function (e) {
@@ -2319,7 +2319,7 @@ var schema = {
 
 
 
-  },200); 
+  },1000); 
 
 }
 
