@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nuclear Mugshots</title>
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="../js/vendor/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/vendor/bootstrap.min.js"></script>
+</head>
+<body>
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+<div w3-include-html="../header.html"></div>
+<script>
+    w3IncludeHTML();
+</script>
+<!-- Begin Content -->
+<div id="header">
+    <h3>
+        <i style="font-family:Palatino;color:maroon">
+            <a href="https://github.com/SBU-BMI/FeatureScapeApps" target="_blank">
+                <strong>Nuclear Mugshots</strong> &ndash; nuclear segmentation viewer
+                <i class="fa fa-github-alt" style="color:maroon"></i>
+            </a>
+        </i>
+    </h3>
+    <p><span class="bg-info">Click on any tile to go to the location in caMicroscope, to view the mugshot of interest in the context of the whole slide image.</span>
+    </p>
+    <div id="info1"></div>
+    <div id="info2"></div>
+    <hr>
+</div>
+<div id="msg"></div>
+<div id="select"></div>
+<br>
+<div id="section"></div>
+<br>
+<div id="ptslides"></div>
+<div id="footer"></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/abcUtil.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
