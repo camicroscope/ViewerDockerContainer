@@ -233,7 +233,7 @@ function isAnnotationActive(){
             var savedFilters = data.state.filters;
             var viewport = data.state.viewport;
             var pan = data.state.pan;
-            var zoom = data.state.zoom;
+            var zoom = data.state.zoom || viewer.viewport.getMaxZoom();
 
 
             //pan and zoom have preference over viewport
