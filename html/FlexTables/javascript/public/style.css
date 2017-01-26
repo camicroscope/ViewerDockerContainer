@@ -1,0 +1,95 @@
+#whoosh{
+  padding: 10px;
+}
+
+.description{
+    color: #aaa;
+}
+
+#whooshTable{
+  margin-top: 20px;
+}
+
+.fixedDataTableRowLayout_rowWrapper:hover .public_fixedDataTableCell_main {
+background-color: #ddd;
+cursor: pointer;
+}
+
+.backLink{
+  display: inline-block;
+  margin: 4px ;
+  //border: 1px solid #ccc;
+  //background: #ccc;
+  //padding: 5px;
+}
+.backLink:hover{
+  cursor: pointer;
+ 
+}
+.container{
+  margin: 8px auto;
+  width: 1300px;
+
+}
+
+
+.public_fixedDataTable_header, .public_fixedDataTable_header .public_fixedDataTableCell_main{
+  background: #fff;
+}
+.public_fixedDataTable_header:hover, .public_fixedDataTable_header:hover .public_fixedDataTableCell_main{
+  background: #fff;
+  cursor: auto;
+
+}
+a:hover{
+  cursor: pointer
+}
+.pageNumber{
+  display: inline-block;
+  padding: 2px 4px;
+  width: 25px;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin: 1px;
+}
+h4{
+  margin:0;
+  padding:4px;
+}
+#tableHeading{
+  display: inline-block;
+ }
+.right{
+  float: right;
+
+}
+
+.pageNumber:hover{
+  cursor: pointer
+}
+.activePage{
+  background: #333;
+  color: #fff;
+}
+.fixedDataTableCellLayout_main, .public_fixedDataTableCell_main{
+  width: auto;
+font-size: 14px;
+}
+.tabCols{
+  width: auto;
+}
+.center{
+  text-align: center;
+  margin: 0 auto;
+}
+
+#errorMsg{
+    margin: 30px;
+}
+
+#loading{
+    margin-top: 150px;
+}
+a{
+//color: #00bcd4;
+}

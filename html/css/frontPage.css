@@ -1,0 +1,51 @@
+body {
+    padding-top: 80px;
+}
+/* Custom page footer */
+
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+.navbar-default {
+    background-color: white;
+    opacity: 0.99;
+    border-bottom: 0px solid #e5e5e5;
+}
+.navbar > .container > div {
+    background-color: white;
+    opacity: 0.99;
+    width: 80%;
+    margin: 0 auto;
+}
+.row {
+    width: 80%;
+    margin: 0 auto;
+}
+.header h3 {
+    line-height: 40px;
+}
+/* Main marketing message and sign up button */
+
+.jumbotron {
+    text-align: center;
+    border-bottom: 0px;
+    background-color: transparent !important;
+}
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+/* Customize container */
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 730px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+}
+.container-narrow > hr {
+    margin: 30px 0;
+    border-bottom: 1px solid #e5e5e5;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "fixed-data-table": "^0.4.6",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.1"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "material-ui": "^0.11.1",
+    "react-tap-event-plugin": "^0.1.7",
+    "reflux": "^0.2.12"
+  }
+}
