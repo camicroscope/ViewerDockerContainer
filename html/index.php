@@ -16,13 +16,14 @@ $_SESSION["name"] = "quip";
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>[User: <?php echo $_SESSION["name"]; ?> -- Select Page]</title>
+    <title>[User: <?php echo $_SESSION["name"]; ?> -- QuIP login]</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="css/frontPage.css">
     <link rel="stylesheet" href="css/selectPage.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -152,8 +153,8 @@ $_SESSION["name"] = "quip";
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4"><a class="btn btn-success btn-block" href="">Coming soon</a></div>
-                <div class="col-md-8">Coming soon
+                <div class="col-md-4"><a class="btn btn-success btn-block" href="/imageformuploader.htm">Image Loader</a></div>
+                <div class="col-md-8">caMicroscope Image Loader
                 </div>
             </div>
         </div>
