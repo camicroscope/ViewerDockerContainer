@@ -2435,6 +2435,7 @@ annotools.prototype.removeMouseEvents = function () {
   window.removeEventListener('mousemove', this.annotationHandler.handleMouseMove, false)
   window.removeEventListener('mousedown', this.annotationHandler.handleMouseDown, false)
   window.removeEventListener('mouseup', this.annotationHandler.handleMouseUp, false)
+  
 // window.removeEventListener('mouseup',      this.getAnnot(), false)
 }
 
