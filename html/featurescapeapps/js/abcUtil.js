@@ -79,13 +79,11 @@ abcUtil = {
         if (selection.findhost) {
             console.log("selection.findhost", selection.findhost);
             console.log("selection.findport", selection.findport);
-            q = selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={"cancer_type":"'
-                + selection.cancer_type + '","execution_id":"' + selection.execution_id + '"}&db=u24_meta';
+            q = selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=100&collection=metadata&find={"cancer_type":"'
-                + selection.cancer_type + '","execution_id":"' + selection.execution_id + '"}&db=u24_meta';
+            q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
         }
 
         $.ajax({
@@ -150,14 +148,14 @@ abcUtil = {
             dataType: 'json',
             success: function (arr) {
                 if (!selection.cancer_type) {
-                    selection.cancer_type = 'luad';
+                    selection.cancer_type = 'default';
                 }
 
                 arr.forEach(function (item) {
-                    var tm = item.cancer_type;
-                    var value = tm + ',' + item.db + ',' + item.execution_id;
+                    var tm = 'default';
+                    var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
                     var attr = '';
-                    var exec = item.execution_id;
+                    var exec = item.provenance.analysis_execution_id;
 
                     if (disableArray.indexOf(tm) > -1) {
                         attr = 'disabled';
@@ -166,19 +164,19 @@ abcUtil = {
                     if (tm == selection.cancer_type) {
 
                         if (selection.execution_id == null) {
-                            selection.execution_id = item.execution_id;
+                            selection.execution_id = item.provenance.analysis_execution_id;
                         }
 
-                        if (selection.execution_id == item.execution_id) {
-                            selection.db = item.db;
-                            selection.execution_id = item.execution_id;
-                            selection.cancer_type = item.cancer_type;
+                        if (selection.execution_id == item.provenance.analysis_execution_id) {
+                            selection.db = 'quip';
+                            selection.execution_id = item.provenance.analysis_execution_id;
+                            selection.cancer_type = 'default';
                             attr = 'selected';
                         }
                     }
 
                     selectTumorHTML += '<option value="' + value + '" ' + attr + '>'
-                        + tm.toUpperCase() + ' - ' + item.name + ' - ' + exec + '</option>';
+                        + exec + '</option>';
 
                 });
             }
