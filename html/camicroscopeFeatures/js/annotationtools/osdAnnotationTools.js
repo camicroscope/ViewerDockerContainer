@@ -1994,7 +1994,7 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
   })
 
 
-var r = 1.0, w = 8.0, l=3.0, u = 10.0, k=1.0;  
+var r = 1.0, w = 8.0, l=3.0, u = 10.0, k=1.0, j="N";  
 var schema = {    
     "range1": {
       "type": "number",
@@ -2076,7 +2076,11 @@ var schema = {
         "required": true,
         "placeholder": k,
         "readonly": true
-      }  
+      }, 
+	"check6": {
+	    "type": "boolean",
+	    "title": "Declumping"
+      } 
   }
   
   //console.log('Schema: ' + JSON.stringify(schema, null, 4));
@@ -2169,7 +2173,18 @@ var schema = {
                 */
                 }
               },
-              "result5"
+              "result5",
+
+		  {
+		    "key": "check6",
+		    "onChange":function(e){
+		      console.log(e);
+			if(j == "Y")
+			  j = "N"
+			else
+			  j = "Y"
+		    } 
+		  }
                            
             ]
           }
@@ -2197,7 +2212,7 @@ var schema = {
     console.log("here");  
     console.log(formSchema);
     jQuery('#workOrderForm').jsonForm(formSchema);
-    jQuery("#workOrderForm").append("<div id='workOrderCtrl'><button class='btn' id='submitWorkOrder'>Submit</button><button class='btn' id='cancelWorkOrder'>Cancel</button><button class='btn-danger' id='discardWorkOrder'>Discard</button></div>");
+    jQuery("#workOrderForm").append("<div id='workOrderCtrl'><br /><button class='btn' id='submitWorkOrder'>Submit</button><button class='btn' id='cancelWorkOrder'>Cancel</button><button class='btn-danger' id='discardWorkOrder'>Discard</button></div>");
     jQuery('#cancelWorkOrder').click(function () {
       console.log('here')
       jQuery('#panel').hide()
@@ -2229,7 +2244,7 @@ var schema = {
         width = 26001
         height = 27968
       }
-      execution_id = "seg:r" + r + ":" + "w" + w + ":l" + l + ":u" + u + ":k"+ k;
+      execution_id = "seg:r" + r + ":" + "w" + w + ":l" + l + ":u" + u + ":k"+ k +":j"+j;
       console.log(roiGeoJSON);
       roiGeoJSON.provenance.analysis.execution_id = execution_id;
       var order  = {
@@ -2249,7 +2264,7 @@ var schema = {
                           {
                               "w": w*1
                           },
-                          { "l": l*1}, {"u": u*1}, {"k": k*1}
+                          { "l": l*1}, {"u": u*1}, {"k": k*1}, {"j": j}
                       ]
                   },
                   "image": {
@@ -2299,14 +2314,14 @@ var schema = {
             } else{
               //jQuery('#workOrderCtrl').html(function(){return "<button class='btn' id='submitWorkOrder'>Save</button> <button class='btn id='discard'>Discard</button>";});
               setTimeout(function(){
-                self.drawLayer.hide();
+                //self.drawLayer.hide();
                 //annotools.drawLayer.hide()
                 //annotools.addMouseEvents()
                 self.renderByExecutionId([execution_id]);
                 self.toolBar.ajaxBusy.hide();
                 self.toolBar.titleButton.show();
                 self.promptForWorkOrder(newAnnot, mode, annotools, ctx, roiGeoJSON);
-              },1000)
+              },3000)
             }
           });
         })
