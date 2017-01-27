@@ -149,13 +149,19 @@ function doInfo(newData, query) {
 
 function parseData(data, size, query) {
     var newData = [],
-        randomMembers = abcUtil.getRandomSubarrayPartialShuffle(data, size),
+        randomMembers,
         sameCaseId = true,
         prevCaseId = "",
         identifier = "",
         slideWidth = 0,
         slideHeight = 0,
         i;
+
+		if (data.length>12) {
+        	randomMembers = abcUtil.getRandomSubarrayPartialShuffle(data, size);
+		} else {
+        	randomMembers = data; 
+		}
 
     // Determine whether we have multiple case ids or just one.
     for (i = 0; i < randomMembers.length; i++) {
@@ -314,12 +320,15 @@ function draw(targetDiv, data, query, layout) {
         fragment.appendChild(tbl);
 
         // m rows
-        for (i = 0; i < mugshots.m; i++) {
-            row = document.createElement('tr');
-            tbl.appendChild(row);
+		for (i = 0; i < data.length; i++) {
+        // for (i = 0; i < mugshots.m; i++) {
+			if (i%mugshots.n==0) {
+            	row = document.createElement('tr');
+            	tbl.appendChild(row);
+			}
 
             // n columns
-            for (j = 0; j < mugshots.n; j++) {
+            // for (j = 0; j < mugshots.n; j++) {
 
                 obj = {
                     x: data[idx].markup[0],
@@ -378,7 +387,7 @@ function draw(targetDiv, data, query, layout) {
                 row.appendChild(col);
 
                 idx = idx + 1;
-            }
+            // }
         }
 
 
