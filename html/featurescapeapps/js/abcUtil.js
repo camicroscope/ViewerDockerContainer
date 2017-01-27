@@ -131,7 +131,7 @@ abcUtil = {
                 font_color: 'navy',
                 bg_color: 'silver',
                 font_size: 'large',
-                text: 'Select a dataset'
+                text: 'Select an analysis set'
             };
         }
 

@@ -42,7 +42,7 @@ function buildUI(dataDivId, data) { // build User Interface
 	*/
 
     col = document.createElement('td');
-    col.innerHTML = 'FeatureScape of sampled features';
+    col.innerHTML = 'FeatureScape';
     col.style.fontWeight = "bold";
     row.appendChild(col);
 
