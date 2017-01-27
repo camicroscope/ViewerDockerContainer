@@ -4,3 +4,8 @@ var findAPIConfig = {
 	dbSize: "small"
 }
 
+var dataLoaderConfig = {
+	dataLoaderAPI: "http://" + location.hostname,
+	port: 6002
+}
+
