@@ -158,20 +158,6 @@ $_SESSION["name"] = "quip";
                 </div>
             </div>
         </div>
-		<!--<div class="panel-body">
-            <div class="row">
-                <div class="col-md-4"><a class="btn btn-success btn-block" href="/imageformuploader.htm">Image Loader</a></div>
-                <div class="col-md-8">caMicroscope Image Loader
-                </div>
-            </div>
-        </div>-->
-		<div class="panel-body">
-            <div class="row">
-                <div class="col-md-4"><a class="btn btn-success btn-block" href="" onClick="location.href='http://129.49.249.177:6002/imageformuploader.htm'">Image Loader</a></div>
-                <div class="col-md-8">caMicroscope Image Loader
-                </div>
-            </div>
-        </div>
     </div>
 	<!--Upload images end-->
     <div class="panel panel-success">
