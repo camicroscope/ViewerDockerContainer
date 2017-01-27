@@ -4,7 +4,7 @@
 var config = {
     //domain: 'http://localhost:63342/FeatureScapeApps',
     domain: '/featurescapeapps',
-    quipUrl: '/camicroscope/osdCamicroscope.php',
+    quipUrl: '/camicroscopeDS/osdCamicroscope.php',
     //reserve4Url: 'http://reserve4.informatics.stonybrook.edu/dev1/osdCamicroscope.php',
     imgcoll: 'images',
     quot: "%22",
