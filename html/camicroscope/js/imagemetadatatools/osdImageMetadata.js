@@ -9,7 +9,6 @@ var OSDImageMetaData = new Class({
 	retrieveImageSize:function()
     	{
        		var jsonRequest = new Request.JSON({url: "api/Data/osdMetadataRetriever.php",async:false, onSuccess: function(e){
-            console.log(e);
 		this.metaData=e;
         	}.bind(this),onFailure:function(e){alert("Failed to get dimension");}.bind(this)}).get({'imageId':this.imageId});
     	}

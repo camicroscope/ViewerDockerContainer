@@ -19,7 +19,8 @@ if(isset($_GET["iid"]))
     $iid=$_GET["iid"];
    
     $url  = $getUrl . "api_key=" . urlencode($api_key) . "&TCGAId=". $iid; 
-
+	//echo $url;
+	//echo "adfssadf";
     $getRequest = new RestRequest($url,'GET');
     $getRequest->execute();
 
