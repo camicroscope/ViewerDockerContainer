@@ -2187,20 +2187,7 @@ var schema = {
 		  }
                            
             ]
-          }
-          /*,{
-            'type': 'submit',
-            'title': 'Submit' 
-          },
-          {
-            'type': 'button',
-            'title': 'Discard'
-          },
-          {
-            'type': 'button',
-            'id': 
-            'title': 'Cancel' 
-          }*/],
+          }],
           "params": {
             "fieldHtmlClass": "input-small"
           }
@@ -2219,6 +2206,11 @@ var schema = {
       annotools.drawLayer.hide()
       annotools.addMouseEvents()
     });
+    jQuery('[id*="-result1"]').val(r);
+    jQuery('[id*="-result2"]').val(w);
+    jQuery('[id*="-result3"]').val(l);
+    jQuery('[id*="-result4"]').val(u);
+    jQuery('[id*="-result5"]').val(k);
       var width = 48002
       var height = 35558
     jQuery("#discardWorkOrder").click(function(e){
@@ -2302,7 +2294,7 @@ var schema = {
           console.log(r);
           var id = r.id;
           console.log("Order submitted!, Job ID: "+id);
-          jQuery('#workOrderCtrl').html(function(){ return "Processing..."; });
+          jQuery('#workOrderCtrl').html(function(){ return "<br /><br />Processing..."; });
             self.toolBar.titleButton.hide()
             self.toolBar.ajaxBusy.show();
             self.addnewAnnot(roiGeoJSON);

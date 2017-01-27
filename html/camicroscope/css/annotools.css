@@ -426,6 +426,9 @@
 
 }
 
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio]{
+	margin: 0;
+}
 .algoColorBox{
 
     width: 10px;
