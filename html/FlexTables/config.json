@@ -1,12 +1,11 @@
 {
   "apiKey" : "",
-  "title": "TCIA",
-  "description": "Lorem ipsum dolor....",
+  "title": "caMicroscope",
+  "description": "Click any image to view",
   "path":[
     {
       "name": "Collections",
-      "dataUrl": "http://172.17.0.2:9099/services/Camicroscope_DataLoader/DataLoader/query/getAll",
-      "metadataUrl": "https://services.cancerimagingarchive.net/services/v3/TCIA/query/getCollectionValues/metadata"
+      "dataUrl": "http://172.17.0.7:9099/services/Camicroscope_DataLoader/DataLoader/query/getAll"  
     },
     {
       "name": "Link",
