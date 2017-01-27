@@ -7,7 +7,10 @@ abcUtil = {
     features: [],
 
     randval: function () {
-        return (0.95 * Math.random());
+		if (findAPIConfig.dbSize==="small")
+			return 0.0;
+		else
+        	return (0.95 * Math.random());
     },
 
     getQueryVariable: function (variable, queryString) {
@@ -122,7 +125,7 @@ abcUtil = {
         if (jQuery.isEmptyObject(trace)) {
 
             trace = {
-                url: selection.findhost + ':' + selection.findport + '/?limit=12&collection=metadata&find={}&db=u24_meta',
+                url: selection.findhost + ':' + selection.findport + '/?limit=12&collection=metadata&find={}&db=quip',
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
                 font_color: 'navy',
@@ -150,7 +153,8 @@ abcUtil = {
                 if (!selection.cancer_type) {
                     selection.cancer_type = 'default';
                 }
-
+				
+				var execSet = {};
                 arr.forEach(function (item) {
                     var tm = 'default';
                     var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
@@ -175,8 +179,11 @@ abcUtil = {
                         }
                     }
 
-                    selectTumorHTML += '<option value="' + value + '" ' + attr + '>'
-                        + exec + '</option>';
+					if (Object.prototype.hasOwnProperty.call(execSet,exec)==false) {
+                    	selectTumorHTML += '<option value="' + value + '" ' + attr + '>'
+                        	+ exec + '</option>';
+						execSet[exec] = true;
+					}
 
                 });
             }
