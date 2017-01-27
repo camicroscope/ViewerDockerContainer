@@ -328,7 +328,7 @@
     width: 260px;
     font-family: Arial, Roboto; 
     font-size: 12px;
-    height: 460px;
+    height: 450px;
     top: 60px;
     left: 0;
     position: fixed;
@@ -348,7 +348,7 @@
 #panelBody{
     padding: 25px;
     overflow-y: scroll;    
-    height: 440px;
+    height: 420px;
 }
 
 #panel input{
