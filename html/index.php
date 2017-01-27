@@ -90,7 +90,7 @@ $_SESSION["name"] = "quip";
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-4"><a class="btn btn-success btn-block" href="/FlexTables/index.php">caMicroscope</a></div>
-                <div class="col-md-8">You can view a collection of ~3200 TCGA images from Brain(LGG & GBM), Breast(BRCA), Lung(LUAD), and Pancreatic(PAAD) cancer  whole slide images and segmentation results. You can view the images, nuclear segmentations, as well as aggreement amongst segmentation algorithms that are presented as overlaid heatmaps. Click on the magnifier icon to choose algorithm results and heatmaps. <b>You may zoom in, zoom out, and pan the images. Mouse Click: Zoom in, Shift-Click: Zoom out.</b>
+                <div class="col-md-8">You can view whole slide tissue images and nuclear segmentations. Click on the magnifier icon to choose algorithm results and heatmaps. <b>You may zoom in, zoom out, and pan the images. Mouse Click: Zoom in, Shift-Click: Zoom out.</b>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@ $_SESSION["name"] = "quip";
             <h3 class="panel-title">Visual Feature Analytics</h3>
         </div>
         <div class="panel-body">
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-12">
                     <p>
                     This suite of interactive tools work together to allow interrogation of multiple
@@ -111,7 +111,7 @@ $_SESSION["name"] = "quip";
                     information to
                     evaluate patient survival.</p>
                 </div>
-            </div>
+            </div>-->
             <!--<div class="row">
                 <div class="col-md-4"><a class="btn btn-info btn-block"
                                          href="/featurescapeapps/featurescape/fig4.html">FeatureExplorer</a>
