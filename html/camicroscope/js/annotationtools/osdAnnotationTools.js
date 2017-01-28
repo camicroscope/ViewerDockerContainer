@@ -1957,13 +1957,12 @@ annotools.prototype.deleteAnnotations = function(execution_id, x1, y1, x2, y2){
 
 var execution_id; 
 annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ctx, roiGeoJSON) {
-  console.log(newAnnot)
-  console.log(mode)
-  console.log(annotools)
-  console.log(ctx)
+
   this.removeMouseEvents();
   console.log("removed mouse events");
+	
   var panel = jQuery('#panel').show()
+	panel.html(function(){return ""});
   var iid = this.iid
   var roi_x = annotools.imagingHelper.physicalToDataX(annotools.imagingHelper.logicalToPhysicalX(newAnnot.x))
   var roi_y = annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y))
@@ -1981,7 +1980,8 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
     panel.html(function () {
       return "<div id='panelHeader'><h4> Work Order(Error) </h4></div><div id='panelBody'> Error: Very large ROI. <br />" + 'Width: ' + roi_w + '<br />' + 'Height: ' + roi_h + "<br />Please try creating a smaller ROI. Zooming into the ROI would help.<br /> We currently support 1000X1000 tiles <br />  <button id='cancelWorkOrder' class='btn' >Cancel</button></div>"
     })
-    jQuery('#cancelWorkOrder').click(function () {
+    jQuery('#cancelWorkOrder').click(function (e) {
+	e.preventDefault();
       console.log('here')
       jQuery('#panel').hide()
       annotools.drawLayer.hide()
@@ -2200,7 +2200,8 @@ var schema = {
     console.log(formSchema);
     jQuery('#workOrderForm').jsonForm(formSchema);
     jQuery("#workOrderForm").append("<div id='workOrderCtrl'><br /><button class='btn' id='submitWorkOrder'>Submit</button><button class='btn' id='cancelWorkOrder'>Cancel</button><button class='btn-danger' id='discardWorkOrder'>Discard</button></div>");
-    jQuery('#cancelWorkOrder').click(function () {
+    jQuery('#cancelWorkOrder').click(function (e) {
+	e.preventDefault();
       console.log('here')
       jQuery('#panel').hide()
       annotools.drawLayer.hide()
@@ -2313,7 +2314,7 @@ var schema = {
                 self.toolBar.ajaxBusy.hide();
                 self.toolBar.titleButton.show();
                 self.promptForWorkOrder(newAnnot, mode, annotools, ctx, roiGeoJSON);
-              },3000)
+              },300)
             }
           });
         })
