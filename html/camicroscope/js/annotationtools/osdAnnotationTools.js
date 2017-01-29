@@ -2260,6 +2260,7 @@ var schema = {
                           { "l": l*1}, {"u": u*1}, {"k": k*1}, {"j": j}
                       ]
                   },
+		  "pr": r, "w": w, "pl": l, "pu": u, "pk": k, "pj": j,
                   "image": {
                       "case_id": iid,
                       "subject_id": iid,
@@ -2314,7 +2315,7 @@ var schema = {
                 self.toolBar.ajaxBusy.hide();
                 self.toolBar.titleButton.show();
                 self.promptForWorkOrder(newAnnot, mode, annotools, ctx, roiGeoJSON);
-              },300)
+              },1500)
             }
           });
         })
