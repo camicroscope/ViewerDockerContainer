@@ -1990,7 +1990,7 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
     return
   }
   panel.html(function () {
-    return "<div id='panelHeader'><h4> Work Order </h4></div><div id='panelBody'><form id='workOrderForm' action='#'></form></div>";
+    return "<div id='panelHeader'><h4 id='workOrderTitle'> Work Order </h4><a href='#' id='cancelOrderTitle'><div id='cancelWorkOrder'> <img src='images/ic_close_white_24px.svg' /> </div></a></div><div id='panelBody'><form id='workOrderForm' action='#'></form></div>";
   })
 
 
@@ -2199,9 +2199,9 @@ var schema = {
     console.log("here");  
     console.log(formSchema);
     jQuery('#workOrderForm').jsonForm(formSchema);
-    jQuery("#workOrderForm").append("<div id='workOrderCtrl'><br /><button class='btn' id='submitWorkOrder'>Submit</button><button class='btn' id='cancelWorkOrder'>Cancel</button><button class='btn-danger' id='discardWorkOrder'>Discard</button></div>");
+    jQuery("#workOrderForm").append("<div id='workOrderCtrl'><br /><button class='btn' id='submitWorkOrder'>Submit Job</button><br /><button class='btn' id='saveWorkOrder'>Save</button> <button class='btn-danger' id='discardWorkOrder'>Discard</button></div>");
     jQuery('#cancelWorkOrder').click(function (e) {
-	e.preventDefault();
+      e.preventDefault();
       console.log('here')
       jQuery('#panel').hide()
       annotools.drawLayer.hide()
@@ -2221,8 +2221,12 @@ var schema = {
       console.log(roi_h, roi_w, roi_x, roi_y);
       console.log(newAnnot);
       self.deleteAnnotations(execution_id,newAnnot.x, newAnnot.y, newAnnot.x + newAnnot.w, newAnnot.y + newAnnot.h);
+		alert("Discarded results");
     });
-
+	jQuery("#saveWorkOrder").click(function(e){
+		e.preventDefault();
+		alert("Saved results as: "+execution_id);
+	})
     jQuery('#submitWorkOrder').click(function (e) {
       console.log("submitting work order!");
       e.preventDefault();
