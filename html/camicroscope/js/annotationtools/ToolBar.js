@@ -227,21 +227,21 @@ ToolBar.prototype.createButtons = function () {
       class: 'toolButton firstToolButtonSpace',
       src: 'images/rect.svg'
     })
-    tool.append(this.rectbutton)
+    //tool.append(this.rectbutton)
 
     this.ellipsebutton = jQuery('<img>', {
       'title': 'Draw Ellipse',
       'class': 'toolButton',
       'src': 'images/ellipse.svg'
     })
-    tool.append(this.ellipsebutton)
+    //tool.append(this.ellipsebutton)
 
     this.pencilbutton = jQuery('<img>', {
       'title': 'Draw Freeline',
       'class': 'toolButton',
       'src': 'images/pencil.svg'
     })
-    tool.append(this.pencilbutton) // Pencil Tool
+    //tool.append(this.pencilbutton) // Pencil Tool
 
     this.measurebutton = jQuery('<img>', {
       'title': 'Measurement Tool',
@@ -268,14 +268,14 @@ ToolBar.prototype.createButtons = function () {
       'class': 'toolButton',
       'src': 'images/hide.svg'
     })
-    tool.append(this.hidebutton)
+    //tool.append(this.hidebutton)
 
     this.fullDownloadButton = jQuery('<img>', {
       'title': 'Download All Markups (Coming Soon)',
       'class': 'toolButton',
       'src': 'images/fullDownload.svg'
     })
-    tool.append(this.fullDownloadButton)
+    //tool.append(this.fullDownloadButton)
     this.spacer1 = jQuery('<img>', {
       'class': 'spacerButton',
       'src': 'images/spacer.svg'
