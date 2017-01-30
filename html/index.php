@@ -56,8 +56,8 @@ $_SESSION["name"] = "quip";
                             <a href="#myModal" data-toggle="modal" data-target="#myModal">About</a>
                         </li>
                         <li><a href="http://imaging.cci.emory.edu/wiki/x/RwAJ">User Guide</a></li>
-                        <li><a onclick="logOut(); return false;" href="#">Logout <?php echo $_SESSION["email"]; ?></a>
-                        </li>
+                        <!--<li><a onclick="logOut(); return false;" href="#">Logout <?php echo $_SESSION["email"]; ?></a>
+                        </li>-->
                     </ul>
                     <h3 class="text-muted">QuIP</h3>
                 </div>
@@ -153,7 +153,7 @@ $_SESSION["name"] = "quip";
         </div>
 		<div class="panel-body">
             <div class="row">
-                <div class="col-md-4"><a class="btn btn-success btn-block"  onClick="location.href=dataLoaderConfig.dataLoaderAPI + ':' + dataLoaderConfig.port + '/' + 'imageformuploader.htm'">Image Loader</a></div>
+                <div class="col-md-4"><a class="btn btn-warning btn-block"  onClick="location.href=dataLoaderConfig.dataLoaderAPI + ':' + dataLoaderConfig.port + '/' + 'imageformuploader.htm'">Image Loader</a></div>
                 <div class="col-md-8">Web application for loading whole slide tissue images to QuIP
                 </div>
             </div>
