@@ -221,6 +221,12 @@ ToolBar.prototype.createButtons = function () {
      * Ganesh
      * Mootools to Jquery for creation of toolbar buttons
      */
+    this.homebutton = jQuery('<img>', {
+			src: 'images/ic_home_white_24px.svg',
+			class: 'toolButton firstToolButtonSpace',
+			title: 'Home'
+		});
+		tool.append(this.homebutton);
     this.rectbutton = jQuery('<img>', {
       title: 'Draw Rectangle',
       id: 'drawRectangle',
@@ -262,6 +268,8 @@ ToolBar.prototype.createButtons = function () {
       'src': 'images/filter.svg'
     })
     tool.append(this.filterbutton) // Filter Button
+
+
 
     this.hidebutton = jQuery('<img>', {
       'title': 'Show/Hide Markups',
@@ -314,6 +322,9 @@ ToolBar.prototype.createButtons = function () {
     /*
      * Event handlers on click for the buttons
      */
+		this.homebutton.on('click', function(){
+			window.location.href = "/";
+		});
     this.rectbutton.on('click', function () {
       this.mode = 'rect'
       this.annotools.mode = 'rect'
@@ -463,7 +474,7 @@ ToolBar.prototype.createButtons = function () {
     'title': 'ColorMap',
     'src': 'images/colors.svg'
   })
-  tool.append(this.colorMapButton)
+  //tool.append(this.colorMapButton)
   this.ajaxBusy = jQuery('<img>', {
     'class': 'colorMapButton',
     'id': 'ajaxBusy',
