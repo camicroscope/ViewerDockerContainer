@@ -153,7 +153,7 @@ $_SESSION["name"] = "quip";
         </div>
 		<div class="panel-body">
             <div class="row">
-                <div class="col-md-4"><a class="btn btn-success btn-block"  onClick="location.href=dataLoaderConfig.dataLoaderAPI + ':' + dataLoaderConfig.port">Image Loader</a></div>
+                <div class="col-md-4"><a class="btn btn-success btn-block"  onClick="location.href=dataLoaderConfig.dataLoaderAPI + ':' + dataLoaderConfig.port + '/' + 'imageformuploader.htm'">Image Loader</a></div>
                 <div class="col-md-8">caMicroscope Image Loader
                 </div>
             </div>
