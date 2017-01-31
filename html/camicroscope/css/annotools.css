@@ -325,10 +325,10 @@
 }
 
 #panel {
-    width: 260px;
+    width: 300px;
     font-family: Arial, Roboto; 
     font-size: 12px;
-    height: 450px;
+    height: 485px;
     top: 60px;
     left: 0;
     position: fixed;
@@ -348,7 +348,16 @@
 #panelBody{
     padding: 25px;
     overflow-y: scroll;    
-    height: 400px;
+    height: 445px;
+}
+#workOrderTitle{
+	display: inline-block;
+	width: 100px;
+}
+#cancelWorkOrder{
+	display: inline-block;
+	width: 20px;
+	float:right;
 }
 
 #panel input{
