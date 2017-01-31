@@ -135,10 +135,11 @@ function doInfo(newData, query) {
         }
         console.log(selection);
 
-        document.getElementById('info1').innerHTML = text + ' having morphologic ranges selected from <strong>'
-            + selection.cancer_type.toUpperCase()
-            + '</strong> '
-            + (parm == 'case_id' ? 'diagnostic image' : 'patient') + ' <strong>' + id + '</strong>:';
+        document.getElementById('info1').innerHTML = text + ' having morphologic ranges selected from '
+            //+ selection.cancer_type.toUpperCase()
+            //+ '</strong> '
+            //+ (parm == 'case_id' ? 'diagnostic image' : 'patient') + ' <strong>' + id + '</strong>:';
+            + (parm == 'case_id' ? ' image' : ' image') + ' <strong>' + id + '</strong>:';
 
         document.getElementById('info2').innerHTML =
             fx + ' between ' + xmin + ' and ' + xmax + '<br>' +
