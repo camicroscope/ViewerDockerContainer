@@ -40,7 +40,7 @@ function goodalgo (data, status) {
     n.key = i.toString()
     n.refKey = data[i].provenance.analysis_execution_id
     n.color = available_colors[i%7];
-    algorithm_color[data[i].provenance.analysis_execution_id] = available_colors[i]
+    algorithm_color[data[i].provenance.analysis_execution_id] = available_colors[i%7]
     blob.push(n)
   }
   ftree = jQuery('#tree').fancytree({
