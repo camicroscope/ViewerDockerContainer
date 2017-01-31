@@ -167,10 +167,10 @@ function doFeaturescape(data, url) {
         }
         console.log(selection);
 
-        var text = ' Displaying <strong>' + xx.length + '</strong> sets of features sampled from <strong>'
-            + (selection.cancer_type == 'unknown' ? '' : (selection.cancer_type).toUpperCase())
-            + '</strong> '
-            + (p.length > 12 ? 'diagnostic image ' : 'patient ')
+        var text = ' Displaying <strong>' + xx.length + '</strong> sets of features from '
+            //+ (selection.cancer_type == 'unknown' ? '' : (selection.cancer_type).toUpperCase())
+            //+ (p.length > 12 ? 'image ' : 'patient ')
+            + (p.length > 12 ? 'image ' : 'image ')
             + '<strong>' + p + '</strong>';
 
         log('info1', text, 'black');
