@@ -1956,6 +1956,7 @@ annotools.prototype.deleteAnnotations = function(execution_id, x1, y1, x2, y2){
 };
 
 var execution_id; 
+var r = 1.0, w = 8.0, l=3.0, u = 10.0, k=1.0, j="N";  
 annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ctx, roiGeoJSON) {
 
   this.removeMouseEvents();
@@ -1994,7 +1995,7 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
   })
 
 
-var r = 1.0, w = 8.0, l=3.0, u = 10.0, k=1.0, j="N";  
+
 var schema = {    
     "range1": {
       "type": "number",
