@@ -140,7 +140,7 @@ annotools.prototype.renderByExecutionId = function(algorithms){
   var max = new OpenSeadragon.Point(this.imagingHelper.physicalToDataX(3), this.imagingHelper.physicalToDataY(3))
   var origin = new OpenSeadragon.Point(this.imagingHelper.physicalToDataX(0), this.imagingHelper.physicalToDataY(0))
   var area = (max.x - origin.x) * (max.y - origin.y)
-
+  self.destroyMarkups();
 
   var t1 = 0
   if (algorithms.length) {
@@ -1956,7 +1956,7 @@ annotools.prototype.deleteAnnotations = function(execution_id, x1, y1, x2, y2){
 };
 
 var execution_id; 
-var r = 1.0, w = 8.0, l=3.0, u = 10.0, k=1.0, j="N";  
+var r = 1.0, w = 0.8, l=3.0, u = 10.0, k=1.0, j="N";  
 annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ctx, roiGeoJSON) {
 
   this.removeMouseEvents();
@@ -2309,12 +2309,12 @@ var schema = {
           pollOrder(id, function(err, data){
         
             if(err){
-              jQuery("#workOrderCtrl").html(function(){return "Order failed! Couldn't process your order"});
+              jQuery("#workOrderCtrl").html(function(){return "<br /><br />Order failed! Couldn't process your order"});
             } else{
               //jQuery('#workOrderCtrl').html(function(){return "<button class='btn' id='submitWorkOrder'>Save</button> <button class='btn id='discard'>Discard</button>";});
               setTimeout(function(){
                 //self.drawLayer.hide();
-                //annotools.drawLayer.hide()
+                annotools.drawLayer.hide()
                 //annotools.addMouseEvents()
                 self.renderByExecutionId([execution_id]);
                 self.toolBar.ajaxBusy.hide();
