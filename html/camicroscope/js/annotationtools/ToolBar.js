@@ -103,7 +103,8 @@ ToolBar.prototype.toggleAlgorithmSelector = function () {
 
     ALGORITHM_LIST = d;
     for(var i=0; i < d.length; i++){
-
+      //n.color = available_colors[i%7];
+       algorithm_color[d[i].provenance.analysis_execution_id] = available_colors[i%7]
       htmlStr += "<li><input type='checkbox' class='algorithmCheckbox' value="+i+" /><span class='algoColorBox' style='background:"+ algorithm_color[d[i].provenance.analysis_execution_id] +"'></span> "+d[i].provenance.analysis_execution_id
        + "</li>";
     }
