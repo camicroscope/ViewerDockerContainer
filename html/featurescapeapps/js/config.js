@@ -11,7 +11,7 @@ var config = {
     iiifServer: location.hostname,
     iiifPrefix: 'fcgi-bin/iipsrv.fcgi?iiif=',
     default_execution_id: 'tahsin-test-1',
-    default_db: 'u24_luad',
+    default_db: 'quip',
     default_subject_id: 'TCGA-05-4396',
     default_case_id: 'TCGA-05-4396-01Z-00-DX1'
 };

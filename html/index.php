@@ -51,14 +51,14 @@ $_SESSION["name"] = "quip";
         <div class="container">
             <div>
                 <div class="header">
-                    <ul class="nav nav-pills pull-right">
+                    <!--<ul class="nav nav-pills pull-right">
                         <li>
                             <a href="#myModal" data-toggle="modal" data-target="#myModal">About</a>
                         </li>
                         <li><a href="http://imaging.cci.emory.edu/wiki/x/RwAJ">User Guide</a></li>
-                        <!--<li><a onclick="logOut(); return false;" href="#">Logout <?php echo $_SESSION["email"]; ?></a>
-                        </li>-->
-                    </ul>
+                        <li><a onclick="logOut(); return false;" href="#">Logout <?php echo $_SESSION["email"]; ?></a>
+                        </li>
+                    </ul>-->
                     <h3 class="text-muted">QuIP</h3>
                 </div>
                 <div></div>
@@ -68,18 +68,7 @@ $_SESSION["name"] = "quip";
     <div class="row marketing">
         <div class="panel">
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-12">Welcome to <span data-toggle="tooltip"
-                                                            title="Quantitative Imaging in Pathology"><strong>QuIP</strong></span> &ndash;
-                        a web accessible tool set designed to support
-                        analysis, management, and exploration
-                        of whole slide tissue images for cancer research. This is an NIH funded multi-site collaborative
-                        effort between
-                        Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on
-                        any of the
-                        colored buttons to launch the associated tool.
-                    </div>
-                </div>
+                    Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP</strong></span> &ndash; a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research. This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.
             </div>
         </div>
     </div>
@@ -169,12 +158,17 @@ $_SESSION["name"] = "quip";
                 </h3>
             </div>
             <div id="collapse1" class="panel-collapse collapse">
-                <div class="panel-body"><p>Links to our GitHub repositories for FeatureDB, analysis codes and Region Templates framework</p>
+                <div class="panel-body"><p>Links to our GitHub repositories</p>
                     <div>
                        <ul class="list-group">
-                           <li class="list-group-item"><a href="https://github.com/SBU-BMI/pathomics_featuredb">FeatureDB</a></li>
-                           <li class="list-group-item"><a href="https://github.com/SBU-BMI/pathomics_analysis">Analysis</a></li>
-                           <li class="list-group-item"><a href="https://github.com/SBU-BMI/region-templates">Region Templates framework</a></li>
+                           <li class="list-group-item"><a href="https://github.com/SBU-BMI/quip_distro" target="_blank">Distribution and Installation </a></li>
+                           <li class="list-group-item"><a href="https://github.com/camicroscope/DataDockerContainer" target="_blank">Data Manager Service </a></li>
+                           <li class="list-group-item"><a href="https://github.com/camicroscope/LoaderDockerContainer" target="_blank">Data Loader Service</a></li>
+						   <li class="list-group-item"><a href="https://github.com/camicroscope/ViewerDockerContainer" target="_blank">Viewer</a></li>
+                           <li class="list-group-item"><a href="https://github.com/camicroscope/oss-lite" target="_blank">Image Tile Server</a></li>
+                           <li class="list-group-item"><a href="https://github.com/camicroscope/OrderingService" target="_blank">Job Manager</a></li>
+						   <li class="list-group-item"><a href="https://github.com/camicroscope/DynamicServices" target="_blank">Image Analysis Service</a></li>
+                           <li class="list-group-item"><a href="https://github.com/SBU-BMI/findapi" target="_blank">FeatureDB Query Service </a></li>
                         </ul>
                     </div>
                 </div>
@@ -191,9 +185,8 @@ $_SESSION["name"] = "quip";
                 <div class="panel-body">
                     <div>
                        <ul class="list-group">
-                           <li class="list-group-item"><a href="https://hub.docker.com/r/sbubmi/pathomics_featuredb">FeatureDB Docker Image</a></li>
-                           <li class="list-group-item"><a href="https://hub.docker.com/r/sbubmi/pathomics_nucleus">Docker Image for pathology imageanalysis codes</a></li>
-                        </ul>
+                           <li class="list-group-item"><a href="">Comming soon</a></li>
+                       </ul>
                     </div>
                 </div>
                 <!--<div class="panel-footer">Panel Footer</div>-->
