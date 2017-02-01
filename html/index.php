@@ -59,7 +59,7 @@ $_SESSION["name"] = "quip";
                         <li><a onclick="logOut(); return false;" href="#">Logout <?php echo $_SESSION["email"]; ?></a>
                         </li>
                     </ul>-->
-                    <h3 class="text-muted">QuIP</h3>
+                    <h3 class="text-muted">QuIP:  Quantitative Imaging for Pathology</h3>
                 </div>
                 <div></div>
             </div>
@@ -68,7 +68,11 @@ $_SESSION["name"] = "quip";
     <div class="row marketing">
         <div class="panel">
             <div class="panel-body">
-                    Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP</strong></span> &ndash; a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research. This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.
+				<p>Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP</strong></span> &ndash; a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!</p>
+				
+				<p>The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts.</p>
+				    
+				<p>This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.</p>
             </div>
         </div>
     </div>
@@ -185,7 +189,7 @@ $_SESSION["name"] = "quip";
                 <div class="panel-body">
                     <div>
                        <ul class="list-group">
-                           <li class="list-group-item"><a href="">Comming soon</a></li>
+                           <li class="list-group-item"><a href="">Coming soon</a></li>
                        </ul>
                     </div>
                 </div>
