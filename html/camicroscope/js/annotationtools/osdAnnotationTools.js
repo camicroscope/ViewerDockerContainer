@@ -416,6 +416,8 @@ annotools.prototype.drawMarkups = function () // Draw Markups
 }
 
 annotools.prototype.createWorkOrder = function () {
+  jQuery('html,body').css('cursor', 'crosshair')
+
   this.showMessage() // Show Message
   this.drawCanvas.removeEvents('mouseup')
   this.drawCanvas.removeEvents('mousedown')
@@ -1958,6 +1960,7 @@ annotools.prototype.deleteAnnotations = function(execution_id, x1, y1, x2, y2){
 var execution_id; 
 var r = 1.0, w = 0.8, l=3.0, u = 10.0, k=1.0, j="N";  
 annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ctx, roiGeoJSON) {
+  jQuery('html,body').css('cursor', 'default')
 
   this.removeMouseEvents();
   console.log("removed mouse events");
