@@ -14,7 +14,7 @@ downloadData=function(div){
     // 'properties.scalar_features.nv' :
     
     downloadData.parms.url=downloadData.parms.url.replace(/limit=\d+&/,'').replace(/"\$gte"\:[0123456789\.]+/,'"$gte":0')
-    div.innerHTML='<p id="downloadDataLimitMsg"></p>Maximum number of features to download: <input style="color:blue" id="downloadDataLimitInput" size=6> <button class="btn btn-primary" id="downloadButton" disabled>Download</button><hr><button id="saveFileJsonBt" class="btn btn-success" disabled>Save File as JSON</button> <button id="saveFileCsvBt" class="btn btn-success" disabled>Save File as CSV</button> (Chrome browser preferred)'
+    div.innerHTML='<p id="downloadDataLimitMsg"></p>Maximum number of features to download: <input style="color:blue" id="downloadDataLimitInput" size=6> <button class="btn btn-primary" id="downloadButton" disabled>Start download</button><hr><button id="saveFileJsonBt" class="btn btn-success" disabled>Save (partial) File as JSON</button> <button id="saveFileCsvBt" class="btn btn-success" disabled>Save (partial) File as CSV</button> (Chrome browser)'
     downloadDataLimitInput.value=100000
     downloadData.msg=function(m,c){
         downloadDataLimitMsg.style.color=c||'blue'
@@ -47,7 +47,8 @@ downloadData=function(div){
 
      downloadButton.onclick=function(){
          downloadButton.disabled=true
-         downloadData.msg('preparing download ...','blue')
+         downloadButton.textContent='Downloading ...'
+         downloadData.msg('preparing download ...','red')
          // first find out what fields are there to retrieve
          /*
          var getFields=function(){
@@ -101,6 +102,91 @@ downloadData.getParms=function(){ // extract parameters from url search
 
 // get the data
 
+downloadData.dataTabling=function(){
+    saveFileJsonBt.textContent='Save File as JSON'
+    saveFileCsvBt.textContent='Save File as CSV'
+    var div = document.getElementById('dataTabling')|| document.createElement('div')
+    div.id='dataTabling'
+    div.innerHTML='<hr>Variables:<div id="tableVars"></div><hr><button class="btn btn-success" id="showhideData">tabulate data</button><div id="tableData"></div>'
+    downloadDataDiv.appendChild(div)
+    downloadData.fieldsChecked=[]
+    if(downloadData.dt.length>0){
+        downloadData.fields=Object.getOwnPropertyNames(downloadData.dt[0]).sort()
+        downloadData.fields.forEach(function(p,i){
+            var sp = document.createElement('span')
+            var ip = document.createElement('input')
+            ip.type='radio'
+            ip.value=p
+            if(i<3){
+                ip.checked=true
+                ip.nocheck=false
+                downloadData.fieldsChecked.push(p)
+            } else {
+                ip.checked=false
+                ip.nocheck=true
+            }
+            var h = ' '+p
+            sp.innerHTML = h
+            sp.appendChild(ip)
+            sp.style.color='navy'
+            tableVars.appendChild(sp)
+            ip.onclick=function(){
+                this.nocheck=!this.nocheck
+                this.checked=!this.nocheck
+                if(this.nocheck){
+                    downloadData.fieldsChecked.pop(downloadData.fieldsChecked.indexOf(this.value))
+                } else {
+                    downloadData.fieldsChecked.push(this.value) // add to list of selected fields
+                }
+                console.log(downloadData.fieldsChecked)
+            }         
+        })
+    }
+    showhideData.onclick=function(){
+        var div = document.getElementById('tableData')
+        div.innerHTML='' // clear if something is there
+        div.appendChild(downloadData.docs2html(downloadData.dt,downloadData.fieldsChecked))
+    }
+
+
+        
+    4
+}
+
+downloadData.docs2html=function(docs,parms){
+    parms = parms || Object.getOwnPropertyNames(docs[0])
+    var tb = document.createElement('table')
+    tb.cellSpacing='5px'
+    var th = document.createElement('thead')
+    tb.appendChild(th)
+    var trh = document.createElement('tr')
+    trh.style.fontSize='10px'
+    trh.style.color='navy'
+    th.appendChild(trh)
+    parms.forEach(function(p){
+        var td = document.createElement('td')
+        td.textContent=p
+        td.style.padding='3px'
+        trh.appendChild(td)
+    })
+    var tbd = document.createElement('tbody')
+    tb.appendChild(tbd)
+
+    docs.forEach(function(d){
+        var tr = document.createElement('tr')
+        tr.style.fontSize='10px'
+        tbd.appendChild(tr)
+        parms.forEach(function(p){
+            var td = document.createElement('td')
+            td.style.padding='3px'
+            td.textContent=d[p]
+            tr.appendChild(td)
+            4
+        })
+    })
+    return tb
+}
+
 downloadData.getData=function(){
     var n =  1000 // at a time
     if(!downloadData.dt){downloadData.dt=[]}
@@ -122,7 +208,7 @@ downloadData.getData=function(){
                  downloadData.dt=downloadData.dt.concat(downloadData.propertiesArray(x))
                  console.log(Date()+' n = '+downloadData.dt.length+', last _id = '+downloadData.parms.lastId)
              }
-             downloadData.msg('features retrieved: '+downloadData.dt.length+' ... out of an estimated total of '+downloadData.parms.pn)
+             downloadData.msg('features retrieved so far: '+downloadData.dt.length+' out of an estimated total of '+downloadData.parms.pn+' ...','orange')
              if((x.length==n)&(x.length<parseInt(downloadDataLimitInput.value))){
                  setTimeout(function(){
                     //downloadData.parms.urlFind = downloadData.parms.urlFind.replace('http://quip1.uhmc.sunysb.edu','http://129.49.249.191')
@@ -140,6 +226,8 @@ downloadData.getData=function(){
                  downloadButton.onclick=function(){
                      window.open(location.href)
                  }
+                 // make data tables available
+                 downloadData.dataTabling()
              }
              saveFileJsonBt.disabled=false
              saveFileCsvBt.disabled=false
