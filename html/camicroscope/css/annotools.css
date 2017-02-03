@@ -449,3 +449,18 @@
     margin: 2px;
 
 }
+#panelBody label{
+  margin-top: 10px;
+}
+#panelBody input[type="range"]{
+  width: 200px;
+  float: left;
+}
+#panelBody input[type="text"]{
+  width: 30px;
+}
+#panelBody input[type="checkbox"] {
+  float: left;
+  display:inline-block;
+  margin-top: -15px;
+}
