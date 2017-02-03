@@ -36,7 +36,7 @@ downloadData=function(div){
          }else if(n>10){
              downloadData.msg('About '+n+',000 expected. It will take a few seconds to retrieve them','orange')
          }else{
-             downloadData.msg('fewer than 10,000 features expected, it woudn\'t take long to retrieve them all','green')
+             downloadData.msg('Fewer than 10,000 features expected, it woudn\'t take long to retrieve them all','green')
          }
          downloadData.parms.pn=n*1000 // predicted n
          downloadData.parms.x=x
@@ -109,7 +109,7 @@ downloadData.dataTabling=function(){
     saveFileCsvBt.textContent='Save File as CSV'
     var div = document.getElementById('dataTabling')|| document.createElement('div')
     div.id='dataTabling'
-    div.innerHTML='<hr>Variables:<div id="tableVars"></div><hr><button class="btn btn-success" id="showhideData">tabulate data</button><div id="tableData"></div>'
+    div.innerHTML='<hr>Variables:<div id="tableVars"></div><hr><button class="btn btn-success" id="showhideData">Tabulate Data</button><div id="tableData"></div>'
     downloadDataDiv.appendChild(div)
     downloadData.fieldsChecked=[]
     if(downloadData.dt.length>0){
