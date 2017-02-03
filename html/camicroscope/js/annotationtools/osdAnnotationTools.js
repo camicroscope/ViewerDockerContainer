@@ -416,8 +416,7 @@ annotools.prototype.drawMarkups = function () // Draw Markups
 }
 
 annotools.prototype.createWorkOrder = function () {
-  //body.document.style.cursor
-  console.log('changing cursor');
+
   jQuery('html,body').css('cursor', 'crosshair')
 
   this.showMessage() // Show Message
@@ -1962,6 +1961,7 @@ annotools.prototype.deleteAnnotations = function(execution_id, x1, y1, x2, y2){
 var execution_id; 
 var r = 1.0, w = 0.8, l=3.0, u = 10.0, k=1.0, j="N";  
 annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ctx, roiGeoJSON) {
+  jQuery('html,body').css('cursor', 'default')
 
   this.removeMouseEvents();
   console.log("removed mouse events");
@@ -2223,12 +2223,15 @@ var schema = {
       e.preventDefault();
       self.deleteAnnotations(execution_id,newAnnot.x - 0.00001, newAnnot.y - 0.00001, newAnnot.x + newAnnot.w+0.00001, newAnnot.y + newAnnot.h+0.000001);
 		alert("Discarded results");
+	annotools.destroyMarkups();
     });
 	jQuery("#saveWorkOrder").click(function(e){
 		e.preventDefault();
 		alert("Saved results as: "+execution_id);
 	})
     jQuery('#submitWorkOrder').click(function (e) {
+      annotools.destroyMarkups();
+      console.log("Destroyed markups!");
       console.log("submitting work order!");
       e.preventDefault();
 
@@ -2295,13 +2298,13 @@ var schema = {
       jQuery.post('api/Data/workOrder.php', order)
         .done(function (res) {
           var r = JSON.parse(res);
-
           var id = r.id;
           console.log("Order submitted!, Job ID: "+id);
           jQuery('#workOrderCtrl').html(function(){ return "<br /><br />Processing..."; });
             self.toolBar.titleButton.hide()
             self.toolBar.ajaxBusy.show();
-            self.addnewAnnot(roiGeoJSON);
+            
+	    self.saveAnnot(roiGeoJSON);
           //start polling
           pollOrder(id, function(err, data){
         
@@ -2311,12 +2314,13 @@ var schema = {
               //jQuery('#workOrderCtrl').html(function(){return "<button class='btn' id='submitWorkOrder'>Save</button> <button class='btn id='discard'>Discard</button>";});
               setTimeout(function(){
                 //self.drawLayer.hide();
-                annotools.drawLayer.hide()
+                //annotools.drawLayer.hide()
                 //annotools.addMouseEvents()
                 self.renderByExecutionId([execution_id]);
                 self.toolBar.ajaxBusy.hide();
                 self.toolBar.titleButton.show();
                 self.promptForWorkOrder(newAnnot, mode, annotools, ctx, roiGeoJSON);
+	
               },1500)
             }
           });
