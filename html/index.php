@@ -61,7 +61,6 @@ $_SESSION["name"] = "quip";
                     </ul>-->
                     <h3 class="text-muted">QuIP:  Quantitative Imaging for Pathology</h3>
                 </div>
-                <div></div>
             </div>
         </div>
     </div>
@@ -153,104 +152,19 @@ $_SESSION["name"] = "quip";
         </div>
     </div>
 	<!--Upload images end-->
-	<!--Other start-->
-	 <div class="panel-group">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse1" title="View GitHub Repositories">GitHub Repositories</a>
-                </h3>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-                <div class="panel-body"><p>Links to our GitHub repositories</p>
-                    <div>
-                       <ul class="list-group">
-                           <li class="list-group-item"><a href="https://github.com/SBU-BMI/quip_distro" target="_blank">Distribution and Installation </a></li>
-                           <li class="list-group-item"><a href="https://github.com/camicroscope/DataDockerContainer" target="_blank">Data Manager Service </a></li>
-                           <li class="list-group-item"><a href="https://github.com/camicroscope/LoaderDockerContainer" target="_blank">Data Loader Service</a></li>
-						   <li class="list-group-item"><a href="https://github.com/camicroscope/ViewerDockerContainer" target="_blank">Viewer</a></li>
-                           <li class="list-group-item"><a href="https://github.com/camicroscope/oss-lite" target="_blank">Image Tile Server</a></li>
-                           <li class="list-group-item"><a href="https://github.com/camicroscope/OrderingService" target="_blank">Job Manager</a></li>
-						   <li class="list-group-item"><a href="https://github.com/camicroscope/DynamicServices" target="_blank">Image Analysis Service</a></li>
-                           <li class="list-group-item"><a href="https://github.com/SBU-BMI/findapi" target="_blank">FeatureDB Query Service </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!--<div class="panel-footer">Panel Footer</div>-->
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse2" title="View Docker Hub Image Repository">Docker Hub Image Repository</a>
-                </h3>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <div>
-                       <ul class="list-group">
-                           <li class="list-group-item"><a href="">Coming soon</a></li>
-                       </ul>
-                    </div>
-                </div>
-                <!--<div class="panel-footer">Panel Footer</div>-->
-            </div>
-        </div>
-		<div class="footer">
-        <hr>
-        <p>U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>; <i>Joel Saltz
-            PI</i> Stony Brook/Emory/Oak Ridge/Yale<br>NCIP/Leidos 14X138, <b>caMicroscope &ndash; A Digital Pathology
-            Integrative Query System</b>; <i>Ashish Sharma PI</i> Emory/WUSTL/Stony Brook</p>
-        </div>
-    </div>
-	<!--Other end-->
-    <!--<div class="panel panel-success">
-
+    <div class="panel panel-danger">
         <div class="panel-heading">
-            <h3 class="panel-title">GitHub repositories</h3>
+            <h3 class="panel-title">
+                <a data-toggle="collapse" href="#collapse1" title="QuIP Distribution and Installation">QuIP Repository</a>
+            </h3>
         </div>
-
-        <div class="panel-body">
-            <div><p>Links to our GitHub repositories for FeatureDB, analysis codes, Slicer pathology
-                extensions, and Region Templates framework</p>
+        <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4"><a class="btn btn-danger btn-block"  href="https://github.com/SBU-BMI/quip_distro" target="_blank" title="Access QuIP Distribution and Installation">DISTR &amp INST</a></div>
+                    <div class="col-md-8">QuIP distribution and installation</div>
+                </div>
             </div>
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td><a href="https://github.com/SBU-BMI/pathomics_featuredb">FeatureDB</a></td>
-                </tr>
-                <tr>
-                    <td><a href="https://github.com/SBU-BMI/pathomics_analysis">Analysis</a></td>
-                </tr>
-                <tr>
-                    <td><a href="https://github.com/SBU-BMI/SlicerPathology">Slicer pathology extensions</a></td>
-                </tr>
-                <tr>
-                    <td><a href="https://github.com/SBU-BMI/region-templates">Region Templates framework</a></td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-    <div class="panel panel-info">
-        <div class="panel-heading"><h3 class="panel-title">Docker Hub image repository</h3></div>
-        <div class="panel-body">
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td><a href="https://hub.docker.com/r/sbubmi/pathomics_featuredb">FeatureDB Docker Image</a></td>
-                </tr>
-                <tr>
-                    <td><a href="https://hub.docker.com/r/sbubmi/pathomics_nucleus">Docker Image for pathology image
-                        analysis codes</a></td>
-                </tr>
-                <tr>
-                    <td><a href="https://hub.docker.com/r/sbubmi/pathomics_micnn">Docker Image for Multi-instance
-                        CNN</a></td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
     <div class="footer">
@@ -259,7 +173,8 @@ $_SESSION["name"] = "quip";
             PI</i> Stony Brook/Emory/Oak Ridge/Yale<br>NCIP/Leidos 14X138, <b>caMicroscope &ndash; A Digital Pathology
             Integrative Query System</b>; <i>Ashish Sharma PI</i> Emory/WUSTL/Stony Brook</p>
     </div>
-</div>-->
+</div>
+<!--Other end-->
 <!-- /container -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
