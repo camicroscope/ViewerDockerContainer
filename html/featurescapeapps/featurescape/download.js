@@ -11,10 +11,10 @@ downloadData=function(div){
     //downloadDataLimitInput.value=100000
     //downloadData.parms.url=downloadData.parms.url.replace(/limit=\d+&/,'').replace(/"\$gte"\:[0123456789\.]+/,'"$gte":0')
     //downloadData.parms.url=downloadData.parms.url.replace('"randval":{"$gte":0},','')
-    // 'properties.scalar_features.nv' :
+    // 'properties.scalar_features.nv':
     
     downloadData.parms.url=downloadData.parms.url.replace(/limit=\d+&/,'').replace(/"\$gte"\:[0123456789\.]+/,'"$gte":0')
-    div.innerHTML='<p id="downloadDataLimitMsg"></p>Maximum number of features to download: <input style="color:blue" id="downloadDataLimitInput" size=6> <button class="btn btn-primary" id="downloadButton" disabled>Start download</button><hr><button id="saveFileJsonBt" class="btn btn-success" disabled>Save (partial) File as JSON</button> <button id="saveFileCsvBt" class="btn btn-success" disabled>Save (partial) File as CSV</button> (Chrome browser)'
+    div.innerHTML='<p id="downloadDataLimitMsg"></p>Maximum number of features to download: <input style="color:blue" id="downloadDataLimitInput" size=6> <button class="btn btn-primary" id="downloadButton" disabled>Start download</button><hr><!--<button id="saveFileJsonBt" class="btn btn-success" disabled>Save (partial) File as JSON</button>--> <button id="saveFileCsvBt" class="btn btn-success" disabled>Save (partial) File as CSV</button> (Chrome browser)'
     downloadDataLimitInput.value=100000
     downloadData.msg=function(m,c){
         downloadDataLimitMsg.style.color=c||'blue'
@@ -59,10 +59,12 @@ downloadData=function(div){
          downloadData.getData()
          
      }
+	 /*
      saveFileJsonBt.onclick=function(){
          
          jmat.saveFile(JSON.stringify(downloadData.dt),'features.json')
      }
+	 */
 
      saveFileCsvBt.onclick=function(){
          var ff = Object.getOwnPropertyNames(downloadData.dt[0]).sort()
@@ -103,7 +105,7 @@ downloadData.getParms=function(){ // extract parameters from url search
 // get the data
 
 downloadData.dataTabling=function(){
-    saveFileJsonBt.textContent='Save File as JSON'
+    //saveFileJsonBt.textContent='Save File as JSON'
     saveFileCsvBt.textContent='Save File as CSV'
     var div = document.getElementById('dataTabling')|| document.createElement('div')
     div.id='dataTabling'
@@ -229,7 +231,7 @@ downloadData.getData=function(){
                  // make data tables available
                  downloadData.dataTabling()
              }
-             saveFileJsonBt.disabled=false
+             //saveFileJsonBt.disabled=false
              saveFileCsvBt.disabled=false
          }
          catch(err){
