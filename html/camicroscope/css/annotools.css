@@ -451,6 +451,7 @@
 }
 #panelBody label{
   margin-top: 10px;
+  font-weight:100;
 }
 #panelBody input[type="range"]{
   width: 200px;
