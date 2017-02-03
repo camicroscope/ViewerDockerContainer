@@ -2226,12 +2226,15 @@ var schema = {
       console.log(newAnnot);
       self.deleteAnnotations(execution_id,newAnnot.x, newAnnot.y, newAnnot.x + newAnnot.w, newAnnot.y + newAnnot.h);
 		alert("Discarded results");
+	annotools.destroyMarkups();
     });
 	jQuery("#saveWorkOrder").click(function(e){
 		e.preventDefault();
 		alert("Saved results as: "+execution_id);
 	})
     jQuery('#submitWorkOrder').click(function (e) {
+      annotools.destroyMarkups();
+      console.log("Destroyed markups!");
       console.log("submitting work order!");
       e.preventDefault();
       console.log('events...')
@@ -2297,17 +2300,14 @@ var schema = {
 
       jQuery.post('api/Data/workOrder.php', order)
         .done(function (res) {
-          console.log("Response: ");
-          console.log(res);
-          console.log(JSON.parse(res));
           var r = JSON.parse(res);
-          console.log(r);
           var id = r.id;
           console.log("Order submitted!, Job ID: "+id);
           jQuery('#workOrderCtrl').html(function(){ return "<br /><br />Processing..."; });
             self.toolBar.titleButton.hide()
             self.toolBar.ajaxBusy.show();
-            self.addnewAnnot(roiGeoJSON);
+            
+	    self.saveAnnot(roiGeoJSON);
           //start polling
           pollOrder(id, function(err, data){
         
@@ -2317,12 +2317,13 @@ var schema = {
               //jQuery('#workOrderCtrl').html(function(){return "<button class='btn' id='submitWorkOrder'>Save</button> <button class='btn id='discard'>Discard</button>";});
               setTimeout(function(){
                 //self.drawLayer.hide();
-                annotools.drawLayer.hide()
+                //annotools.drawLayer.hide()
                 //annotools.addMouseEvents()
                 self.renderByExecutionId([execution_id]);
                 self.toolBar.ajaxBusy.hide();
                 self.toolBar.titleButton.show();
                 self.promptForWorkOrder(newAnnot, mode, annotools, ctx, roiGeoJSON);
+	
               },1500)
             }
           });
