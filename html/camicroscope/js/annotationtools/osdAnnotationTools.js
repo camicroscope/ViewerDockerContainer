@@ -417,7 +417,7 @@ annotools.prototype.drawMarkups = function () // Draw Markups
 
 annotools.prototype.createWorkOrder = function () {
   jQuery('html,body').css('cursor', 'crosshair')
-
+  var self = this;
   this.showMessage() // Show Message
   this.drawCanvas.removeEvents('mouseup')
   this.drawCanvas.removeEvents('mousedown')
@@ -476,37 +476,26 @@ annotools.prototype.createWorkOrder = function () {
       startPosition = OpenSeadragon.getMousePosition(e.event)
       x = startPosition.x
       y = startPosition.y
+			//console.log("started");
     })
-
+		var isLimitROI = false;
+		var limitroi = {};
     this.drawCanvas.addEvent('mousemove', function (e) {
       if (started) {
+				//console.log("moving");
         ctx.clearRect(0, 0, this.drawCanvas.width, this.drawCanvas.height)
         var currentMousePosition = OpenSeadragon.getMousePosition(e.event)
-
+				
         min_x = Math.min(currentMousePosition.x, startPosition.x)
         min_y = Math.min(currentMousePosition.y, startPosition.y)
         max_x = Math.max(currentMousePosition.x, startPosition.x)
         max_y = Math.max(currentMousePosition.y, startPosition.y)
         w = Math.abs(max_x - min_x)
         h = Math.abs(max_y - min_y)
-        ctx.strokeStyle = this.color
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
-        ctx.fillRect(min_x, min_y, w, h)
-        ctx.strokeRect(min_x, min_y, w, h)
-      }
-    }.bind(this))
-
-    this.drawCanvas.addEvent('mouseup', function (e) {
-      started = false
-      var finalMousePosition = new OpenSeadragon.getMousePosition(e.event)
-
-      min_x = Math.min(finalMousePosition.x, startPosition.x)
-      min_y = Math.min(finalMousePosition.y, startPosition.y)
-      max_x = Math.max(finalMousePosition.x, startPosition.x)
-      max_y = Math.max(finalMousePosition.y, startPosition.y)
 
       var startRelativeMousePosition = new OpenSeadragon.Point(min_x, min_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
       var endRelativeMousePosition = new OpenSeadragon.Point(max_x, max_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
+
       var newAnnot = {
         x: startRelativeMousePosition.x,
         y: startRelativeMousePosition.y,
@@ -523,10 +512,86 @@ annotools.prototype.createWorkOrder = function () {
       newAnnot.y = globalNumbers.nativeY
       newAnnot.w = globalNumbers.nativeW
       newAnnot.h = globalNumbers.nativeH
+
+      var roi_x = self.imagingHelper.physicalToDataX(self.imagingHelper.logicalToPhysicalX(newAnnot.x))
+      var roi_y = self.imagingHelper.physicalToDataY(self.imagingHelper.logicalToPhysicalY(newAnnot.y))
+      var roi_w = (self.imagingHelper.physicalToDataX(self.imagingHelper.logicalToPhysicalX((newAnnot.x+newAnnot.w)))) - roi_x;
+      var roi_h = (self.imagingHelper.physicalToDataY(self.imagingHelper.logicalToPhysicalY(newAnnot.y+newAnnot.h))) - roi_y;
+				//console.log(roi_w*roi_h);
+				if(roi_w*roi_h >= 100000){
+					if(isLimitROI == false){
+						isLimitROI = true;
+						limitroi.x = currentMousePosition.x;
+						limitroi.y = currentMousePosition.y;
+						limitroi.w = w;
+						limitroi.h = h;
+
+
+					}
+
+				}
+				//console.log(min_x, min_y, w, h);
+        ctx.strokeStyle = this.color
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
+        ctx.fillRect(min_x, min_y, w, h)
+        ctx.strokeRect(min_x, min_y, w, h)
+      }
+    }.bind(this))
+
+    this.drawCanvas.addEvent('mouseup', function (e) {
+      started = false
+      var finalMousePosition = new OpenSeadragon.getMousePosition(e.event)
+
+			min_x = Math.min(finalMousePosition.x, startPosition.x)
+			min_y = Math.min(finalMousePosition.y, startPosition.y)
+			max_x = Math.max(finalMousePosition.x, startPosition.x)
+			max_y = Math.max(finalMousePosition.y, startPosition.y)
+
+			if(isLimitROI){
+				min_x = Math.min(limitroi.x, startPosition.x);
+				min_y = Math.min(limitroi.y, startPosition.y);
+				max_x = Math.max(limitroi.x, startPosition.x);
+				max_y = Math.max(limitroi.y, startPosition.y);
+				w = limitroi.w;
+				h = limitroi.h;
+			}
+      var startRelativeMousePosition = new OpenSeadragon.Point(min_x, min_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
+      var endRelativeMousePosition = new OpenSeadragon.Point(max_x, max_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
+			//console.log(startPosition);
+
+      var newAnnot = {
+        x: startRelativeMousePosition.x,
+        y: startRelativeMousePosition.y,
+        w: w,
+        h: h,
+        type: 'rect',
+        color: this.color,
+        loc: []
+      }
+
+		
+
+      var globalNumbers = JSON.parse(this.convertFromNative(newAnnot, endRelativeMousePosition))
+
+      newAnnot.x = globalNumbers.nativeX
+      newAnnot.y = globalNumbers.nativeY
+      newAnnot.w = globalNumbers.nativeW
+      newAnnot.h = globalNumbers.nativeH
       var loc = []
       loc[0] = parseFloat(newAnnot.x)
       loc[1] = parseFloat(newAnnot.y)
       newAnnot.loc = loc
+      if(isLimitROI){
+	alert("Region is too large. Click OK to snap it to closest fit");
+        ctx.clearRect(0, 0, this.drawCanvas.width, this.drawCanvas.height)
+        ctx.strokeStyle = this.color
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
+	//console.log(min_x, min_y, limitroi.w, limitroi.h);
+        ctx.fillRect(min_x, min_y, limitroi.w, limitroi.h);
+        ctx.strokeRect(min_x, min_y, limitroi.w, limitroi.h);
+	isLimitROI=false;
+      }
+      //console.log(newAnnot);	
 
       // convert to geojson 
       // var geoNewAnnot = this.convertRectToGeo(newAnnot)
@@ -1362,7 +1427,6 @@ annotools.prototype.drawRectangle = function (ctx) {
     min_y = Math.min(finalMousePosition.y, startPosition.y)
     max_x = Math.max(finalMousePosition.x, startPosition.x)
     max_y = Math.max(finalMousePosition.y, startPosition.y)
-
     var startRelativeMousePosition = new OpenSeadragon.Point(min_x, min_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
     var endRelativeMousePosition = new OpenSeadragon.Point(max_x, max_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
     var newAnnot = {
@@ -1972,10 +2036,10 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
   var roi_y = annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y))
   var roi_w = (annotools.imagingHelper.physicalToDataX(annotools.imagingHelper.logicalToPhysicalX((newAnnot.x + newAnnot.w)))) - roi_x;
   var roi_h = (annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y + newAnnot.h))) - roi_y;
-  roi_x = parseInt(roi_x)
-  roi_y = parseInt(roi_y)
-  roi_w = parseInt(roi_w)
-  roi_h = parseInt(roi_h)
+  roi_x = (roi_x)
+  roi_y = (roi_y)
+  roi_w = (roi_w)
+  roi_h = (roi_h)
   if (roi_w * roi_h > 1000000) {
     newAnnot.w = annotools.imagingHelper.dataToLogicalX(1000)
     newAnnot.h = annotools.imagingHelper.dataToLogicalY(1000)
