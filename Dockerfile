@@ -60,6 +60,11 @@ RUN git clone https://tcpan@bitbucket.org/tcpan/iip-openslide-docker.git
 RUN rm /etc/apache2/mods-enabled/fcgid.conf
 RUN ln -s /root/src/iip-openslide-docker/apache2-iipsrv-fcgid.conf /etc/apache2/mods-enabled/fcgid.conf
 
+## enable proxy
+RUN ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled/proxy_http.load
+RUN ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
+RUN ln -s /etc/apache2/mods-available/proxy.conf /etc/apache2/mods-enabled/proxy.conf
+
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
 
