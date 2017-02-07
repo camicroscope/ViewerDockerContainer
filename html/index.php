@@ -145,7 +145,7 @@ $_SESSION["name"] = "quip";
         </div>
 		<div class="panel-body">
             <div class="row">
-                <div class="col-md-4"><a class="btn btn-warning btn-block"  onClick="location.href=dataLoaderConfig.dataLoaderAPI + ':' + dataLoaderConfig.port + '/' + 'imageformuploader.htm'" title="Access Image Loader">Image Loader</a></div>
+                <div class="col-md-4"><a class="btn btn-warning btn-block"  href="/imageformuploader.htm" title="Access Image Loader">Image Loader</a></div>
                 <div class="col-md-8">Web application for loading whole slide tissue images to QuIP
                 </div>
             </div>
