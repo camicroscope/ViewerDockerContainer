@@ -319,7 +319,7 @@ annotools.prototype.generateSVG = function (annotations) {
         
       if (countNativepoints === countRectNativepoints) {
           color = 'black';
-          svgHtml += '" style="stroke:'+ color + '; stroke-width:2.5; fill-opacity:0.5"/>';
+          svgHtml += '" style="stroke:'+ color + '; stroke-width:2.5; fill-opacity:0.2"/>';
       }
       else {
           svgHtml += '" style="fill:transparent; stroke:'+color+ '; stroke-width:2.5"/>'
