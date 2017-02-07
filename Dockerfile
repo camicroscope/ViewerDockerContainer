@@ -64,6 +64,7 @@ RUN ln -s /root/src/iip-openslide-docker/apache2-iipsrv-fcgid.conf /etc/apache2/
 RUN ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled/proxy_http.load
 RUN ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
 RUN ln -s /etc/apache2/mods-available/proxy.conf /etc/apache2/mods-enabled/proxy.conf
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
