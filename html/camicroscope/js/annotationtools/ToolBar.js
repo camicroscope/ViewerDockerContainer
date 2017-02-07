@@ -24,8 +24,6 @@ ToolBar.prototype.algorithmSelector = function () {
 }
 
 //var available_colors = ['lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange']
-//var available_colors = ['hsla(120,100%,50%,0.3)', 'hsla(120,100%,25%,0.3)', 'hsla(290,100%,50%,0.3)', 'hsla(290,60%,70%,0.3)'];
-/*var available_colors = ['hsl(0, 0%, 0%)', 'hsl(0, 59%, 41%)', 'hsl(43, 89%, 38%)', 'hsl(60, 100%, 25%)', 'hsl(0, 100%, 50%)', 'hsl(25, 76%, 31%)', 'hsl(33, 100%, 50%)', 'hsl(30, 59%, 53%)', 'hsl(34, 44%, 69%)', 'hsl(51, 100%, 50%)', 'hsl(54, 100%, 90%)', 'hsl(60, 100%, 50%)', 'hsl(82, 39%, 30%)', 'hsl(120, 100%, 50%)', 'hsl(160, 100%, 75%)', 'hsl(182, 25%, 50%)', 'hsl(207, 44%, 49%)', 'hsl(210, 100%, 56%)', 'hsl(225, 73%, 57%)', 'hsl(240, 64%, 27%)', 'hsl(248, 39%, 39%)', 'hsl(249, 80%, 67%)', 'hsl(275, 100%, 25%)', 'hsl(288, 59%, 58%)', 'hsl(300, 76%, 72%)', 'hsl(300, 100%, 50%)', 'hsl(322, 81%, 43%)', 'hsl(340, 60%, 65%)', 'hsl(350, 100%, 88%)', 'hsl(0, 0%, 41%)', 'hsl(6, 93%, 71%)'];*/
 var available_colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
 var algorithm_color = {}
 
