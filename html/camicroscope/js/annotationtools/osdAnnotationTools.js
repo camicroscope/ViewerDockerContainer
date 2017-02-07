@@ -433,10 +433,10 @@ annotools.prototype.createWorkOrder = function () {
   // this.container = document.getElementById('container') //Get The Canvas Container
   if (this.container) {
     // var left = parseInt(this.container.offsetLeft), //Get The Container Location
-    var left = parseInt(this.container.getLeft()), // Get The Container Location
-      top = parseInt(this.container.offsetTop),
-      width = parseInt(this.container.offsetWidth),
-      height = parseInt(this.container.offsetHeight),
+    var left = (this.container.getLeft()), // Get The Container Location
+      top = (this.container.offsetTop),
+      width = (this.container.offsetWidth),
+      height = (this.container.offsetHeight),
       oleft = left,
       otop = top,
       owidth = width,
@@ -2032,10 +2032,11 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
   var roi_y = annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y))
   var roi_w = (annotools.imagingHelper.physicalToDataX(annotools.imagingHelper.logicalToPhysicalX((newAnnot.x + newAnnot.w)))) - roi_x;
   var roi_h = (annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y + newAnnot.h))) - roi_y;
-  roi_x = (roi_x)
-  roi_y = (roi_y)
-  roi_w = (roi_w)
-  roi_h = (roi_h)
+	roi_x = parseInt(parseFloat(roi_x)+0.5);
+	roi_y = parseInt(parseFloat(roi_y)+0.5);
+	roi_w = parseInt(parseFloat(roi_w)+0.5);
+	roi_h = parseInt(parseFloat(roi_h)+0.5);
+
   if (roi_w * roi_h > 1000000) {
     newAnnot.w = annotools.imagingHelper.dataToLogicalX(1000)
     newAnnot.h = annotools.imagingHelper.dataToLogicalY(1000)
