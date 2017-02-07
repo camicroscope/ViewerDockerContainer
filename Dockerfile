@@ -62,6 +62,7 @@ RUN ln -s /root/src/iip-openslide-docker/apache2-iipsrv-fcgid.conf /etc/apache2/
 
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 ## expose some ports
 EXPOSE 80
