@@ -9,6 +9,12 @@ $imageUrl = "$serviceUrl/DataLoader";
 
 $dynamicServices = $serviceUrl;
 $kueUrl = "http://quip-jobs:3000";
+
+
+//Optional Firebase
+$firebase = "";
+$firebase_key = "";
+
 return array(
     'auth_realm' => "$baseUrl/securityTokenService",
     /* Markups */
@@ -26,7 +32,10 @@ return array(
     
      /* Dynamic Services */
     'postWorkOrder' => "$dynamicServices/WorkOrders/submit/json",
-    'kueUrl' => $kueUrl
+    'kueUrl' => $kueUrl,
+
+     'firebase'=> $firebase,
+     'firebase_key'=> $firebase_key
 );
 
 
