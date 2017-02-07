@@ -416,6 +416,7 @@ annotools.prototype.drawMarkups = function () // Draw Markups
 }
 
 annotools.prototype.createWorkOrder = function () {
+
   jQuery('html,body').css('cursor', 'crosshair')
   var self = this;
   this.showMessage() // Show Message
@@ -466,7 +467,7 @@ annotools.prototype.createWorkOrder = function () {
     // The canvas context
     var ctx = this.drawCanvas.getContext('2d')
 
-    console.log('drawing rectangle')
+    //console.log('drawing rectangle')
     this.removeMouseEvents()
     var started = false
     var min_x,min_y,max_x,max_y,w,h
@@ -481,6 +482,7 @@ annotools.prototype.createWorkOrder = function () {
 		var isLimitROI = false;
 		var limitroi = {};
     this.drawCanvas.addEvent('mousemove', function (e) {
+      //console.log("..");
       if (started) {
 				//console.log("moving");
         ctx.clearRect(0, 0, this.drawCanvas.width, this.drawCanvas.height)
@@ -492,6 +494,7 @@ annotools.prototype.createWorkOrder = function () {
         max_y = Math.max(currentMousePosition.y, startPosition.y)
         w = Math.abs(max_x - min_x)
         h = Math.abs(max_y - min_y)
+
 
       var startRelativeMousePosition = new OpenSeadragon.Point(min_x, min_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
       var endRelativeMousePosition = new OpenSeadragon.Point(max_x, max_y).minus(OpenSeadragon.getElementOffset(viewer.canvas))
@@ -531,6 +534,7 @@ annotools.prototype.createWorkOrder = function () {
 
 				}
 				//console.log(min_x, min_y, w, h);
+
         ctx.strokeStyle = this.color
         ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
         ctx.fillRect(min_x, min_y, w, h)
@@ -787,16 +791,8 @@ annotools.prototype.selectColor = function () // Pick A Color
 
 annotools.prototype.addnewAnnot = function (newAnnot) // Add New Annotations
 {
-  // console.log(this)
-  // newAnnot.iid = this.iid
-  // newAnnot.annotIdi = MD5(new Date().toString())
-  // console.log(newAnnot)
-  // this.annotations.push(newAnnot)
-  // console.log(this.annotations)
-  console.log(newAnnot)
-  this.saveAnnot(newAnnot)
-  // console.log("saved annotation")
 
+  this.saveAnnot(newAnnot)
   this.displayGeoAnnots()
 }
 /*ASHISH DIsable quit
@@ -1158,8 +1154,8 @@ annotools.prototype.updateAnnot = function (annot) // Save Annotations
 }
 annotools.prototype.saveAnnot = function (annotation) // Save Annotations
 {
-  console.log('Save annotation function')
-  console.log(annotation)
+  //console.log('Save annotation function')
+  //console.log(annotation)
   jQuery.ajax({
     'type': 'POST',
     url: 'api/Data/getAnnotSpatial.php',
@@ -1540,7 +1536,7 @@ annotools.prototype.drawPencil = function (ctx) {
     loc[0] = parseFloat(newAnnot.x)
     loc[1] = parseFloat(newAnnot.y)
     newAnnot.loc = loc
-    console.log(newAnnot)
+    //console.log(newAnnot)
     var geojsonAnnot = this.convertPencilToGeo(newAnnot)
 
     this.promptForAnnotation(geojsonAnnot, 'new', this, ctx)
@@ -1765,7 +1761,7 @@ annotools.prototype.retrieveTemplate = function () {
     async: false,
     onSuccess: function (e) {
       jsonReturn = JSON.parse(e)[0]
-      console.log(jsonReturn)
+      //console.log(jsonReturn)
     }.bind(this),
     onFailure: function (e) {
       this.showMessage('Error retrieving AnnotationTemplate, please check your retrieveTemplate.php')
@@ -2264,13 +2260,13 @@ var schema = {
     var self = this;
 
    setTimeout(function(){
-    console.log("here");  
-    console.log(formSchema);
+    //console.log("here");  
+    //console.log(formSchema);
     jQuery('#workOrderForm').jsonForm(formSchema);
     jQuery("#workOrderForm").append("<div id='workOrderCtrl'><br /><button class='btn' id='submitWorkOrder'>Submit Job</button><br /><button class='btn' id='saveWorkOrder'>Save</button> <button class='btn-danger' id='discardWorkOrder'>Discard</button></div>");
     jQuery('#cancelWorkOrder').click(function (e) {
       e.preventDefault();
-      console.log('here')
+      //console.log('here')
       jQuery('#panel').hide()
       annotools.drawLayer.hide()
       annotools.addMouseEvents()
@@ -2284,11 +2280,7 @@ var schema = {
       var height = 35558
     jQuery("#discardWorkOrder").click(function(e){
       e.preventDefault();
-      console.log(execution_id);
-      console.log(roiGeoJSON);
-      console.log(roi_h, roi_w, roi_x, roi_y);
-      console.log(newAnnot);
-      self.deleteAnnotations(execution_id,newAnnot.x, newAnnot.y, newAnnot.x + newAnnot.w, newAnnot.y + newAnnot.h);
+      self.deleteAnnotations(execution_id,newAnnot.x - 0.00001, newAnnot.y - 0.00001, newAnnot.x + newAnnot.w+0.00001, newAnnot.y + newAnnot.h+0.000001);
 		alert("Discarded results");
 	annotools.destroyMarkups();
     });
@@ -2301,7 +2293,7 @@ var schema = {
       console.log("Destroyed markups!");
       console.log("submitting work order!");
       e.preventDefault();
-      console.log('events...')
+
       //annotools.drawLayer.hide()
       //annotools.addMouseEvents()
       var username = 'lastlegion'
@@ -2313,7 +2305,7 @@ var schema = {
         height = 27968
       }
       execution_id = "seg:r" + r + ":" + "w" + w + ":l" + l + ":u" + u + ":k"+ k +":j"+j;
-      console.log(roiGeoJSON);
+
       roiGeoJSON.provenance.analysis.execution_id = execution_id;
       var order  = {
           "data": {
@@ -2392,9 +2384,6 @@ var schema = {
             }
           });
         })
-      console.log('submit')
-      console.log(newAnnot)
-      console.log(order)
     }.bind(newAnnot));
 
 
