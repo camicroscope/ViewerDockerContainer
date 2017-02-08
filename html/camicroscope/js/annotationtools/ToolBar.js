@@ -35,10 +35,9 @@ function goodalgo (data, status) {
   var blob = []
   for (i = 0;i < data.length;i++) {
     var n = {}
-     console.log(i);
+     
      data[i].title=data[i].provenance.analysis_execution_id;
-     console.log(data[i])
-   
+    
     n.title = "<div class='colorBox' style='background:" + available_colors[i] + "'></div>" + data[i].title;
     n.key = i.toString()
     n.refKey = data[i].provenance.analysis_execution_id
@@ -195,7 +194,7 @@ ToolBar.prototype.createButtons = function () {
     var url = 'api/Data/getAlgorithmsForImage.php?iid=' + self.iid;
     console.log(url);
     jQuery.get(url, function (data) {
-      console.log(data);
+      //console.log(data);
       d = JSON.parse(data)
 
       goodalgo(d, null)
