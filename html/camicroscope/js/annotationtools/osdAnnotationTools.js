@@ -2264,7 +2264,7 @@ var schema = {
     //console.log("here");  
     //console.log(formSchema);
     jQuery('#workOrderForm').jsonForm(formSchema);
-    jQuery("#workOrderForm").append("<div id='workOrderCtrl'><br /><button class='btn2 btn-primary' id='submitWorkOrder'>Analyze Region</button><br /><button class='btn btn-success' id='saveWorkOrder'>Save Results</button> <button class='btn btn-danger' id='discardWorkOrder'>Discard Results</button></div>");
+    jQuery("#workOrderForm").append("<div id='workOrderCtrl'><br /><button class='btn btn-primary' id='submitWorkOrder'>Analyze Region</button><br /><button class='btn' id='saveWorkOrder'>Save Results</button> <button class='btn' id='discardWorkOrder'>Discard Results</button></div>");
     jQuery('#cancelWorkOrder').click(function (e) {
       e.preventDefault();
       //console.log('here')
