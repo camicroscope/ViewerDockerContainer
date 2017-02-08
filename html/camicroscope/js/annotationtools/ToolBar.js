@@ -176,7 +176,7 @@ ToolBar.prototype.toggleAlgorithmSelector = function () {
 
     AlgorithmSelectorHidden = true;
   } 
-    
+  
 }
 
 ToolBar.prototype.createButtons = function () {
@@ -294,7 +294,7 @@ ToolBar.prototype.createButtons = function () {
     tool.append(this.spacer1)
 
     this.analyticsbutton = jQuery('<img>', {
-      'title': 'Analytics Serviecs',
+      'title': 'Image Analysis',
       'class': 'toolButton',
       'src': 'images/analyze.png'
 
@@ -302,7 +302,7 @@ ToolBar.prototype.createButtons = function () {
     tool.append(this.analyticsbutton)
 
     this.filterImgButton = jQuery('<img>', {
-      'title': 'Image Filtering',
+      'title': 'View Results',
       'class': 'toolButton',
       'src': 'images/insta.png'
     })
@@ -496,7 +496,7 @@ ToolBar.prototype.createButtons = function () {
 
   this.iidbutton = jQuery('<p>', {
     'class': 'iidButton',
-    'text': 'SubjectID :' + this.iid
+    'text': 'case_id: ' + this.iid
   })
   tool.append(this.iidbutton)
 
