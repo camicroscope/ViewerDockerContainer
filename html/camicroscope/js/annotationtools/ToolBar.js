@@ -24,6 +24,8 @@ ToolBar.prototype.algorithmSelector = function () {
 }
 
 var available_colors = ['lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange']
+//var available_colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
+//var available_colors = ['#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3','#f5f5f5','#c7eae5','#80cdc1','#35978f','#01665e','#003c30'];
 var algorithm_color = {}
 
 function goodalgo (data, status) {
@@ -32,9 +34,9 @@ function goodalgo (data, status) {
   var blob = []
   for (i = 0;i < data.length;i++) {
     var n = {}
-     console.log(i);
+    
      data[i].title=data[i].provenance.analysis_execution_id;
-     console.log(data[i])
+   
     
     n.title = "<div class='colorBox' style='background:" + available_colors[i] + "'></div>" + data[i].title;
     n.key = i.toString()
@@ -174,7 +176,7 @@ ToolBar.prototype.toggleAlgorithmSelector = function () {
 
     AlgorithmSelectorHidden = true;
   } 
-    
+  
 }
 
 ToolBar.prototype.createButtons = function () {
@@ -189,7 +191,7 @@ ToolBar.prototype.createButtons = function () {
     var url = 'api/Data/getAlgorithmsForImage.php?iid=' + self.iid;
     console.log(url);
     jQuery.get(url, function (data) {
-      console.log(data);
+      //console.log(data);
       d = JSON.parse(data)
 
       goodalgo(d, null)
@@ -292,7 +294,7 @@ ToolBar.prototype.createButtons = function () {
     tool.append(this.spacer1)
 
     this.analyticsbutton = jQuery('<img>', {
-      'title': 'Analytics Serviecs',
+      'title': 'Image Analysis',
       'class': 'toolButton',
       'src': 'images/analyze.png'
 
@@ -300,7 +302,7 @@ ToolBar.prototype.createButtons = function () {
     tool.append(this.analyticsbutton)
 
     this.filterImgButton = jQuery('<img>', {
-      'title': 'Image Filtering',
+      'title': 'View Results',
       'class': 'toolButton',
       'src': 'images/insta.png'
     })
@@ -494,7 +496,7 @@ ToolBar.prototype.createButtons = function () {
 
   this.iidbutton = jQuery('<p>', {
     'class': 'iidButton',
-    'text': 'SubjectID :' + this.iid
+    'text': 'case_id: ' + this.iid
   })
   tool.append(this.iidbutton)
 
