@@ -9,19 +9,19 @@
 <script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 <body>
-<a id="back" href="/">Back</a>
+<a id="back" href="/">Back to Home</a>
 <h3>caMicroscope Image Loader</h3>
 <form id="uploadme" action="/quip-loader/submitData" method="post" enctype="multipart/form-data">
 <span class="label">Image Id:</span>
 <input id="imageid" type="text" name="case_id" label="Image ID: "><br><span class="label">Upload File:</span>
-<input type="file" name="upload_image"><br>
+<input type="file" name="upload_image" id="upload_image"><br>
 <input id="submitButton" type="submit" value="Upload Image"></form><br>
 <div class="progress">
     <div class="bar"></div >
     <div class="percent">0%</div >
 </div>
 <div id="status"></div><br>
-<h3 id="estatus"></h3>
+<h3 id="estatus" style="color:red"></h3>
 <script>
 $(document).ready(function(){
         var bar = $('.bar');
@@ -57,12 +57,21 @@ $(document).ready(function(){
                                 document.getElementById("submitButton").disabled = false;
                                 console.log(response.status);
                                 document.getElementById("uploadme").reset();
-                                document.getElementById("estatus").innerHTML = "uploaded...";
+                                document.getElementById("estatus").innerHTML = "Image File is uploaded...";
                                         }
         };
         $('#uploadme').submit(function() {
                 var imageid = document.getElementById("imageid").value;
                 imageid = imageid.trim()
+                if(imageid==""){
+                   document.getElementById("estatus").innerHTML = "Please Enter Image ID!";
+                   return false;
+                 }
+                 
+                 if($("#upload_image").val()==""){
+                   document.getElementById("estatus").innerHTML = "Please Select a Image File!";
+                   return false;
+                 }
                 // remove space
                 imageid = imageid.split(' ').join('_');
                 document.getElementById("imageid").value = imageid;
