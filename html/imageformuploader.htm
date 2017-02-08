@@ -31,6 +31,7 @@ $(document).ready(function(){
                 url: '/quip-loader/submitData',
                 dataType : 'json',
                 beforeSend: function() {
+                        document.getElementById("submitButton").disabled = true;
                         document.getElementById("estatus").innerHTML = "uploading...";
                         status.empty();
                         var percentVal = '0%';
@@ -46,12 +47,14 @@ $(document).ready(function(){
                         //status.html(xhr.responseText);
                 },
                 error: function(response) {
+                                document.getElementById("submitButton").disabled = false;
                                 //console.log(document.getElementById("imageid").innerHTML);
                                 console.log(response.status);
                                 console.log("Call Tahsin...");
                                 document.getElementById("estatus").innerHTML = "Problem with uploading.  Call Tahsin Kurc...";
                                       },
                 success: function(response) {
+                                document.getElementById("submitButton").disabled = false;
                                 console.log(response.status);
                                 document.getElementById("estatus").innerHTML = "uploaded...";
                                         }
