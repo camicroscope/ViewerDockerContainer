@@ -5,7 +5,7 @@
   "path":[
     {
       "name": "Collections",
-      "dataUrl": "http://172.17.0.7:9099/services/Camicroscope_DataLoader/DataLoader/query/getAll"  
+      "dataUrl": "http://quip-data:9099/services/Camicroscope_DataLoader/DataLoader/query/getAll"  
     },
     {
       "name": "Link",
@@ -14,7 +14,7 @@
         "name": "tissueId",
         "value": "case_id"
       }],
-      "url": "http://localhost:1337/camicroscope/osdCamicroscope.php"
+      "url": "/camicroscope/osdCamicroscope.php"
     }
   ]
 }
