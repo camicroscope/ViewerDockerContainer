@@ -1973,10 +1973,23 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
   var roi_y = annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y))
   var roi_w = (annotools.imagingHelper.physicalToDataX(annotools.imagingHelper.logicalToPhysicalX((newAnnot.x + newAnnot.w)))) - roi_x;
   var roi_h = (annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y + newAnnot.h))) - roi_y;
-  roi_x = parseInt(roi_x)
-  roi_y = parseInt(roi_y)
-  roi_w = parseInt(roi_w)
-  roi_h = parseInt(roi_h)
+  
+  //roi_x = parseInt(roi_x)
+  //roi_y = parseInt(roi_y)
+  //roi_w = parseInt(roi_w)
+  //roi_h = parseInt(roi_h)
+  
+  //roi_x = parseInt(parseFloat(roi_x)+0.5);
+  //roi_y = parseInt(parseFloat(roi_y)+0.5);
+  //roi_w = parseInt(parseFloat(roi_w)+0.5);
+  //roi_h = parseInt(parseFloat(roi_h)+0.5);
+  
+  roi_x = parseFloat(roi_x);
+  roi_y = parseFloat(roi_y);
+  roi_w = parseFloat(roi_w);
+  roi_h = parseFloat(roi_h);
+  
+  
   if (roi_w * roi_h > 1000000) {
     newAnnot.w = annotools.imagingHelper.dataToLogicalX(1000)
     newAnnot.h = annotools.imagingHelper.dataToLogicalY(1000)
