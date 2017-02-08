@@ -53,6 +53,7 @@ $(document).ready(function(){
                                       },
                 success: function(response) {
                                 console.log(response.status);
+                                document.getElementById("uploadme").reset();
                                 document.getElementById("estatus").innerHTML = "uploaded...";
                                         }
         };
