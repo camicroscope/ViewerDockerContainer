@@ -125,7 +125,7 @@ abcUtil = {
         if (jQuery.isEmptyObject(trace)) {
 
             trace = {
-                url: selection.findhost + ':' + selection.findport + '/?limit=12&collection=metadata&find={}&db=quip',
+                url: selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={}&db=quip',
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
                 font_color: 'navy',
@@ -138,7 +138,7 @@ abcUtil = {
         // Dropdown menu
         var selectTumorHTML = '<span style="color:' + trace.font_color + '"><strong><font size="+1">';
         selectTumorHTML += trace.text
-            + ':</font></strong>&nbsp;<select onchange="' + trace.onchange + '" '
+            + ':</font></strong>&nbsp;<select size=10 onchange="' + trace.onchange + '" '
             + ' style="font-color:' + trace.font_color
             + ';background-color:' + trace.bg_color
             + ';font-size:' + trace.font_size + '" id="' + trace.id + '">';
