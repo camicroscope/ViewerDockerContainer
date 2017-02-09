@@ -15,7 +15,7 @@
 <span class="label">Image Id:</span>
 <input id="imageid" type="text" name="case_id" label="Image ID: "><br><span class="label">Upload File:</span>
 <input type="file" name="upload_image"><br>
-<input id="submitButton" type="submit"></form><br>
+<input id="submitButton" type="submit" value="Upload Image"></form><br>
 <div class="progress">
     <div class="bar"></div >
     <div class="percent">0%</div >
@@ -31,6 +31,7 @@ $(document).ready(function(){
                 url: '/quip-loader/submitData',
                 dataType : 'json',
                 beforeSend: function() {
+                        document.getElementById("submitButton").disabled = true;
                         document.getElementById("estatus").innerHTML = "uploading...";
                         status.empty();
                         var percentVal = '0%';
@@ -46,13 +47,16 @@ $(document).ready(function(){
                         //status.html(xhr.responseText);
                 },
                 error: function(response) {
+                                document.getElementById("submitButton").disabled = false;
                                 //console.log(document.getElementById("imageid").innerHTML);
                                 console.log(response.status);
                                 console.log("Call Tahsin...");
-                                document.getElementById("estatus").innerHTML = "Problem with uploading.  Call Tahsin Kurc...";
+                                document.getElementById("estatus").innerHTML = "Problem with uploading.";
                                       },
                 success: function(response) {
+                                document.getElementById("submitButton").disabled = false;
                                 console.log(response.status);
+                                document.getElementById("uploadme").reset();
                                 document.getElementById("estatus").innerHTML = "uploaded...";
                                         }
         };
