@@ -23,9 +23,10 @@ ToolBar.prototype.algorithmSelector = function () {
   xxx = []
 }
 
-var available_colors = ['lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange']
-//var available_colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
-//var available_colors = ['#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3','#f5f5f5','#c7eae5','#80cdc1','#35978f','#01665e','#003c30'];
+
+//var available_colors = ['lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange','lime', 'red', 'blue', 'orange']
+var available_colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
+
 var algorithm_color = {}
 
 function goodalgo (data, status) {
@@ -34,15 +35,15 @@ function goodalgo (data, status) {
   var blob = []
   for (i = 0;i < data.length;i++) {
     var n = {}
-    
+     
      data[i].title=data[i].provenance.analysis_execution_id;
-   
     
     n.title = "<div class='colorBox' style='background:" + available_colors[i] + "'></div>" + data[i].title;
     n.key = i.toString()
     n.refKey = data[i].provenance.analysis_execution_id
     n.color = available_colors[i%7];
-    algorithm_color[data[i].provenance.analysis_execution_id] = available_colors[i%7]
+    //algorithm_color[data[i].provenance.analysis_execution_id] = available_colors[i%7]
+    algorithm_color[data[i].provenance.analysis_execution_id] = available_colors[i%available_colors.length];
     blob.push(n)
   }
   ftree = jQuery('#tree').fancytree({
@@ -106,7 +107,9 @@ ToolBar.prototype.toggleAlgorithmSelector = function () {
     ALGORITHM_LIST = d;
     for(var i=0; i < d.length; i++){
       //n.color = available_colors[i%7];
-       algorithm_color[d[i].provenance.analysis_execution_id] = available_colors[i%7]
+      //algorithm_color[d[i].provenance.analysis_execution_id] = available_colors[i%7]
+      algorithm_color[d[i].provenance.analysis_execution_id] = available_colors[i%available_colors.length];
+      
       htmlStr += "<li><input type='checkbox' class='algorithmCheckbox' value="+i+" /><span class='algoColorBox' style='background:"+ algorithm_color[d[i].provenance.analysis_execution_id] +"'></span> "+d[i].provenance.analysis_execution_id
        + "</li>";
     }
