@@ -2388,7 +2388,7 @@ var schema = {
                 self.toolBar.titleButton.show();
                 self.promptForWorkOrder(newAnnot, mode, annotools, ctx, roiGeoJSON);
 	
-              },1500)
+              },2000)
             }
           });
         })
@@ -2398,7 +2398,7 @@ var schema = {
 
 
 
-  },1000); 
+  },100); 
 
 }
 
