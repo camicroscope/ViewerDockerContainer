@@ -145,8 +145,9 @@ annotools.prototype.renderByExecutionId = function(algorithms){
   var t1 = 0
   if (algorithms.length) {
     this.toolBar.titleButton.hide()
-    this.toolBar.ajaxBusy.show()
-    this.annotations = this.AnnotationStore.fetchAnnotations(this.x1, this.y1, this.x2, this.y2, area, algorithms, function (data){
+    this.toolBar.ajaxBusy.show();
+    //console.log(this.x1, this.y1, this.x2, this.y2);
+    this.annotations = this.AnnotationStore.fetchAnnotations(this.x1 , this.y1 , this.x2, this.y2, area, algorithms, function (data){
       // console.log(data)
       self.annotations = data
       self.displayGeoAnnots()
@@ -209,7 +210,7 @@ annotools.prototype.getMultiAnnot = function (viewer) {
   if (algorithms.length) {
     this.toolBar.titleButton.hide()
     this.toolBar.ajaxBusy.show()
-    this.annotations = this.AnnotationStore.fetchAnnotations(this.x1, this.y1, this.x2, this.y2, area, algorithms, function (data) {
+    this.annotations = this.AnnotationStore.fetchAnnotations(this.x1 - 0.1, this.y1 - 0.1, this.x2, this.y2, area, algorithms, function (data) {
       // console.log(data)
       self.annotations = data
       self.displayGeoAnnots()
@@ -2032,10 +2033,16 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
   var roi_y = annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y))
   var roi_w = (annotools.imagingHelper.physicalToDataX(annotools.imagingHelper.logicalToPhysicalX((newAnnot.x + newAnnot.w)))) - roi_x;
   var roi_h = (annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y + newAnnot.h))) - roi_y;
-	roi_x = parseInt(parseFloat(roi_x)+0.5);
-	roi_y = parseInt(parseFloat(roi_y)+0.5);
-	roi_w = parseInt(parseFloat(roi_w)+0.5);
-	roi_h = parseInt(parseFloat(roi_h)+0.5);
+   
+  roi_x = parseFloat(roi_x);
+  roi_y = parseFloat(roi_y);
+  roi_w = parseFloat(roi_w);
+  roi_h = parseFloat(roi_h); 
+
+	//roi_x = parseInt(parseFloat(roi_x)+0.5);
+	//roi_y = parseInt(parseFloat(roi_y)+0.5);
+	//roi_w = parseInt(parseFloat(roi_w)+0.5);
+	//roi_h = parseInt(parseFloat(roi_h)+0.5);
 
   if (roi_w * roi_h > 1000000) {
     newAnnot.w = annotools.imagingHelper.dataToLogicalX(1000)
@@ -2381,7 +2388,7 @@ var schema = {
                 self.toolBar.titleButton.show();
                 self.promptForWorkOrder(newAnnot, mode, annotools, ctx, roiGeoJSON);
 	
-              },1500)
+              },2000)
             }
           });
         })
@@ -2391,7 +2398,7 @@ var schema = {
 
 
 
-  },1000); 
+  },100); 
 
 }
 
