@@ -2019,7 +2019,7 @@ annotools.prototype.deleteAnnotations = function(execution_id, x1, y1, x2, y2){
 };
 
 var execution_id; 
-var r = 1.0, w = 0.8, l=3.0, u = 10.0, k=1.0, j="N";  
+var r = 1.0, w = 0.8, l=3.0, u = 10.0, k=20.0, j="N";  
 annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ctx, roiGeoJSON) {
   jQuery('html,body').css('cursor', 'default')
 
@@ -2034,15 +2034,15 @@ annotools.prototype.promptForWorkOrder = function (newAnnot, mode, annotools, ct
   var roi_w = (annotools.imagingHelper.physicalToDataX(annotools.imagingHelper.logicalToPhysicalX((newAnnot.x + newAnnot.w)))) - roi_x;
   var roi_h = (annotools.imagingHelper.physicalToDataY(annotools.imagingHelper.logicalToPhysicalY(newAnnot.y + newAnnot.h))) - roi_y;
    
-  roi_x = parseFloat(roi_x);
-  roi_y = parseFloat(roi_y);
-  roi_w = parseFloat(roi_w);
-  roi_h = parseFloat(roi_h); 
+  //roi_x = parseFloat(roi_x);
+  //roi_y = parseFloat(roi_y);
+  //roi_w = parseFloat(roi_w);
+  //roi_h = parseFloat(roi_h); 
 
-	//roi_x = parseInt(parseFloat(roi_x)+0.5);
-	//roi_y = parseInt(parseFloat(roi_y)+0.5);
-	//roi_w = parseInt(parseFloat(roi_w)+0.5);
-	//roi_h = parseInt(parseFloat(roi_h)+0.5);
+	roi_x = parseInt(parseFloat(roi_x)+0.5);
+	roi_y = parseInt(parseFloat(roi_y)+0.5);
+	roi_w = parseInt(parseFloat(roi_w)+0.5);
+	roi_h = parseInt(parseFloat(roi_h)+0.5);
 
   if (roi_w * roi_h > 1000000) {
     newAnnot.w = annotools.imagingHelper.dataToLogicalX(1000)
