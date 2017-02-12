@@ -46,35 +46,27 @@ $_SESSION["name"] = "quip";
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<div class="container">
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div>
-                <div class="header">
-                    <!--<ul class="nav nav-pills pull-right">
-                        <li>
-                            <a href="#myModal" data-toggle="modal" data-target="#myModal">About</a>
-                        </li>
-                        <li><a href="http://imaging.cci.emory.edu/wiki/x/RwAJ">User Guide</a></li>
-                        <li><a onclick="logOut(); return false;" href="#">Logout <?php echo $_SESSION["email"]; ?></a>
-                        </li>
-                    </ul>-->
-                    <h3 class="text-muted">QuIP:  Quantitative Imaging for Pathology</h3>
+
+    <h3 class="text-muted" style="text-align:center;">QuIP:  Quantitative Imaging for Pathology</h3><br />
+    <div class="container">
+        <div>
+            <p>Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP</strong></span> &ndash; a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!<br />The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts.</p>
+            <p>This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.</p>
+        </div><br />
+    <!--Upload images start-->
+	<div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">Upload Images</h3>
+        </div>
+		<div class="panel-body">
+            <div class="row">
+                <div class="col-md-4"><a class="btn btn-warning btn-block"  href="/imageformuploader.htm" title="Access Image Loader">Image Loader</a></div>
+                <div class="col-md-8">Web application for loading whole slide tissue images to QuIP
                 </div>
             </div>
         </div>
     </div>
-    <div class="row marketing">
-        <div class="panel">
-            <div class="panel-body">
-				<p>Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP</strong></span> &ndash; a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!</p>
-				
-				<p>The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts.</p>
-				    
-				<p>This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.</p>
-            </div>
-        </div>
-    </div>
+	<!--Upload images end-->
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">Image and Results Viewer</h3>
@@ -92,27 +84,6 @@ $_SESSION["name"] = "quip";
             <h3 class="panel-title">Visual Feature Analytics</h3>
         </div>
         <div class="panel-body">
-            <!--<div class="row">
-                <div class="col-md-12">
-                    <p>
-                    This suite of interactive tools work together to allow interrogation of multiple
-                    parameters including: cancer
-                    type, age, patient demographics, nuclear morphologic features and survival, gene expression, and the
-                    interaction
-                    that impact survival curve, allowing direct visual evaluation as well as computer extracted
-                    information to
-                    evaluate patient survival.</p>
-                </div>
-            </div>-->
-            <!--<div class="row">
-                <div class="col-md-4"><a class="btn btn-info btn-block"
-                                         href="/featurescapeapps/featurescape/fig4.html">FeatureExplorer</a>
-                </div>
-                <div class="col-md-8">An interactive tool to allow patient-level feature exploration across   
-                    multiple dimensions.
-                </div>
-            </div>
-            <div class="row"><br></div>-->
             <div class="row">
                 <div class="col-md-4"><a class="btn btn-info btn-block"
                                          href="/featurescapeapps/featurescape/u24Preview.html" title="Access FeatureScape">FeatureScape</a>
@@ -123,35 +94,6 @@ $_SESSION["name"] = "quip";
             </div>
         </div>
     </div>
-	<!--<div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title">Clinical Data Query</h3></div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4"><a class="btn btn-warning btn-block"
-                                         href="/featurescapeapps/openHealth/?/featurescapeapps/openHealth/tcgascope.js">TCGAScope</a>
-                </div>
-                <div class="col-md-8">An interactive dashboard to explore interrelations between patient demographics, pathologist-
-				    generated diagnostic keywords, and outcomes based on publicly-available TCGA data. Through integration into
-				    FeatureExplorer and FeatureScape individual corresponding images and results can be explored further.
-                </div>
-            </div>
-        </div>
-    </div>-->
-	<!--Upload images start-->
-	<div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title">Upload Images</h3>
-        </div>
-		<div class="panel-body">
-            <div class="row">
-                <div class="col-md-4"><a class="btn btn-warning btn-block"  href="/imageformuploader.htm" title="Access Image Loader">Image Loader</a></div>
-                <div class="col-md-8">Web application for loading whole slide tissue images to QuIP
-                </div>
-            </div>
-        </div>
-    </div>
-	<!--Upload images end-->
     <div class="panel panel-danger">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -168,10 +110,7 @@ $_SESSION["name"] = "quip";
         </div>
     </div>
     <div class="footer">
-        <hr>
-        <p>U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>; <i>Joel Saltz
-            PI</i> Stony Brook/Emory/Oak Ridge/Yale<br>NCIP/Leidos 14X138, <b>caMicroscope &ndash; A Digital Pathology
-            Integrative Query System</b>; <i>Ashish Sharma PI</i> Emory/WUSTL/Stony Brook</p>
+        <p>U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>; <i>Joel Saltz PI</i> Stony Brook/Emory/Oak Ridge/Yale<br>NCIP/Leidos 14X138, <b>caMicroscope &ndash; A Digital Pathology Integrative Query System</b>; <i>Ashish Sharma PI</i> Emory/WUSTL/Stony Brook</p>
     </div>
 </div>
 <!--Other end-->
