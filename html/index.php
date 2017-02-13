@@ -1,9 +1,3 @@
-<?php
-session_start();
-//require 'authenticate.php';
-require_once 'config/security_config.php';
-$_SESSION["name"] = "quip";
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -16,21 +10,20 @@ $_SESSION["name"] = "quip";
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>[User: <?php echo $_SESSION["name"]; ?> -- QuIP login]</title>
+    <title>[User: quip -- Select Page]</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="css/frontPage.css">
     <link rel="stylesheet" href="css/selectPage.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
     <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
-	<script src="featurescapeapps/js/findapi_config.js"></script>
+    <script src="featurescapeapps/js/findapi_config.js"></script>
     <script>
         function logOut() {
             $.post("security/server.php?logOut", {},
@@ -46,118 +39,105 @@ $_SESSION["name"] = "quip";
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-
-    <h3 class="text-muted" style="text-align:center;">QuIP:  Quantitative Imaging for Pathology</h3><br />
-    <div class="container">
-        <div>
-            <p>Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP</strong></span> &ndash; a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!<br />The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts.</p>
-            <p>This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.</p>
-        </div><br />
-    <!--Upload images start-->
-	<div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title">Upload Images</h3>
+<div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div>
+                <div class="header">
+                    <ul class="nav nav-pills pull-right">
+                        <li><a href="/imageformuploader.htm" data-toggle="tooltip" data-placement="bottom" title="Upload images">Image Loader</a></li>
+                        <li><a href="/FlexTables/index.php" data-toggle="tooltip" data-placement="bottom" title="Image and Results Viewer">caMicroscope</a></li>
+                        <li><a href="/featurescapeapps/featurescape/u24Preview.html" data-toggle="tooltip" data-placement="bottom" title="Visual Feature Analytics">FeatureScape</a></li>
+                        <li><a href="https://github.com/SBU-BMI/quip_distro" data-toggle="tooltip" data-placement="bottom" title="Distribution and Installation" target="_blank">Repository</a></li>
+                    </ul>
+                    <h3 class="text-muted"  href="#" data-toggle="tooltip" data-placement="left" title="Quantitative Imaging in Pathology">QuIP</h3>
+                </div>
+                <div></div>
+            </div>
         </div>
-		<div class="panel-body">
-            <div class="row">
-                <div class="col-md-4"><a class="btn btn-warning btn-block"  href="/imageformuploader.htm" title="Access Image Loader">Image Loader</a></div>
-                <div class="col-md-8">Web application for loading whole slide tissue images to QuIP
+    </div>
+    <div class="row marketing">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP:  Quantitative Imaging for
+                        Pathology</strong></span> &ndash;
+                        a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!  The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts. This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-	<!--Upload images end-->
     <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Image Loader</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4"><a class="btn btn-success btn-block" href="/imageformuploader.htm" data-toggle="tooltip" data-placement="bottom" title="Upload whole slide tissue images to QuIP">Upload Images</a></div>
+                <div class="col-md-8">Web application for loading whole slide tissue images to QuIP.</div>
+            </div>
+            <div class="row"><br /></div>
+        </div>
+    </div>
+    <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">Image and Results Viewer</h3>
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4"><a class="btn btn-success btn-block" href="/FlexTables/index.php" title="Access caMicroscope">caMicroscope</a></div>
-                <div class="col-md-8">You can view whole slide tissue images and nuclear segmentations. Click on the magnifier icon to choose algorithm results. <b>You may zoom in, zoom out, and pan the images. Mouse Click: Zoom in, Shift-Click: Zoom out.</b>
+                <div class="col-md-12">
+                    <p></p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4"><a class="btn btn-info btn-block" href="/FlexTables/index.php" data-toggle="tooltip" data-placement="bottom" title="Access caMicroscope">caMicroscope</a></div>
+                <div class="col-md-8">You can view whole slide tissue images and nuclear segmentations. Click on the magnifier icon to choose algorithm results. <b>You may zoom in, zoom out, and pan the images. Mouse Click: Zoom in, Shift-Click: Zoom out.</b></div>
+            </div>
+            <div class="row"><br /></div>
         </div>
     </div>
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">Visual Feature Analytics</h3>
-        </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3 class="panel-title">Visual Feature Analytics</h3></div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4"><a class="btn btn-info btn-block"
-                                         href="/featurescapeapps/featurescape/u24Preview.html" title="Access FeatureScape">FeatureScape</a>
-                </div>
+                <div class="col-md-4"><a class="btn btn-warning btn-block" href="/featurescapeapps/featurescape/u24Preview.html" data-toggle="tooltip" data-placement="bottom" title="Access FeatureScape">FeatureScape</a></div>
                 <div class="col-md-8">A visual analytics platform for exploring slide-level imaging features
-                    generated by analysis of whole slide tissue images to QuIP
+                    generated by analysis of whole slide tissue images to QuIP.</div>
+            </div>
+            <div class="row"><br /></div>
+        </div>
+    </div>
+    <div class="panel panel-default" id="repository">
+            <div class="panel-heading">
+                <h3 class="panel-title"><a data-toggle="collapse" href="#collapse1" data-toggle="tooltip" data-placement="bottom" title="QuIP Distribution and Installation">QuIP Repository</a></h3>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4"><a class="btn btn-default btn-block"  href="https://github.com/SBU-BMI/quip_distro" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Information on  QuIP Distribution and Installation">DISTR &amp INST</a></div>
+                        <div class="col-md-8">QuIP distribution and installation</div>
+                    </div>
+                    <div class="row"><br /></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a data-toggle="collapse" href="#collapse1" title="QuIP Distribution and Installation">QuIP Repository</a>
-            </h3>
-        </div>
-        <div id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4"><a class="btn btn-danger btn-block"  href="https://github.com/SBU-BMI/quip_distro" target="_blank" title="Access QuIP Distribution and Installation">DISTR &amp INST</a></div>
-                    <div class="col-md-8">QuIP distribution and installation</div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <div class="footer">
-        <p>U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>; <i>Joel Saltz PI</i> Stony Brook/Emory/Oak Ridge/Yale<br>NCIP/Leidos 14X138, <b>caMicroscope &ndash; A Digital Pathology Integrative Query System</b>; <i>Ashish Sharma PI</i> Emory/WUSTL/Stony Brook</p>
+        <hr />
+        <p>U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>; <i>Joel Saltz
+            PI</i> Stony Brook/Emory/Oak Ridge/Yale<br>NCIP/Leidos 14X138, <b>caMicroscope &ndash; A Digital Pathology
+            Integrative Query System</b>; <i>Ashish Sharma PI</i> Emory/WUSTL/Stony Brook<br /></p>
     </div>
 </div>
-<!--Other end-->
 <!-- /container -->
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"
-                        aria-hidden="true">&times;
-                </button>
-                <h4 class="modal-title">About</h4>
-            </div>
-            <div class="modal-body">
-                <p>This site hosts web accessible applications and tools designed to support analysis, management, and
-                    exploration of whole slide tissue images for cancer research. The goals of the parent project are to
-                    develop, deploy, and disseminate a suite of open source tools and integrated informatics platform
-                    that will facilitate multi-scale, correlative analyses of high resolution whole slide tissue image
-                    data, spatially mapped genetics and molecular data. The software and methods will enable cancer
-                    researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic
-                    changes and to identify and analyze features across individuals and cohorts.</p>
-                <!--<p>The current set of applications has been developed and supported by several frameworks and middleware
-                    systems including:<br>
-                <ul>
-                    <li><b>caMicroscope</b> &ndash; Digital pathology data management, visualization and analysis
-                        platform. It also includes <i>FeatureDB,</i>&nbsp;a database based on NoSQL technologies for
-                        management and query of segmentation results and features from whole slide tissue image
-                        analysis.
-                    </li>
-                    <li><span><b>OpenHealth</b> &ndash; a web computing application to query and explore publicly available health data.</span>
-                    </li>
-                    <li><span><b>Hadoop-GIS</b> &ndash; A Cloud-enabled spatial data system for high performance spatial queries and analytics.</span>
-                    </li>
-                    <li><span><b>WSI-Analytics</b> &ndash; A suite of methods for segmentation of nuclei in whole slide tissue images and computation of texture and shape features for each segmented nucleus.</span>
-                    </li>
-                </ul>-->
-                <p>This work is supported in part by NCI U24 CA18092401A1 (Tools to Analyze Morphology and Spatially
-                    Mapped Molecular Data, PI: Joel Saltz), NCIP/Leidos 14X138 (caMicroscope &ndash; A Digital Pathology
-                    Integrative Query System; PI: Ashish Sharma). The U24 project is a collaboration between Stony Brook
-                    University, Emory University, Oak Ridge National Laboratory and Yale University. The caMicroscope
-                    project is a collaboration between Emory University, Washington University in St. Louis and Stony
-                    Brook University.</p>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="js/main.js"></script>
+    
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+</script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
