@@ -67,7 +67,11 @@ $(document).ready(function(){
                    document.getElementById("estatus").innerHTML = "Please Enter Image ID!";
                    return false;
                  }
-                 
+                var regexp = /^[a-zA-Z0-9-_]+$/;
+                 if(imageid.search(regexp) == -1){
+                   document.getElementById("estatus").innerHTML = "Image Id can only contain characters (A-Z,a-z,0-9,-,_)!";
+                   return false;
+                 } 
                  if($("#upload_image").val()==""){
                    document.getElementById("estatus").innerHTML = "Please Select a Image File!";
                    return false;
