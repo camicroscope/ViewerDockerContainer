@@ -587,14 +587,22 @@ annotools.prototype.createWorkOrder = function () {
       loc[1] = parseFloat(newAnnot.y)
       newAnnot.loc = loc
       if(isLimitROI){
-	alert("Region is too large. Click OK to snap it to closest fit");
-        ctx.clearRect(0, 0, this.drawCanvas.width, this.drawCanvas.height)
-        ctx.strokeStyle = this.color
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
-	//console.log(min_x, min_y, limitroi.w, limitroi.h);
-        ctx.fillRect(min_x, min_y, limitroi.w, limitroi.h);
-        ctx.strokeRect(min_x, min_y, limitroi.w, limitroi.h);
-	isLimitROI=false;
+          var isConfirm = confirm("Region is too large. Click OK to snap it to closest fit");
+          if (!isConfirm) {
+              this.drawLayer.hide();
+              this.addMouseEvents();
+              jQuery('html,body').css('cursor', 'default');
+              return;
+          } else {
+	          //alert("Region is too large. Click OK to snap it to closest fit");
+              ctx.clearRect(0, 0, this.drawCanvas.width, this.drawCanvas.height)
+              ctx.strokeStyle = this.color
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
+	          //console.log(min_x, min_y, limitroi.w, limitroi.h);
+              ctx.fillRect(min_x, min_y, limitroi.w, limitroi.h);
+              ctx.strokeRect(min_x, min_y, limitroi.w, limitroi.h);
+	          isLimitROI=false;
+          }
       }
       //console.log(newAnnot);	
 
