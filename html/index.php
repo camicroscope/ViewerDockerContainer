@@ -50,7 +50,7 @@
                         <li><a href="/featurescapeapps/featurescape/u24Preview.html" data-toggle="tooltip" data-placement="bottom" title="Visual Feature Analytics">FeatureScape</a></li>
                         <li><a href="https://github.com/SBU-BMI/quip_distro" data-toggle="tooltip" data-placement="bottom" title="Distribution and Installation" target="_blank">Repository</a></li>
                     </ul>
-                    <h3 class="text-muted"  href="#" data-toggle="tooltip" data-placement="left" title="Quantitative Imaging in Pathology">QuIP</h3>
+                    <h3 class="text-muted"  href="#" data-toggle="tooltip" data-placement="left" title="Quantitative Imaging for Pathology">QuIP</h3>
                 </div>
                 <div></div>
             </div>
@@ -60,7 +60,7 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-12">Welcome to <span data-toggle="tooltip" title="Quantitative Imaging in Pathology"><strong>QuIP:  Quantitative Imaging for
+                    <div class="col-md-12">Welcome to <span data-toggle="tooltip" title="Quantitative Imaging for Pathology"><strong>QuIP:  Quantitative Imaging for
                         Pathology</strong></span> &ndash;
                         a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!  The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts. This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.
                     </div>
