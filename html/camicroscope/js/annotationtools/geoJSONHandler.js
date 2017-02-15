@@ -297,7 +297,12 @@ annotools.prototype.generateSVG = function (annotations) {
       var countRectNativepoints = 4;
 
       // var svg = 
-      svgHtml += '<polygon class="annotationsvg" id="' + id + '" points="'
+     // svgHtml += '<polygon class="annotationsvg" id="' + id + '" points="'
+      if(annotation.provenance.analysis.source && annotation.provenance.analysis.source=="computer"){
+        svgHtml += '<polygon  class="nucleussvg" id="' + id + '" points="' 
+     }else  {  
+        svgHtml += '<polygon  class="annotationsvg" id="' + id + '" points="' }; 
+
 
       // svgHtml += '<polygon onclick="clickSVG(event)" class="annotationsvg" id="'+"poly"+i+'" points="'
       var polySVG = ''
