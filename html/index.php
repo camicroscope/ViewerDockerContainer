@@ -60,7 +60,7 @@ $_SESSION["name"] = "quip";
             <!-- Collection of nav links and other content for toggling -->
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#"><abbr title="QuIP Home">Home</abbr></a></li>
+                    <li class="active"><a href="#"><abbr title="QuIP Home"><img src="/camicroscope/img/home_rest.png" alt="">Home</abbr></a></li>
                     <li><a href="/imageformuploader.htm" data-toggle="tooltip" data-placement="bottom" title="Upload images">Image Loader</a></li>
                     <li><a href="/FlexTables/index.php" data-toggle="tooltip" data-placement="bottom" title="Image and Results Viewer">caMicroscope</a></li>
                     <li><a href="/featurescapeapps/featurescape/u24Preview.html" data-toggle="tooltip" data-placement="bottom" title="Visual Feature Analytics">FeatureScape</a></li>
@@ -78,9 +78,8 @@ $_SESSION["name"] = "quip";
                 </div>
             </div>
                 <div class="row">
-                    <div class="col-md-12">Welcome to <span data-toggle="tooltip" title="Quantitative Imaging for Pathology" style="font-size:16px;"><strong>QuIP:  Quantitative Imaging for
-                        Pathology</strong></span> &ndash;
-                        a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!  The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts. This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.
+                    <div class="col-md-12">Welcome to <span data-toggle="tooltip" title="Quantitative Imaging for Pathology" style="font-size:16px;"><strong>QuIP:
+                        Quantitative Imaging for Pathology</strong></span> &ndash; a web accessible tool set designed to support analysis, management, and exploration of whole slide tissue images for cancer research.  QuIP is under active development.  Stay tuned for more tools and applications!  The full QuIP suite will enable cancer researchers to assemble and visualize detailed, multi-scale descriptions of tissue morphologic changes and to identify and analyze features across individuals and cohorts. This is an NIH funded multi-site collaborative effort between Stony Brook University, Emory University, Oak Ridge National Labs, and Yale University. Click on any of the colored buttons to launch the associated tool.
                     </div>
                 </div>
             </div>
