@@ -413,11 +413,13 @@ annotools.prototype.generateSVG = function (annotations) {
   jQuery("#58891912e4b076b78cf2f81f").mousedown(function(e){
 	console.log(e);
   });
+
   jQuery(".nucleussvg").click(function(event){
     console.log(event);
     console.log(event.parent);
   });	
-  jQuery(".annotationsvg").click(function (event) {
+  
+  jQuery(".annotationsvg").contextmenu(function (event) {
         //console.log(event.which);
         console.log("clicked annotation!");
         if(ctrl){
