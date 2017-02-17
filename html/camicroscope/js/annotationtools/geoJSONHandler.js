@@ -281,6 +281,8 @@ annotools.prototype.generateSVG = function (annotations) {
     svgHtml += '</g>'
     svgHtml += '<g id="viewport" transform="translate(0,0)">'
 
+		var ROIs = [];
+
     for (var i = 0; i < annotations.length; i++) {
       var annotation = annotations[i]
 
@@ -301,6 +303,8 @@ annotools.prototype.generateSVG = function (annotations) {
       if(annotation.provenance.analysis.source && annotation.provenance.analysis.source=="computer"){
         svgHtml += '<polygon  class="nucleussvg" id="' + id + '" points="' 
      }else  {  
+			  ROIs.push(annotation);
+				console.log("here");
         svgHtml += '<polygon  class="annotationsvg" id="' + id + '" points="' }; 
 
 
@@ -315,8 +319,7 @@ annotools.prototype.generateSVG = function (annotations) {
         svgHtml += polyPixelX + ',' + polyPixelY + ' '
         countNativepoints++;
       }
-      
-     
+           
       //svgHtml += '" style="fill: transparent; stroke: lime; stroke-width:2.5"/>'
       if(color === undefined){
         color = 'lime';
@@ -329,6 +332,54 @@ annotools.prototype.generateSVG = function (annotations) {
           svgHtml += '" style="fill:transparent; stroke:'+color+ '; stroke-width:2.5"/>'
       }
     }
+    console.log(ROIs);
+    for(var i=0; i<ROIs.length; i++){
+			var annotation = ROIs[i];	
+      var id = '';
+      
+      if (annotation['_id'])
+        id = annotation['_id']['$oid']
+      var nativepoints = annotation.geometry.coordinates[0]
+
+      // var offset = OpenSeadragon.getElementOffset(viewer.canvas)
+      var algorithm_id = annotation.provenance.analysis.execution_id
+      var color = algorithm_color[algorithm_id]
+      var countNativepoints = 0;
+      var countRectNativepoints = 4;
+
+      // var svg = 
+     // svgHtml += '<polygon class="annotationsvg" id="' + id + '" points="'
+      if(annotation.provenance.analysis.source && annotation.provenance.analysis.source=="computer"){
+        svgHtml += '<polygon  class="nucleussvg" id="' + id + '" points="' 
+     }else  {  
+        svgHtml += '<polygon  class="annotationsvg" id="' + id + '" points="' }; 
+				console.log("rendering ROI");
+
+      // svgHtml += '<polygon onclick="clickSVG(event)" class="annotationsvg" id="'+"poly"+i+'" points="'
+      var polySVG = ''
+      for (var k = 0; k < nativepoints.length; k++) {
+
+        var polyPixelX = this.imagingHelper.logicalToPhysicalX(nativepoints[k][0])
+        var polyPixelY = this.imagingHelper.logicalToPhysicalY(nativepoints[k][1])
+        // svgHtml += nativepoints[k][0] + ',' + nativepoints[k][1] + ' '
+        // polySVG += nativepoints[k][0] + ',' + nativepoints[k][1] + ' '
+        svgHtml += polyPixelX + ',' + polyPixelY + ' '
+        countNativepoints++;
+      }
+           
+      //svgHtml += '" style="fill: transparent; stroke: lime; stroke-width:2.5"/>'
+      if(color === undefined){
+        color = 'lime';
+      }
+        
+      if (countNativepoints === countRectNativepoints) {
+          svgHtml += '" style="stroke:'+ color + '; stroke-width:1.0; fill-opacity:0.2"/>';
+      }
+      else {
+          svgHtml += '" style="fill:transparent; stroke:'+color+ '; stroke-width:2.5"/>'
+      }	
+		}
+
     this.svg = new Element('div', {
       styles: {
         position: 'absolute',
@@ -362,6 +413,12 @@ annotools.prototype.generateSVG = function (annotations) {
   jQuery("#58891912e4b076b78cf2f81f").mousedown(function(e){
 	console.log(e);
   });
+
+  jQuery(".nucleussvg").click(function(event){
+    console.log(event);
+    console.log(event.parent);
+  });	
+  
   jQuery(".annotationsvg").contextmenu(function (event) {
         //console.log(event.which);
         console.log("clicked annotation!");
