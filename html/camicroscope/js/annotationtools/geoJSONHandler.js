@@ -300,12 +300,13 @@ annotools.prototype.generateSVG = function (annotations) {
 
       // var svg = 
      // svgHtml += '<polygon class="annotationsvg" id="' + id + '" points="'
+      console.log(annotation.provenance.analysis);
       if(annotation.provenance.analysis.source && annotation.provenance.analysis.source=="computer"){
         svgHtml += '<polygon  class="nucleussvg" id="' + id + '" points="' 
      }else  {  
-			  ROIs.push(annotation);
-				console.log("here");
-        svgHtml += '<polygon  class="annotationsvg" id="' + id + '" points="' }; 
+	ROIs.push(annotation);
+	console.log("here");
+        svgHtml += '<polygon  class="" id="' + id + '" points="' }; 
 
 
       // svgHtml += '<polygon onclick="clickSVG(event)" class="annotationsvg" id="'+"poly"+i+'" points="'
@@ -350,7 +351,7 @@ annotools.prototype.generateSVG = function (annotations) {
       // var svg = 
      // svgHtml += '<polygon class="annotationsvg" id="' + id + '" points="'
       if(annotation.provenance.analysis.source && annotation.provenance.analysis.source=="computer"){
-        svgHtml += '<polygon  class="nucleussvg" id="' + id + '" points="' 
+        //svgHtml += '<polygon  class="nucleussvg" id="' + id + '" points="' 
      }else  {  
         svgHtml += '<polygon  class="annotationsvg" id="' + id + '" points="' }; 
 				console.log("rendering ROI");
@@ -412,14 +413,10 @@ annotools.prototype.generateSVG = function (annotations) {
   });
   jQuery("#58891912e4b076b78cf2f81f").mousedown(function(e){
 	console.log(e);
-  });
-  jQuery(".nucleussvg").click(function(event){
-    console.log(event);
-    console.log(event.parent);
   });	
-  jQuery(".annotationsvg").click(function (event) {
+  jQuery(".annotationsvg").mousedown(function (event) {
         //console.log(event.which);
-        console.log("clicked annotation!");
+       
         if(ctrl){
           //console.log("double clicked");
           event.preventDefault();
