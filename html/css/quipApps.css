@@ -13,10 +13,17 @@
     font-size: 13px;
     vertical-align: bottom;
     color: #fff;
+    font-family: Roboto-Light;
 }
 
 .toolLink:hover {
     color: #fff;
+    font-family: Roboto-Light;
+}
+
+.toolLink:visited {
+    color: #fff;
+    font-family: Roboto-Light;
 }
 
 .msg {
