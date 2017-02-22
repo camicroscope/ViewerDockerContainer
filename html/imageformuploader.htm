@@ -53,7 +53,7 @@
                                         <label for="imageid" class="col-sm-3 control-label">Image ID:</label>
                                         <div class="col-sm-8">
                                             <div class="input-group">
-                                                <input id="imageid" type="text" name="case_id" label="Image ID: " class="form-control inputstl"  placeholder="Enter an Image ID" required>
+                                                <input id="imageid" type="text" name="case_id" label="Image ID: " class="form-control inputstl"  placeholder="Enter an Image ID" pattern="^[a-zA-Z0-9-_]+$" title="An image ID can only contain the following characters (A-Z, a-z, 0-9, -, _)" required>
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-star" alt="Required Control" title="Required"></span> 
                                                 </div>
