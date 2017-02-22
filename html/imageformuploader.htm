@@ -53,19 +53,19 @@
                                         <label for="imageid" class="col-sm-3 control-label">Image ID:</label>
                                         <div class="col-sm-8">
                                             <div class="input-group">
-                                                <input id="imageid" type="text" name="case_id" label="Image ID: " class="form-control inputstl"  placeholder="Enter an Image ID" pattern="^[a-zA-Z0-9-_]+$" title="An image ID can only contain the following characters (A-Z, a-z, 0-9, -, _)" required>
+                                                <input id="imageid" type="text" name="case_id" label="Image ID: " class="form-control inputstl"  placeholder="Enter an image ID" pattern="^[a-zA-Z0-9-_]+$" title="An image ID can only contain the following characters (A-Z, a-z, 0-9, -, _)" required>
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-star" alt="Required Control" title="Required"></span> 
                                                 </div>
                                             </div>
-                                           <span class="help-block"><span class="glyphicon glyphicon-star" alt="Required Control" title="Required" style="color:#ff0000"></span>An image ID can only contain the following characters (A-Z, a-z, 0-9, -, _)</span>
+                                           <span class="help-block"><span class="glyphicon glyphicon-star red" alt="Required Control" title="Required"></span>An image ID can only contain the following characters (A-Z, a-z, 0-9, -, _)</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="upload_image" class="col-sm-3 control-label">Select a file to upload:</label>
                                         <div class="col-sm-8" title="Please select an image file">
                                             <input type="file" name="upload_image" id="upload_image" class="filestyle" data-buttonName="btn-primary" data-size="sm" data-placeholder="No file chosen" data-buttonText="Choose File">
-                                            <span class="help-block"><span class="glyphicon glyphicon-star" alt="Required Control" title="Required" style="color:#ff0000"></span>Image Loader uploads whole slide tissue images</span>
+                                            <span class="help-block"><span class="glyphicon glyphicon-star red" alt="Required Control" title="Required"></span>Image Loader uploads whole slide tissue images</span>
                                         </div> 
                                     </div>
                                     <div class="row"><br /></div>
@@ -134,23 +134,23 @@
                                 document.getElementById("submitButton").disabled = false;
                                 console.log(response.status);
                                 document.getElementById("uploadme").reset();
-                                document.getElementById("estatus").innerHTML = "Image File is uploaded.";
+                                document.getElementById("estatus").innerHTML = "Image file is uploaded.";
                                         }
         };
         $('#uploadme').submit(function() {
                 var imageid = document.getElementById("imageid").value;
                 imageid = imageid.trim()
                 if(imageid==""){
-                   document.getElementById("estatus").innerHTML = "Please Enter an Image ID!";
+                   document.getElementById("estatus").innerHTML = "Please enter an image ID!";
                    return false;
                  }
                 var regexp = /^[a-zA-Z0-9-_]+$/;
                  if(imageid.search(regexp) == -1){
-                   document.getElementById("estatus").innerHTML = "Image Id can only contain characters (A-Z,a-z,0-9,-,_)!";
+                   document.getElementById("estatus").innerHTML = "Image ID can only contain characters (A-Z,a-z,0-9,-,_)!";
                    return false;
                  } 
                  if($("#upload_image").val()==""){
-                   document.getElementById("estatus").innerHTML = "Please Select an Image File!";
+                   document.getElementById("estatus").innerHTML = "Please select an image file!";
                    return false;
                  }
                 // remove space
