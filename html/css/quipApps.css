@@ -6,7 +6,8 @@
     background: -moz-linear-gradient(top, #FFFFFF, #AACCE8 1px, #FFFFFF 25px); 
     box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
     -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
-    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    font-size: 13px;
 }
 
 .toolLink {
