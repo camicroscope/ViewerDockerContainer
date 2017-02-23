@@ -1,0 +1,49 @@
+.inputstl { 
+    padding: 9px; 
+    border: solid 1px #173955; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #AACCE8), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #AACCE8 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    font-size: 13px;
+}
+
+.spacerTop {
+    margin-top: 50px;
+}
+
+.toolLink {
+    font-size: 13px;
+    vertical-align: bottom;
+    color: #fff;
+    font-family: Roboto-Light;
+}
+
+.toolLink:hover {
+    color: #fff;
+    font-family: Roboto-Light;
+}
+
+.toolLink:visited {
+    color: #fff;
+    font-family: Roboto-Light;
+}
+
+.input-group-addon {
+    color: #ff0000;
+    background-color: #fff;
+    font-size: 9px;
+}
+
+.msg {
+    color: maroon;
+    font-weight: bold;
+}
+
+.red {
+    color: #ff0000;
+    font-size: 9px;
+    vertical-align: top;
+}
