@@ -145,6 +145,7 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 # use "service apache2 start"
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
+RUN git clone -b master https://github.com/camicroscope/caMicroscope.git /var/www/html/camic
 
 #RUN service apache2 start
 
