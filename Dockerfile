@@ -145,9 +145,10 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 # use "service apache2 start"
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
+RUN git clone https://github.com/camicroscope/Security.git /var/www/html
 RUN git clone -b master https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 RUN git clone -b lymphocyte https://github.com/ajasniew/caMicroscope.git /var/www/html/lymphocyte
-RUN git clone https://github.com/SBU-BMI/camicSignup.git /var/www/html/camicSignup
+
 
 #RUN service apache2 start
 
