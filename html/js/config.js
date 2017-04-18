@@ -4,5 +4,5 @@ var findAPIConfig = {
 }
 
 var dataLoaderConfig = {
-	dataLoaderAPI: location.protocol+"//"+location.host+"/quip-loader/submitData",
+	dataLoaderAPI: location.protocol+"//"+location.host+"/quip-loader/submitData"
 }
