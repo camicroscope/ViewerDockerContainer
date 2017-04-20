@@ -159,6 +159,9 @@ RUN pear install http_request2
 COPY run.sh /root/run.sh
 RUN  apt-get install -y default-jdk
 
+COPY html/FlexTables/ /var/www/html/FlexTables/
+COPY html/featurescapeapps/ /var/www/html/featurescapeapps/ 
+
 CMD ["sh", "/root/run.sh"]
 
 #CMD service apache2 start && tail -F /var/log/apache2/access.log
