@@ -146,9 +146,9 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
 RUN rm -rf /var/www/html
-RUN git clone https://github.com/camicroscope/Security.git /var/www/html
-RUN git clone -b master https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
-RUN git clone -b lymphocyte https://github.com/camicroscope/caMicroscope.git /var/www/html/lymphocyte
+RUN git clone -b develop https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b develop https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
+
 
 
 #RUN service apache2 start
