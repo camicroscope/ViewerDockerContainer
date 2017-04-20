@@ -157,6 +157,8 @@ COPY apache2-iipsrv-fcgid.conf /root/src/iip-openslide-docker/apache2-iipsrv-fcg
 
 RUN pear install http_request2
 COPY run.sh /root/run.sh
+RUN  apt-get install -y default-jdk
+
 CMD ["sh", "/root/run.sh"]
 
 #CMD service apache2 start && tail -F /var/log/apache2/access.log
