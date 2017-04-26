@@ -34,7 +34,7 @@ RUN apt-get -q -y install git autoconf automake make libtool pkg-config cmake
 RUN mkdir /root/src
 
 ### install apache and dependencies. using fcgid
-RUN apt-get -q -y install apache2 libapache2-mod-fcgid libfcgi0ldbl
+RUN apt-get -q -y install apache2 apache2-utils libapache2-mod-fcgid libfcgi0ldbl
 RUN a2enmod rewrite
 RUN a2enmod fcgid
 
