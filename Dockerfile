@@ -145,6 +145,11 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 # use "service apache2 start"
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
+RUN rm -rf /var/www/html
+RUN git clone -b develop https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b develop https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
+
+
 
 #RUN service apache2 start
 
@@ -152,6 +157,11 @@ COPY apache2-iipsrv-fcgid.conf /root/src/iip-openslide-docker/apache2-iipsrv-fcg
 
 RUN pear install http_request2
 COPY run.sh /root/run.sh
+RUN  apt-get install -y default-jdk
+
+COPY html/FlexTables/ /var/www/html/FlexTables/
+COPY html/featurescapeapps/ /var/www/html/featurescapeapps/ 
+
 CMD ["sh", "/root/run.sh"]
 
 #CMD service apache2 start && tail -F /var/log/apache2/access.log
