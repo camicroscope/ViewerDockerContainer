@@ -39,7 +39,7 @@ RUN a2enmod rewrite
 RUN a2enmod fcgid
 
 ### install php
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 apache2-utils libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur
 
 
 # Enable apache mods.
