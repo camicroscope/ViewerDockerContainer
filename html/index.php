@@ -112,6 +112,15 @@ $_SESSION["name"] = "quip";
                     <div class="col-md-4"><a class="btn btn-info btn-block" href="/FlexTables/index.php" data-toggle="tooltip" data-placement="bottom" title="Access caMicroscope">caMicroscope</a></div>
                     <div class="col-md-8">You can view whole slide tissue images and nuclear segmentations. Click on the magnifier icon to choose algorithm results. <b>You may zoom in, zoom out, and pan the images. Mouse Click: Zoom in, Shift-Click: Zoom out.</b></div>
                 </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <p></p>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-md-4"><a class="btn btn-info btn-block" href="/camicSignup/index.html" data-toggle="tooltip" data-placement="bottom" title="Access caMicroscope">camicSignup</a></div>
+                    <div class="col-md-8">You can yourself or other user gmail account to the sytem, so you or other user can view image with caMicroscope tool.</div>
+                </div>                
                 <div class="row"><br /></div>
             </div>
         </div>
