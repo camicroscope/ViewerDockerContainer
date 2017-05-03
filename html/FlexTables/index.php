@@ -1,4 +1,7 @@
 <?php
+//require '../authenticate.php';
+
+
 /**
  * Step 1: Require the Slim Framework
  *
@@ -46,10 +49,18 @@ $oCache = new CacheAPC();
 // GET route
 $app->get(
     '/',
-    function () {
-        session_start();
+    function () use ($app) {
 
+	//require '../authenticate.php';
+	session_start();
         //$has_session = session_status();
+	if (!isset($_SESSION["api_key"])) {
+
+	    session_unset();
+	    $app->redirect("http://".$_SERVER["HTTP_HOST"]."/index.php");
+	    //header("Location:http://".$_SERVER["HTTP_HOST"].$folder_path."/index.php");
+	}
+
 
         //if(!($has_session == PHP_SESSION_ACTIVE))
         //apc_clear_cache();
@@ -213,7 +224,7 @@ $app->get(
 
     $dataUrl = $config_json["path"][$pathState]["dataUrl"];
 
-    $apiKey = $config_json["apiKey"];
+    $apiKey = $_SESSION["api_key"];
 
     $pageId = (int)$app->request->params("pageId") ?: 0;
     $perPage = (int)$app->request->params("perPage") ?: 10;
