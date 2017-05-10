@@ -11,6 +11,8 @@ var findhost = "";
 var findport = "";
 var findapi = "";
 
+var findApiEndpointUrl = "";  //quip-findapi url
+
 function buildUI(dataDivId, data) { // build User Interface
 
     var dataDiv, tbl, tbody, row, col;
@@ -131,24 +133,32 @@ $(function () {
 
     selection = {};
     if (location.hash.length > 1) {
-        console.log("HASH");
+        console.log("HASH length " + location.hash.length);
         var hash = location.hash.slice(1);
         var arr = hash.split(":");
         findhost = arr[0] + ":" + arr[1];
         findport = arr[2];
         console.log("findhost", findhost);
         console.log("findport", findport);
+        
+        findApiEndpointUrl = hash;
+        console.log("findApiEndpointUrl (hash): " + findApiEndpointUrl);
 
     }
     else {
         console.log("DEFAULT");
-        findhost = findAPIConfig.findAPI;
-        findport = findAPIConfig.port;
-        console.log("findhost", findhost);
-        console.log("findport", findport);
+        //findhost = findAPIConfig.findAPI;
+        //findport = findAPIConfig.port;
+        //console.log("findhost", findhost);
+        //console.log("findport", findport);
+        
+        findApiEndpointUrl = findAPIConfig.findAPI;
+        console.log("findApiEnpointUrl (default): " + findApiEndpointUrl);
     }
 
-    findapi = findhost + ':' + findport;
+    //findapi = findhost + ':' + findport;
+    findapi = findApiEndpointUrl;
+    
     selection.findhost = findhost;
     selection.findport = findport;
 

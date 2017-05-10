@@ -14,6 +14,8 @@ $(function () {
     if (location.search.length > 1) {
         var ss = location.search.slice(1).split(';');
         q = ss[0];
+        
+        console.log("q: " + q);
 
         if (q.indexOf("_ijt=") > -1) {
             // IDE stuff; just reload it.
@@ -21,6 +23,7 @@ $(function () {
         }
         else {
             // Query from url
+            /*
             var arr = q.split(":");
             findhost = arr[0] + ":" + arr[1];
             findport = arr[2].substring(0, arr[2].indexOf("?"));
@@ -30,7 +33,11 @@ $(function () {
             }
             console.log("findhost", findhost);
             console.log("findport", findport);
+            */
             // We just gonna pass q along to getData(), below.
+            
+            findApiEndpointUrl = q.substring(0, q.indexOf("?"));
+            console.log("findApiEndpointUrl - query from url: " + findApiEndpointUrl);
 
         }
 
@@ -38,10 +45,12 @@ $(function () {
     else {
         // Default
         selection.cancer_type = 'luad';
-		findhost = findAPIConfig.findAPI;
-        findport = findAPIConfig.port;
-        console.log("findhost", findhost);
-        console.log("findport", findport);
+		//findhost = findAPIConfig.findAPI;
+        //findport = findAPIConfig.port;
+        //console.log("findhost", findhost);
+        //console.log("findport", findport);
+        findApiEndpointUrl = findAPIConfig.findAPI;
+        console("findApiEndpointUrl - default: " + findApiEndpointUrl);
 
         q = createQuery(config.default_db, config.default_execution_id);
     }
@@ -121,8 +130,8 @@ function doFeaturescape(data, url) {
 
     if (data.length == 0) {
 
-        document.getElementById('section').innerHTML = '<span style="color:red">Data not available for patient:</span><br>'
-            + getPatient(url);
+        //document.getElementById('section').innerHTML = '<span style="color:red">Data not available for patient:</span><br>'
+        //    + getPatient(url);
         document.getElementById('msg').textContent = 'No data';
 
     }
@@ -302,9 +311,17 @@ function plot(x) { // when ready to do it
         + "</label><br><br>" + clust2html(cl);
     */
 	
+    /*
 	featurecrossTD.innerHTML = "<label>Click to choose a different analysis &amp; tissue slide image:&nbsp;"
         + '<input type="button" class="btn btn-secondary" onclick="window.location.href=\'u24Preview.html#' + findhost + ':' + findport + '\'" name="btnSelect" id="btnSelect" value="Go!" />'
         + "</label><br><br>" + clust2html(cl);
+    */
+        
+        
+    featurecrossTD.innerHTML = "<label>Click to choose a different analysis &amp; tissue slide image:&nbsp;"
+        + '<input type="button" class="btn btn-secondary" onclick="window.location.href=\'u24Preview.html\'" name="btnSelect" id="btnSelect" value="Go!" />'
+        + "</label><br><br>" + clust2html(cl);
+    
 
     setTimeout(function () {
 
@@ -468,7 +485,10 @@ function scatterPlot(div0, i, j) {
             }
 
             var parm = (s.split('.'))[2];
-            var m = location.search.match(findhost + '[^\;]+')[0];
+            //var m = location.search.match(findhost + '[^\;]+')[0];
+            console.log("findApiEndpointUrl for mugshot: " + findApiEndpointUrl);
+            //var m = location.search.match(findhost + '[^\;]+')[0];
+            var m = location.search.match(findApiEndpointUrl + '[^\;]+')[0];
             window.open(config.domain + "/nuclei-mugshots/#" + parm + "=" + patient + "&fx=" + fi + '&xmin=' + xmin + '&xmax=' + xmax + "&fy=" + fj + '&ymin=' + ymin + '&ymax=' + ymax + '&url=' + m);
 
         }
@@ -482,7 +502,8 @@ function scatterPlot(div0, i, j) {
 function createQuery(db, exec) {
     document.getElementById('msg').textContent = "Creating query...";
     case_id = config.default_case_id;
-    query = findhost + ':' + findport
+    //query = findhost + ':' + findport
+    query = findApiEndpointUrl
         + '?limit=1000&find={"randval":{"$gte":' + abcUtil.randval() + '},'
         + '"provenance.analysis.execution_id":"' + exec + '","provenance.analysis.source":"computer",'
         + '"provenance.image.case_id":"' + case_id + '"}'
