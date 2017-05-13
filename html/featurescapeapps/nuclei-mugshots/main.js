@@ -38,6 +38,7 @@ function buildQueryString(q) {
     // https://falcon.bmi.stonybrook.edu:4500/?limit
     base = abcUtil.getQueryVariable('url', q);
 
+    /*
     var arr = base.split(":");
     findhost = arr[0] + ":" + arr[1];
     findport = arr[2].substring(0, arr[2].indexOf("?"));
@@ -49,8 +50,11 @@ function buildQueryString(q) {
         findport = findport.substring(0, 4);
     }
     console.log("findport", findport);
-
-    mugshots.findApi = findhost + ':' + findport + '/';
+    */
+    //mugshots.findApi = findhost + ':' + findport + '/';
+    findApiEndpointUrl = base.substring(0, base.indexOf("?"));
+    console.log("findApiEndpointUrl for mugshots " + findApiEndpointUrl);
+    mugshots.findApi = findApiEndpointUrl;
 
     // Resample 50 (performance reasons); we're only rendering 12.
     base = base + '=50';
@@ -446,7 +450,8 @@ $(function () {
     } else {
         // Default
         thisisrandom = true;
-        mugshots.findApi = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/';
+        //mugshots.findApi = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/';
+        mugshots.findApi = findAPIConfig.findAPI;
         url = buildQueryStr();
     }
 

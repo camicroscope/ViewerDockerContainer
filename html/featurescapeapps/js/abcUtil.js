@@ -86,7 +86,8 @@ abcUtil = {
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            //q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + //'"}&db=quip';
+            q = findAPIConfig.findAPI + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
         }
 
         $.ajax({
@@ -109,8 +110,9 @@ abcUtil = {
 
         if (selection.findhost == undefined || selection.findhost == "") {
             console.log("Default FindAPI");
-            selection.findhost = findAPIConfig.findAPI;
-            selection.findport = findAPIConfig.port;
+            //selection.findhost = findAPIConfig.findAPI;
+            //selection.findport = findAPIConfig.port;
+            selection.findApiEndpointUrl = findAPIConfig.findAPI;
         }
         else {
             console.log("ok");
@@ -125,7 +127,8 @@ abcUtil = {
         if (jQuery.isEmptyObject(trace)) {
 
             trace = {
-                url: selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={}&db=quip',
+                //url: selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={}&db=quip',
+                url: selection.findApiEndpointUrl + '/?limit=100&collection=metadata&find={}&db=quip',
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
                 font_color: 'navy',
@@ -208,7 +211,8 @@ abcUtil = {
             }
             else {
                 console.log("No selection.findhost, using default from config file.");
-                url = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&project={"_id":0,"image.subject_id":1,"image.case_id":1}&db=' + selection.db;
+                //url = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + //selection.execution_id + '"}&project={"_id":0,"image.subject_id":1,"image.case_id":1}&db=' + selection.db;
+                url = findAPIConfig.findAPI + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&project={"_id":0,"image.subject_id":1,"image.case_id":1}&db=' + selection.db;
             }
 
             $.ajax({
@@ -357,7 +361,7 @@ abcUtil = {
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            fig4 = config.domain + '/featurescape/fig4.html#' + findAPIConfig.findAPI + ':' + findAPIConfig.port
+            fig4 = config.domain + '/featurescape/fig4.html#' + findAPIConfig.findAPI
                 + '?collection=patients&limit=' + pp.length + '&find={"analysis_id":"'
                 + selection.execution_id + '","bcr_patient_barcode":{"$in":[' + ppp + ']}}&db='
                 + selection.db + '&c=' + selection.cancer_type;
@@ -393,7 +397,7 @@ abcUtil = {
             }
             else {
                 console.log("No selection.findhost, using default from config file.");
-                fscape = config.domain + '/featurescape/?' + findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&find=' + find;
+                fscape = config.domain + '/featurescape/?' + findAPIConfig.findAPI + '/?limit=1000&find=' + find;
             }
             moreInfo.innerHTML = ' <input id="fscapeButton" style="color:blue" type="button" value="FeatureScape (if available) for ' + patient[x.textContent]["bcr_patient_barcode"] + '">'
                 + '&nbsp;&nbsp; <input id="fig4Button" style="color:indigo" type="button" value="FeatureExplorer (if available) for ' + pp.length + ' patients"><pre>' + JSON.stringify(patient[x.textContent], null, 3) + '</pre>';
@@ -597,7 +601,7 @@ abcUtil = {
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            fscape = config.domain + '/featurescape/?' + findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&find=' + find;
+            fscape = config.domain + '/featurescape/?' + findAPIConfig.findAPI + '/?limit=1000&find=' + find;
         }
         window.open(fscape);
     },
