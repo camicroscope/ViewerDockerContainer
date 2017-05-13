@@ -39,7 +39,7 @@ RUN a2enmod rewrite
 RUN a2enmod fcgid
 
 ### install php
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 apache2-utils libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur
 
 
 # Enable apache mods.
@@ -145,6 +145,11 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 # use "service apache2 start"
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
+RUN rm -rf /var/www/html
+RUN git clone -b 1.0.0rc0  https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b 1.0.0rc0 https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
+
+
 
 #RUN service apache2 start
 
@@ -152,6 +157,11 @@ COPY apache2-iipsrv-fcgid.conf /root/src/iip-openslide-docker/apache2-iipsrv-fcg
 
 RUN pear install http_request2
 COPY run.sh /root/run.sh
+RUN  apt-get install -y default-jdk
+
+COPY html/FlexTables/ /var/www/html/FlexTables/
+COPY html/featurescapeapps/ /var/www/html/featurescapeapps/ 
+
 CMD ["sh", "/root/run.sh"]
 
 #CMD service apache2 start && tail -F /var/log/apache2/access.log
