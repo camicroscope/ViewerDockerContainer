@@ -1,3 +1,6 @@
+<?php
+    require ('authenticate.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
