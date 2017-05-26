@@ -159,34 +159,43 @@ abcUtil = {
 				
 				var execSet = {};
                 arr.forEach(function (item) {
-                    var tm = 'default';
-                    var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
-                    var attr = '';
-                    var exec = item.provenance.analysis_execution_id;
+		    // skip the record containing composite_input
+		    var skip_record =false;	
+		    var execution_id=item.provenance.analysis_execution_id;
+		    var substring="composite_input";
+		    var position = execution_id.indexOf(substring);									
+   		    if(position !== -1) //find record
+			 skip_record=true;	   
+		    if(!skip_record){	
+                    	var tm = 'default';
+                    	var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
+                    	var attr = '';
+                    	var exec = item.provenance.analysis_execution_id;
 
-                    if (disableArray.indexOf(tm) > -1) {
-                        attr = 'disabled';
-                    }
+                    	if (disableArray.indexOf(tm) > -1) {
+                        	attr = 'disabled';
+                    	}
 
-                    if (tm == selection.cancer_type) {
+                    	if (tm == selection.cancer_type) {
 
-                        if (selection.execution_id == null) {
-                            selection.execution_id = item.provenance.analysis_execution_id;
-                        }
+                        	if (selection.execution_id == null) {
+                            	selection.execution_id = item.provenance.analysis_execution_id;
+                        	}
 
-                        if (selection.execution_id == item.provenance.analysis_execution_id) {
-                            selection.db = 'quip';
-                            selection.execution_id = item.provenance.analysis_execution_id;
-                            selection.cancer_type = 'default';
-                            attr = 'selected';
-                        }
-                    }
+                        	if (selection.execution_id == item.provenance.analysis_execution_id) {
+                           	 selection.db = 'quip';
+                           	 selection.execution_id = item.provenance.analysis_execution_id;
+                            	selection.cancer_type = 'default';
+                            	attr = 'selected';
+                       	 }
+                    	}
 
-					if (Object.prototype.hasOwnProperty.call(execSet,exec)==false) {
-                    	selectTumorHTML += '<option value="' + value + '" ' + attr + '>'
-                        	+ exec + '</option>';
-						execSet[exec] = true;
-					}
+			 if (Object.prototype.hasOwnProperty.call(execSet,exec)==false) {
+                    		selectTumorHTML += '<option value="' + value + '" ' + attr + '>'
+                        		+ exec + '</option>';
+				execSet[exec] = true;
+		    	}
+		  }	    
 
                 });
             }
