@@ -363,14 +363,14 @@ abcUtil = {
             console.log("selection.findhost", selection.findhost);
             console.log("selection.findport", selection.findport);
 
-            fig4 = config.domain + '/featurescape/fig4.html#' + selection.findhost + ':' + selection.findport
+            fig4 = config.domain + '/featurescape/fig4.php#' + selection.findhost + ':' + selection.findport
                 + '?collection=patients&limit=' + pp.length + '&find={"analysis_id":"'
                 + selection.execution_id + '","bcr_patient_barcode":{"$in":[' + ppp + ']}}&db='
                 + selection.db + '&c=' + selection.cancer_type;
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            fig4 = config.domain + '/featurescape/fig4.html#' + findAPIConfig.findAPI
+            fig4 = config.domain + '/featurescape/fig4.php#' + findAPIConfig.findAPI
                 + '?collection=patients&limit=' + pp.length + '&find={"analysis_id":"'
                 + selection.execution_id + '","bcr_patient_barcode":{"$in":[' + ppp + ']}}&db='
                 + selection.db + '&c=' + selection.cancer_type;
