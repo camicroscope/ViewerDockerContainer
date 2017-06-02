@@ -88,7 +88,7 @@ $(function () {
 
         if (location.search.length > 1) {
             var currentState = {foo: "bar"}; // just clear it without reloading
-            history.pushState(currentState, "FeatureExplorer", "fig4.html");
+            history.pushState(currentState, "FeatureExplorer", "fig4.php");
         }
 
         if (location.hash.length > 1) {
