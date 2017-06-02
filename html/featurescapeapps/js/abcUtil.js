@@ -165,7 +165,12 @@ abcUtil = {
 		    var substring="composite_input";
 		    var position = execution_id.indexOf(substring);									
    		    if(position !== -1) //find record
-			 skip_record=true;	   
+			 skip_record=true;
+                    
+            // skip also the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
+                skip_record = true;
+            }
+                    
 		    if(!skip_record){	
                     	var tm = 'default';
                     	var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
