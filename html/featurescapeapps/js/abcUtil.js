@@ -167,8 +167,8 @@ abcUtil = {
    		    if(position !== -1) //find record
 			 skip_record=true;
                     
-            // skip also the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
-            if (execution_id.includes('lym_v') || execution_id.includes('humanmark')){
+            // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
+            if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
                 skip_record = true;
             }
                     
