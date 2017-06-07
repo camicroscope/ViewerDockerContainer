@@ -82,12 +82,12 @@ abcUtil = {
         if (selection.findhost) {
             console.log("selection.findhost", selection.findhost);
             console.log("selection.findport", selection.findport);
-            q = selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            q = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            //q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + //'"}&db=quip';
-            q = findAPIConfig.findAPI + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            //q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + //'"}&db=quip';
+            q = findAPIConfig.findAPI + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
         }
 
         $.ajax({
@@ -127,8 +127,8 @@ abcUtil = {
         if (jQuery.isEmptyObject(trace)) {
 
             trace = {
-                //url: selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={}&db=quip',
-                url: selection.findApiEndpointUrl + '/?limit=100&collection=metadata&find={}&db=quip',
+                //url: selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={}&db=quip',
+                url: selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip',
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
                 font_color: 'navy',
