@@ -112,7 +112,7 @@ function buildUI(dataDivId, data) { // build User Interface
 
 function getData() {
     var url = findapi
-        + '/?limit=50&collection=metadata&find={"provenance.analysis_execution_id":"'
+        + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"'
         + selection.execution_id + '"}&db='
         + selection.db;
     console.log('selection', selection);
