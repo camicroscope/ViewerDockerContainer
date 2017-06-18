@@ -5,7 +5,7 @@
   "path":[
     {
       "name": "Collections",
-      "dataUrl": "http://quip-data:9099/services/Camicroscope_DataLoader/DataLoader/query/getAll"  
+      "dataUrl": "http://camicroscope-bindaas:9099/services/Camicroscope_DataLoader/DataLoader/query/getAll"  
     },
     {
       "name": "Link",
