@@ -82,12 +82,12 @@ abcUtil = {
         if (selection.findhost) {
             console.log("selection.findhost", selection.findhost);
             console.log("selection.findport", selection.findport);
-            q = selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            q = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            //q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + //'"}&db=quip';
-            q = findAPIConfig.findAPI + '/?limit=100&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            //q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + //'"}&db=quip';
+            q = findAPIConfig.findAPI + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
         }
 
         $.ajax({
@@ -127,8 +127,8 @@ abcUtil = {
         if (jQuery.isEmptyObject(trace)) {
 
             trace = {
-                //url: selection.findhost + ':' + selection.findport + '/?limit=100&collection=metadata&find={}&db=quip',
-                url: selection.findApiEndpointUrl + '/?limit=100&collection=metadata&find={}&db=quip',
+                //url: selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={}&db=quip',
+                url: selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip',
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
                 font_color: 'navy',
@@ -165,7 +165,12 @@ abcUtil = {
 		    var substring="composite_input";
 		    var position = execution_id.indexOf(substring);									
    		    if(position !== -1) //find record
-			 skip_record=true;	   
+           
+            // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
+            if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
+                skip_record = true;
+            }
+                   
 		    if(!skip_record){	
                     	var tm = 'default';
                     	var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
