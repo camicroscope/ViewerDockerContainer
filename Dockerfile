@@ -162,6 +162,8 @@ RUN  apt-get install -y default-jdk
 COPY html/FlexTables/ /var/www/html/FlexTables/
 COPY html/featurescapeapps/ /var/www/html/featurescapeapps/ 
 
+COPY templates /root/templates
+
 CMD ["sh", "/root/run.sh"]
 
 #CMD service apache2 start && tail -F /var/log/apache2/access.log

@@ -1,0 +1,20 @@
+{
+  "site": {
+    "type": "checkboxes",
+    "title": "Tumor Site(select all the apply)",
+    "items": {
+      "type": "string",
+      "enum": ["Upper_Outer_Quadrant", "Lower_Outer_Quadrant", "Upper_Inner_Quadrant", "Upper_Inner_Quadrant", "Central", "Nipple"]
+    }
+  },
+  "grade": {
+    "type": "string",
+    "title": "Nuclear Grade:",
+    "enum": ["Grade-I", "Grade-II", "Grade-III(High)"]
+  },
+  "necrosis": {
+    "type": "string",
+    "title": "Necrosis:",
+    "enum": ["NotIdentified", "Present-Focal", "Present-Central"]
+  }
+}
