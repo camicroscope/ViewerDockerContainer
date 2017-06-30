@@ -3,7 +3,7 @@
 #
 # VERSION               0.3.1
 
-# this version provides 
+# this version provides
 #	modified ruven iipsrv (ported changes from my fork of cytomine) with
 #		misc bug fixes in resolution calculations.  since v0.3
 #		fixed cache key hash. since v0.1.1
@@ -26,6 +26,10 @@ MAINTAINER Ganesh Iyer "lastlegion@gmail.com"
 RUN apt-get -q update
 RUN apt-get -q -y upgrade
 RUN apt-get -q -y dist-upgrade
+RUN apt-get clean
+RUN apt-get -q update
+
+# OpenSSH server
 RUN apt-get -q -y install openssh-server
 
 ### need build tools for building openslide and later iipsrv
@@ -34,8 +38,6 @@ RUN apt-get -q -y install git autoconf automake make libtool pkg-config cmake
 RUN mkdir /root/src
 
 ### install apache and dependencies. using fcgid
-RUN apt-get clean all
-RUN apt-get -q update
 RUN apt-get -q -y install apache2 libapache2-mod-fcgid libfcgi0ldbl
 RUN a2enmod rewrite
 RUN a2enmod fcgid
@@ -106,10 +108,10 @@ WORKDIR /root/src
 ## get my fork from openslide source cdoe
 RUN git clone https://bitbucket.org/tcpan/openslide.git
 
-## build openslide 
+## build openslide
 WORKDIR /root/src/openslide
 RUN git checkout tags/v0.3.1
-RUN autoreconf -i 
+RUN autoreconf -i
 #RUN ./configure --enable-static --enable-shared=no
 # may need to set OPENJPEG_CFLAGS='-I/usr/local/include' and OPENJPEG_LIBS='-L/usr/local/lib -lopenjp2'
 # and the corresponding TIFF flags and libs to where bigtiff lib is installed.
@@ -162,7 +164,7 @@ COPY run.sh /root/run.sh
 RUN  apt-get install -y default-jdk
 
 COPY html/FlexTables/ /var/www/html/FlexTables/
-COPY html/featurescapeapps/ /var/www/html/featurescapeapps/ 
+COPY html/featurescapeapps/ /var/www/html/featurescapeapps/
 
 CMD ["sh", "/root/run.sh"]
 
