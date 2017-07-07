@@ -11,3 +11,7 @@ var execIdSubstring = {
     lymphHeatmap: 'lym_v',
     lymphHumanmark: 'humanmark'
 };
+
+var lymphUser = {
+    superuserRole: 'lymph_superuser'
+};
