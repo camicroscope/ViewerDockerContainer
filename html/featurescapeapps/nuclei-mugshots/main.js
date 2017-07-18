@@ -35,7 +35,6 @@ function buildQueryString(q) {
         range_b;
 
     // Remember it stops at '='
-    // https://falcon.bmi.stonybrook.edu:4500/?limit
     base = abcUtil.getQueryVariable('url', q);
 
     /*
