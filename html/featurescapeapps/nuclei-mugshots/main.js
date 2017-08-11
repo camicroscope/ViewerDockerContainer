@@ -6,16 +6,16 @@
  */
 var mugshots, selection, thisisrandom, slides_not_found;
 var findhost = "";
-var findport = "";
+// var findport = "";
 
 function buildQueryStr() {
     abcUtil.selectBox({}, selection);
     return (mugshots.findApi
-    + '?collection=objects&limit=12&find={"provenance.analysis.execution_id":"'
-    + selection.execution_id
-    + '","provenance.analysis.source":"computer","randval":{"$gte":'
-    + abcUtil.randval() + '}}&db='
-    + selection.db);
+        + '?collection=objects&limit=12&find={"provenance.analysis.execution_id":"'
+        + selection.execution_id
+        + '","provenance.analysis.source":"computer","randval":{"$gte":'
+        + abcUtil.randval() + '}}&db='
+        + selection.db);
 }
 
 function buildQueryString(q) {
@@ -35,7 +35,6 @@ function buildQueryString(q) {
         range_b;
 
     // Remember it stops at '='
-    // https://falcon.bmi.stonybrook.edu:4500/?limit
     base = abcUtil.getQueryVariable('url', q);
 
     /*
@@ -132,18 +131,17 @@ function doInfo(newData, query) {
             parm = 'subject_id';
         }
 
-        if (!selection.cancer_type)
-        {
+        if (!selection.cancer_type) {
             selection.cancer_type = (selection.db).substring(4);
             selection.selected = selection.cancer_type;
         }
-        console.log(selection);
+        console.log("selection", selection);
 
         document.getElementById('info1').innerHTML = text + ' having morphologic ranges selected from '
             //+ selection.cancer_type.toUpperCase()
             //+ '</strong> '
             //+ (parm == 'case_id' ? 'diagnostic image' : 'patient') + ' <strong>' + id + '</strong>:';
-            + (parm == 'case_id' ? ' image' : ' image') + ' <strong>' + id + '</strong>:';
+            + (parm === 'case_id' ? ' image' : ' image') + ' <strong>' + id + '</strong>:';
 
         document.getElementById('info2').innerHTML =
             fx + ' between ' + xmin + ' and ' + xmax + '<br>' +
@@ -162,16 +160,16 @@ function parseData(data, size, query) {
         slideHeight = 0,
         i;
 
-		if (data.length>12) {
-        	randomMembers = abcUtil.getRandomSubarrayPartialShuffle(data, size);
-		} else {
-        	randomMembers = data; 
-		}
+    if (data.length > 12) {
+        randomMembers = abcUtil.getRandomSubarrayPartialShuffle(data, size);
+    } else {
+        randomMembers = data;
+    }
 
     // Determine whether we have multiple case ids or just one.
     for (i = 0; i < randomMembers.length; i++) {
 
-        if (prevCaseId != "" && prevCaseId != randomMembers[i].provenance.image.case_id) {
+        if (prevCaseId !== "" && prevCaseId !== randomMembers[i].provenance.image.case_id) {
             sameCaseId = false;
             break;
         }
@@ -314,84 +312,84 @@ function draw(targetDiv, data, query, layout) {
             obj, normalized, canvas, w, h, new_x, new_y, uri, link, context, imgSrc;
 
         var server = findhost.substring(7);
-        if (!server)
-        {
+        if (!server) {
             server = config.iiifServer;
         }
-        
-        var prefix = config.iiifPrefix;       
-        console.log("build:", prefix, server);  
+
+        var prefix = config.iiifPrefix;
+        console.log("build:", prefix, server);
 
         fragment.appendChild(tbl);
 
         // m rows
-		for (i = 0; i < data.length; i++) {
-        // for (i = 0; i < mugshots.m; i++) {
-			if (i%mugshots.n==0) {
-            	row = document.createElement('tr');
-            	tbl.appendChild(row);
-			}
+        for (i = 0; i < data.length; i++) {
+            // for (i = 0; i < mugshots.m; i++) {
+            if (i % mugshots.n === 0) {
+                row = document.createElement('tr');
+                tbl.appendChild(row);
+            }
 
             // n columns
             // for (j = 0; j < mugshots.n; j++) {
 
-                obj = {
-                    x: data[idx].markup[0],
-                    y: data[idx].markup[1],
-                    w: (data[idx].markup[2] - data[idx].markup[0]),
-                    h: (data[idx].markup[3] - data[idx].markup[1])
-                };
+            obj = {
+                x: data[idx].markup[0],
+                y: data[idx].markup[1],
+                w: (data[idx].markup[2] - data[idx].markup[0]),
+                h: (data[idx].markup[3] - data[idx].markup[1])
+            };
 
-                normalized = data[idx].normalized;
-                if (normalized === 'true') {
-                    obj.x = obj.x * data[idx].slideWidth;
-                    obj.y = obj.y * data[idx].slideHeight;
-                    obj.w = obj.w * data[idx].slideWidth;
-                    obj.h = obj.h * data[idx].slideHeight;
-                }
+            normalized = data[idx].normalized;
+            if (normalized === 'true') {
+                obj.x = obj.x * data[idx].slideWidth;
+                obj.y = obj.y * data[idx].slideHeight;
+                obj.w = obj.w * data[idx].slideWidth;
+                obj.h = obj.h * data[idx].slideHeight;
+            }
 
-                // IIIF wants whole numbers.
-                obj.x = Math.round(obj.x);
-                obj.y = Math.round(obj.y);
-                obj.w = Math.round(obj.w);
-                obj.h = Math.round(obj.h);
+            // IIIF wants whole numbers.
+            obj.x = Math.round(obj.x);
+            obj.y = Math.round(obj.y);
+            obj.w = Math.round(obj.w);
+            obj.h = Math.round(obj.h);
 
-                canvas = document.createElement('canvas');
-                canvas.width = 150;
-                canvas.height = 150;
+            canvas = document.createElement('canvas');
+            canvas.width = 150;
+            canvas.height = 150;
 
-                // Expand bounding box, with nucleus in center
-                w = (canvas.width / 2);
-                h = (canvas.height / 2);
+            // Expand bounding box, with nucleus in center
+            w = (canvas.width / 2);
+            h = (canvas.height / 2);
 
-                new_x = ((obj.x + (obj.w / 2)) - w);
-                new_y = ((obj.y + (obj.h / 2)) - h);
+            new_x = ((obj.x + (obj.w / 2)) - w);
+            new_y = ((obj.y + (obj.h / 2)) - h);
 
-                region = new_x + "," + new_y + "," + canvas.width + "," + canvas.height;
+            region = new_x + "," + new_y + "," + canvas.width + "," + canvas.height;
 
-                uri = scheme + "://" + server + "/" + prefix + data[idx].identifier + "/" + region + "/" + iSize + "/" + rotation + "/" + quality + "." + format;
+            uri = scheme + "://" + server + "/" + prefix + data[idx].identifier + "/" + region + "/" + iSize + "/" + rotation + "/" + quality + "." + format;
 
-                link = document.createElement('a');
+            link = document.createElement('a');
 
 
-                link.setAttribute("href",
-                    abcUtil.caMicroLink(data[idx].case_id, selection.cancer_type, obj.x, obj.y, findhost));
+            link.setAttribute("href",
+                abcUtil.caMicroLink(data[idx].case_id, selection.cancer_type, obj.x, obj.y, findhost));
 
-                link.setAttribute("target", "_blank");
-                col = document.createElement('td');
+            link.setAttribute("target", "_blank");
+            col = document.createElement('td');
 
-                canvas.setAttribute('id', 'canvas' + j);
-                link.appendChild(canvas);
-                col.appendChild(link);
-                context = canvas.getContext("2d");
+            // canvas.setAttribute('id', 'canvas' + j);
+            canvas.setAttribute('id', 'canvas' + i);
+            link.appendChild(canvas);
+            col.appendChild(link);
+            context = canvas.getContext("2d");
 
-                imgSrc = uri;
+            imgSrc = uri;
 
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                drawBackground(canvas, context, imgSrc, obj);
-                row.appendChild(col);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackground(canvas, context, imgSrc, obj);
+            row.appendChild(col);
 
-                idx = idx + 1;
+            idx = idx + 1;
             // }
         }
 
@@ -419,7 +417,7 @@ function getData(url) {
         $.getJSON(url).then(function (data) {
 
             // Object (nuclei) data
-            if (data.length == 0) {
+            if (data.length === 0) {
                 abcUtil.noDataJoy(url);
             } else {
                 draw('section', data, url);
