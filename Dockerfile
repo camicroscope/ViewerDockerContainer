@@ -19,6 +19,8 @@
 FROM     ubuntu:14.04
 MAINTAINER Ganesh Iyer "lastlegion@gmail.com"
 
+ENV BRANCH develop
+
 # build with
 #  sudo docker build --rm=true -t="repo/imgname" .
 
@@ -151,8 +153,8 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
 RUN rm -rf /var/www/html
-RUN git clone -b camicroscope_release  https://github.com/camicroscope/Security.git /var/www/html
-RUN git clone -b camicroscope_release https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
+RUN git clone -b $BRANCH  https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b $BRANCH https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 
 
 

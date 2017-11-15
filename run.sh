@@ -12,6 +12,6 @@ sleep 60
 apikey=$(python /var/www/html/createUser.py viewer@quip)
 
 sed -i -e "s/APIKEY312/$apikey/g" /var/www/html/authenticate.php
-curl -H "Content-Type: application/json" -X POST -d @/root/templates/drawForm.json http://camicroscope-bindaas:9099/services/caMicroscope_Templates/AnnotationTemplate/submit/json?api_key=$apikey
+#curl -H "Content-Type: application/json" -X POST -d @/root/templates/drawForm.json http://camicroscope-bindaas:9099/services/caMicroscope_Templates/AnnotationTemplate/submit/json?api_key=$apikey
 
 while true; do sleep 1000; done
