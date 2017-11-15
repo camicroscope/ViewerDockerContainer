@@ -1,6 +1,10 @@
-<?php
-//require '../authenticate.php';
 
+<?php
+session_destroy();
+require '../authenticate.php';
+require '../config/security_config.php';
+//print_r($_SESSION);
+//print_r($enable_security);
 
 /**
  * Step 1: Require the Slim Framework
@@ -10,6 +14,7 @@
  *
  * If you are using Composer, you can skip this step.
  */
+
 require 'Slim/Slim.php';
 require 'classes/apc.caching.php';
 
@@ -49,9 +54,15 @@ $oCache = new CacheAPC();
 // GET route
 $app->get(
     '/',
-    function () use ($app) {
-
-	//require '../authenticate.php';
+    function () use ($app, $enable_security, $_SESSION) {
+	if($enable_security){
+		if (!isset($_SESSION["api_key"])) {
+		    session_unset();
+		    $app->redirect("http://".$_SERVER["HTTP_HOST"]."/index.php");
+		    //header("Location:http://".$_SERVER["HTTP_HOST"].$folder_path."/index.php");
+		}	
+	}
+	/*
 	session_start();
         //$has_session = session_status();
 	if (!isset($_SESSION["api_key"])) {
@@ -60,7 +71,7 @@ $app->get(
 	    $app->redirect("http://".$_SERVER["HTTP_HOST"]."/index.php");
 	    //header("Location:http://".$_SERVER["HTTP_HOST"].$folder_path."/index.php");
 	}
-
+	*/
 
         //if(!($has_session == PHP_SESSION_ACTIVE))
         //apc_clear_cache();
@@ -224,7 +235,8 @@ $app->get(
 
     $dataUrl = $config_json["path"][$pathState]["dataUrl"];
 
-    $apiKey = $_SESSION["api_key"];
+    $apiKey = $_SESSION["api_key"];	
+    //echo $apiKey;
 
     $pageId = (int)$app->request->params("pageId") ?: 0;
     $perPage = (int)$app->request->params("perPage") ?: 10;
@@ -315,4 +327,6 @@ $app->get(
  * This method should be called last. This executes the Slim application
  * and returns the HTTP response to the HTTP client.
  */
+  // require '../authenticate.php';
+
 $app->run();
