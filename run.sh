@@ -3,8 +3,20 @@
 #nohup nodejs bin/www &
 #cd ../bindaas/bin
 #sh startup.sh &
+#------ new version starting here -----------
+mkdir -p /var/www/html2
+mkdir /var/www/html2/composite_results_zip
+cp -r /var/www/html/* /var/www/html2/.
+sed -i -e "s/Camicroscope_DataLoader/Camicroscope_DataLoader_comp/g"  /var/www/html2/camicroscope/api/Configuration/config.php
+sed -i -e "s/Camicroscope_Annotations/Camicroscope_Annotations_comp/g"  /var/www/html2/camicroscope/api/Configuration/config.php
+sed -i -e "s/Camicroscope_DataLoader/Camicroscope_DataLoader_comp/g"  /var/www/html2/FlexTables/config.json
+# -- end of new version -------
 rm -f /var/run/apache2.pid
 service apache2 start
+sed '/Listen 80/a Listen 8080' /etc/apache2/ports.conf
+#restart apache2 server
+service apache2 restart
+
 htpasswd -bc /etc/apache2/.htpasswd admin quip2017
 chmod 777 /etc/apache2/.htpasswd
 /root/src/iipsrv/src/iipsrv.fcgi --bind 127.0.0.1:9001 &

@@ -76,6 +76,7 @@ COPY apache2.conf /etc/apache2/apache2.conf
 
 ## expose some ports
 EXPOSE 80
+EXPOSE 8080
 #EXPOSE 443
 
 ## setup a mount point for images.  - this is external to the docker container.
@@ -153,8 +154,6 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 RUN rm -rf /var/www/html
 RUN git clone -b release  https://github.com/camicroscope/Security.git /var/www/html
 RUN git clone -b release https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
-
-
 
 #RUN service apache2 start
 
