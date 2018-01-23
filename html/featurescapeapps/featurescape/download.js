@@ -102,8 +102,7 @@ downloadData.getParms=function(){ // extract parameters from url search
     //var pp = decodeURIComponent(decodeURIComponent(location.search)).slice(1)
 }
 
-// get the data
-
+/*
 downloadData.dataTabling=function(){
     //saveFileJsonBt.textContent='Save File as JSON'
     saveFileCsvBt.textContent='Save File as CSV'
@@ -143,6 +142,79 @@ downloadData.dataTabling=function(){
                 console.log(downloadData.fieldsChecked)
             }         
         })
+    }
+    showhideData.onclick=function(){
+        var div = document.getElementById('tableData')
+        div.innerHTML='' // clear if something is there
+        div.appendChild(downloadData.docs2html(downloadData.dt,downloadData.fieldsChecked))
+    }
+
+
+        
+    4
+}
+*/
+
+// get the data
+
+downloadData.dataTabling=function(){
+    //saveFileJsonBt.textContent='Save File as JSON'
+    saveFileCsvBt.textContent='Save File as CSV'
+    var div = document.getElementById('dataTabling')|| document.createElement('div')
+    div.id='dataTabling'
+    div.innerHTML='<hr>Variables:<span><button class="btn btn-link" id="select_all_button">Select All</button><button class="btn btn-link" id="clear_all_button">Clear All</button></span><div id="tableVars"></div><hr><button class="btn btn-success" id="showhideData">Tabulate Data</button><div id="tableData"></div>'
+    downloadDataDiv.appendChild(div)
+    downloadData.fieldsChecked=[]
+    if(downloadData.dt.length>0){
+        downloadData.fields=Object.getOwnPropertyNames(downloadData.dt[0]).sort()
+        downloadData.fields.forEach(function(p,i){
+            var sp = document.createElement('span')
+            var ip = document.createElement('input')
+            ip.type='radio'
+            ip.value=p
+            
+            ip.checked=false
+            ip.nocheck=true
+            
+            
+            if(i<3){
+                ip.checked=true
+                ip.nocheck=false
+                downloadData.fieldsChecked.push(p)
+            } else {
+                ip.checked=false
+                ip.nocheck=true
+            }
+            
+            var h = ' '+p
+            sp.innerHTML = h
+            sp.appendChild(ip)
+            sp.style.color='navy'
+            tableVars.appendChild(sp)
+            ip.onclick=function(){
+                this.nocheck=!this.nocheck
+                this.checked=!this.nocheck
+                if(this.nocheck){
+                    downloadData.fieldsChecked.pop(downloadData.fieldsChecked.indexOf(this.value))
+                } else {
+                    downloadData.fieldsChecked.push(this.value) // add to list of selected fields
+                }
+                console.log(downloadData.fieldsChecked)
+            }
+            
+        })
+        
+        //start select all and clear all
+        select_all_button.onclick = function(){
+            var vrs = $('input',tableVars);vrs.map(i=>{vrs[i].checked=true});
+            downloadData.fieldsChecked = Object.getOwnPropertyNames(downloadData.dt[0]).sort();
+        }
+        
+        clear_all_button.onclick = function(){
+            var vrs = $('input',tableVars);vrs.map(i=>{vrs[i].checked=false});
+            downloadData.fieldsChecked.length = 0;
+        }
+        //end end select all and clear all
     }
     showhideData.onclick=function(){
         var div = document.getElementById('tableData')

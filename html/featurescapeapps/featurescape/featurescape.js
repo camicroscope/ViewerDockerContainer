@@ -319,7 +319,7 @@ function plot(x) { // when ready to do it
         
         
     featurecrossTD.innerHTML = "<label>Click to choose a different analysis &amp; tissue slide image:&nbsp;"
-        + '<input type="button" class="btn btn-secondary" onclick="window.location.href=\'u24Preview.html\'" name="btnSelect" id="btnSelect" value="Go!" />'
+        + '<input type="button" class="btn btn-secondary" onclick="window.location.href=\'u24Preview.php\'" name="btnSelect" id="btnSelect" value="Go!" />'
         + "</label><br><br>" + clust2html(cl);
     
 
