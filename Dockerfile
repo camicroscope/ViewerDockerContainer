@@ -167,9 +167,8 @@ RUN  apt-get install -y default-jdk
 COPY html/FlexTables/ /var/www/html/FlexTables/
 COPY html/featurescapeapps/ /var/www/html/featurescapeapps/
 
-# Tile Overlay Directory and Symlink
+# Tile Overlay Directory
 RUN mkdir -p /data/images/overlays
-RUN ln -s /data/images/overlays /var/www/html/overlays
 
 CMD ["sh", "/root/run.sh"]
 

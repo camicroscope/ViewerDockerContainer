@@ -3,6 +3,8 @@
 #nohup nodejs bin/www &
 #cd ../bindaas/bin
 #sh startup.sh &
+# tile overlay symlink
+ln -s /data/images/overlays /var/www/html/overlays
 rm -f /var/run/apache2.pid
 service apache2 start
 htpasswd -bc /etc/apache2/.htpasswd admin quip2017
