@@ -1,11 +1,11 @@
 var findAPIConfig = {
-	findAPI: "http://" + location.hostname,
+	findAPI: location.protocol+"//" + location.hostname,
 	port: 3000,
 	dbSize: "small"
 }
 
 var dataLoaderConfig = {
-	dataLoaderAPI: "http://" + location.hostname,
+	dataLoaderAPI: location.protocol+"//" + location.hostname,
 	port: 6002
 }
 
