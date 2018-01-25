@@ -167,6 +167,10 @@ RUN  apt-get install -y default-jdk
 COPY html/FlexTables/ /var/www/html/FlexTables/
 COPY html/featurescapeapps/ /var/www/html/featurescapeapps/
 
+# Tile Overlay Directory and Symlink
+RUN mkdir -p /data/images/overlays
+RUN ln -s /data/images/overlays /var/www/html/overlays
+
 CMD ["sh", "/root/run.sh"]
 
 #CMD service apache2 start && tail -F /var/log/apache2/access.log
