@@ -73,6 +73,7 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
+COPY ports.conf /etc/apache2/ports.conf
 
 ## expose some ports
 EXPOSE 80
