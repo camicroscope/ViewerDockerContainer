@@ -5,7 +5,7 @@
 #sh startup.sh &
 #------ new version starting here -----------
 mkdir -p /var/www/html2
-mkdir /var/www/html2/composite_results_zip
+mkdir /var/www/html2/composite_results
 cp -r /var/www/html/* /var/www/html2/.
 sed -i -e "s/Camicroscope_DataLoader/Camicroscope_DataLoader_comp/g"  /var/www/html2/camicroscope/api/Configuration/config.php
 sed -i -e "s/Camicroscope_Annotations/Camicroscope_Annotations_comp/g"  /var/www/html2/camicroscope/api/Configuration/config.php
