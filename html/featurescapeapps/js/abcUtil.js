@@ -124,11 +124,21 @@ abcUtil = {
             // Disable nothing
             disableArray = [""];
         }
+	
+	 var url_value='';
+        if(selection.case_id != undefined && selection.case_id !='' && selection !=null) {
+           console.log(selection.case_id);
+           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={"image.case_id":"'+selection.case_id +'"}&db=quip';
+        } else
+           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip';
+        console.log(url_value);
+	    
         if (jQuery.isEmptyObject(trace)) {
 
             trace = {
                 //url: selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={}&db=quip',
-                url: selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip',
+                //url: selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip',
+		url: url_value ,
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
                 font_color: 'navy',
@@ -221,8 +231,7 @@ abcUtil = {
             if (selection.findhost) {
                 console.log("selection.findhost", selection.findhost);
                 console.log("selection.findport", selection.findport);
-
-                url = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&project={"_id":0,"image.subject_id":1,"image.case_id":1}&db=' + selection.db;
+                url = selection.findhost + ':' + selection.findport + '/?limit=10000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&project={"_id":0,"image.subject_id":1,"image.case_id":1}&db=' + selection.db;
             }
             else {
                 console.log("No selection.findhost, using default from config file.");
