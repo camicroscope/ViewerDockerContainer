@@ -82,12 +82,11 @@ abcUtil = {
         if (selection.findhost) {
             console.log("selection.findhost", selection.findhost);
             console.log("selection.findport", selection.findport);
-            q = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            q = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db='+config.default_db;
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            //q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + //'"}&db=quip';
-            q = findAPIConfig.findAPI + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            q = findAPIConfig.findAPI + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db='+config.default_db;
         }
 
         $.ajax({
@@ -128,16 +127,14 @@ abcUtil = {
 	 var url_value='';
         if(selection.case_id != undefined && selection.case_id !='' && selection !=null) {
            console.log(selection.case_id);
-           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={"image.case_id":"'+selection.case_id +'"}&db=quip';
+           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={"image.case_id":"'+selection.case_id +'"}&db='+config.default_db;
         } else
-           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip';
+           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db='+config.default_db;
         console.log(url_value);
 	    
         if (jQuery.isEmptyObject(trace)) {
 
-            trace = {
-                //url: selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={}&db=quip',
-                //url: selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip',
+            trace = {                
 		url: url_value ,
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
@@ -184,7 +181,7 @@ abcUtil = {
                     
 		    if(!skip_record){	
                     	var tm = 'default';
-                    	var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
+                    	var value = tm + ',' + config.default_db + ',' + item.provenance.analysis_execution_id;
                     	var attr = '';
                     	var exec = item.provenance.analysis_execution_id;
 
@@ -199,7 +196,7 @@ abcUtil = {
                         	}
 
                         	if (selection.execution_id == item.provenance.analysis_execution_id) {
-                           	 selection.db = 'quip';
+                           	 selection.db = config.default_db;
                            	 selection.execution_id = item.provenance.analysis_execution_id;
                             	selection.cancer_type = 'default';
                             	attr = 'selected';
