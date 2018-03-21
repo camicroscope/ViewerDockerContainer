@@ -164,22 +164,64 @@ abcUtil = {
                     selection.cancer_type = 'default';
                 }
 				
-				var execSet = {};
+		var execSet = {};
+		if(config.default_db=='quip_comp'){
+                   var select_index=1;}    
                 arr.forEach(function (item) {
-		    // skip the record containing composite_input
-		    var skip_record =false;	
-		    var execution_id=item.provenance.analysis_execution_id;
-		    var substring="composite_input";
-		    var position = execution_id.indexOf(substring);									
-   		    if(position !== -1) //find record
-			 skip_record=true;
-                    
-            // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
-            if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
+		  //start of switch		
+			 if(config.default_db=='quip_comp'){	
+		       var skip_record =true;	
+		       var execution_id=item.provenance.analysis_execution_id;
+		       // view curation result, only keep composite_dataset
+               var substring="composite_dataset";
+		       var position = execution_id.indexOf(substring);	
+               //find record			
+   		       if(position !== -1) {
+			    skip_record=false;}                    
+		       if(!skip_record){	
+                    	var tm = 'default';
+                    	var value = tm + ',' + config.default_db + ',' + item.provenance.analysis_execution_id;
+                    	var attr = '';
+                    	var exec = item.provenance.analysis_execution_id;
+
+                    	if (disableArray.indexOf(tm) > -1) {
+                        	attr = 'disabled';}
+
+                    	if (tm == selection.cancer_type) {
+                        	if (selection.execution_id == null) {
+                            	selection.execution_id = item.provenance.analysis_execution_id;
+                        	}
+
+                        	if (selection.execution_id == item.provenance.analysis_execution_id) {
+                           	 selection.db = config.default_db;
+                           	 selection.execution_id = item.provenance.analysis_execution_id;
+                            	selection.cancer_type = 'default';
+                            	attr = 'selected';
+                       	    }
+                    	}
+
+			 if (Object.prototype.hasOwnProperty.call(execSet,exec)==false) {
+                        var select_title="composite_dataset_"+select_index;   
+                 		selectTumorHTML += '<option value="' + value + '" ' + attr + '>' + select_title + '</option>';
+				        execSet[exec] = true;
+                        select_index+=1;
+		    	}
+		      }	    
+			}//end 
+            else {
+			   // skip the record containing composite_input
+		      var skip_record =false;	
+		      var execution_id=item.provenance.analysis_execution_id;
+		      var substring="composite_input";
+		      var position = execution_id.indexOf(substring);									
+   		      if(position !== -1) //find record
+			   skip_record=true;                    
+              // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
+              if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
                 skip_record = true;
-            }
+              }
                     
-		    if(!skip_record){	
+		      if(!skip_record){	
                     	var tm = 'default';
                     	var value = tm + ',' + config.default_db + ',' + item.provenance.analysis_execution_id;
                     	var attr = '';
@@ -204,12 +246,11 @@ abcUtil = {
                     	}
 
 			 if (Object.prototype.hasOwnProperty.call(execSet,exec)==false) {
-                    		selectTumorHTML += '<option value="' + value + '" ' + attr + '>'
-                        		+ exec + '</option>';
-				execSet[exec] = true;
+                		selectTumorHTML += '<option value="' + value + '" ' + attr + '>'+ exec + '</option>';
+				        execSet[exec] = true;
 		    	}
-		  }	    
-
+		     }	
+		  }//end	    
                 });
             }
         });
