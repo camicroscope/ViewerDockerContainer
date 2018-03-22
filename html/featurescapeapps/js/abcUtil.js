@@ -165,7 +165,9 @@ abcUtil = {
 		    var substring="composite_input";
 		    var position = execution_id.indexOf(substring);
    		    if(position !== -1) //find record
-              skip_record=true;
+          {
+            skip_record=true;
+          }
 
             // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
             if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
