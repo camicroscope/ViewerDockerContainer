@@ -156,22 +156,23 @@ abcUtil = {
                 if (!selection.cancer_type) {
                     selection.cancer_type = 'default';
                 }
-				
+
 				var execSet = {};
                 arr.forEach(function (item) {
 		    // skip the record containing composite_input
-		    var skip_record =false;	
+		    var skip_record =false;
 		    var execution_id=item.provenance.analysis_execution_id;
 		    var substring="composite_input";
-		    var position = execution_id.indexOf(substring);									
+		    var position = execution_id.indexOf(substring);
    		    if(position !== -1) //find record
-           
+              skip_record=true;
+
             // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
             if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
                 skip_record = true;
             }
-                   
-		    if(!skip_record){	
+
+		    if(!skip_record){
                     	var tm = 'default';
                     	var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
                     	var attr = '';
@@ -200,7 +201,7 @@ abcUtil = {
                         		+ exec + '</option>';
 				execSet[exec] = true;
 		    	}
-		  }	    
+		  }
 
                 });
             }
@@ -602,7 +603,7 @@ abcUtil = {
         var parm = 'subject_id';
         if (xxx.length > 12)
             parm = 'case_id';
-        
+
         // "source":"human" is no bueno. Use "source":"computer"
         var find = '{"randval":{"$gte":' + textContent + '},"provenance.analysis.source":"computer","provenance.image.' + parm + '":"' + xxx + '"}&db=' + db + '&c=' + selection.cancer_type;
 
