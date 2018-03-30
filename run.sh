@@ -13,6 +13,6 @@ chmod 777 /etc/apache2/.htpasswd
 
 apikey=$(python /var/www/html/createUser.py viewer@quip)
 
-sed -i -e "s/APIKEY312/$apikey/g" /var/www/html/authenticate.php
+echo "api_key=$apikey"  >> /var/www/html/config.ini
 
 while true; do sleep 1000; done
