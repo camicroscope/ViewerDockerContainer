@@ -73,9 +73,11 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
+COPY ports.conf /etc/apache2/ports.conf
 
 ## expose some ports
 EXPOSE 80
+EXPOSE 8080
 #EXPOSE 443
 
 ## setup a mount point for images.  - this is external to the docker container.

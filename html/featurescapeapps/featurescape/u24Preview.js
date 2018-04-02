@@ -111,10 +111,19 @@ function buildUI(dataDivId, data) { // build User Interface
 }
 
 function getData() {
-    var url = findapi
-        + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"'
-        + selection.execution_id + '"}&db='
-        + selection.db;
+    //var url = findapi
+    //    + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"'
+    //    + selection.execution_id + '"}&db='
+    //    + selection.db;
+	
+   if(selection.case_id != undefined && selection.case_id !='' && selection !=null) {
+      var url = findapi + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"'
+        + selection.execution_id + '","image.case_id":"' + selection.case_id + '"}&db='  + selection.db;
+    } else {
+      var url = findapi + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"'
+        + selection.execution_id + '"}&db='  + selection.db;
+    }	
+	
     console.log('selection', selection);
     console.log('url', url);
 
@@ -161,6 +170,15 @@ $(function () {
     
     selection.findhost = findhost;
     selection.findport = findport;
+	
+    if (typeof case_id == "undefined") {
+      //alert("case_id is not defined!");
+      console.log("case_id is not defined!");
+    } else {
+      console.log("case_id is defined!");
+      console.log(case_id);
+      selection.case_id=case_id;
+    }	
 
     document.getElementById('select').innerHTML = abcUtil.selectBox({}, selection);
     getData();

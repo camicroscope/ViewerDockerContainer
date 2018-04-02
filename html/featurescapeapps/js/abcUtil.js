@@ -82,12 +82,11 @@ abcUtil = {
         if (selection.findhost) {
             console.log("selection.findhost", selection.findhost);
             console.log("selection.findport", selection.findport);
-            q = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            q = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db='+config.default_db;
         }
         else {
             console.log("No selection.findhost, using default from config file.");
-            //q = findAPIConfig.findAPI + ':' + findAPIConfig.port + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + //'"}&db=quip';
-            q = findAPIConfig.findAPI + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db=quip';
+            q = findAPIConfig.findAPI + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&db='+config.default_db;
         }
 
         $.ajax({
@@ -124,11 +123,21 @@ abcUtil = {
             // Disable nothing
             disableArray = [""];
         }
+	
+	 var url_value='';
+        if(selection.case_id != undefined && selection.case_id !='' && selection !=null) {
+           console.log(selection.case_id);
+           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={"image.case_id":"'+selection.case_id +'"}&db='+config.default_db;
+        } else
+           url_value=selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db='+config.default_db;
+        console.log(url_value);
+	    
         if (jQuery.isEmptyObject(trace)) {
 
-            trace = {
+            trace = {                
+		url: url_value ,
                 //url: selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={}&db=quip',
-                url: selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip',
+                //url: selection.findApiEndpointUrl + '/?limit=1000&collection=metadata&find={}&db=quip',
                 id: 'selectTumor',
                 onchange: 'tumorChanged(this)',
                 font_color: 'navy',
@@ -156,27 +165,67 @@ abcUtil = {
                 if (!selection.cancer_type) {
                     selection.cancer_type = 'default';
                 }
-
-				var execSet = {};
+				
+		var execSet = {};
+		if(config.default_db=='quip_comp'){
+                   var select_index=1;}    
                 arr.forEach(function (item) {
-		    // skip the record containing composite_input
-		    var skip_record =false;
-		    var execution_id=item.provenance.analysis_execution_id;
-		    var substring="composite_input";
-		    var position = execution_id.indexOf(substring);
-   		    if(position !== -1) //find record
-          {
-            skip_record=true;
-          }
+		  //start of switch		
+			 if(config.default_db=='quip_comp'){	
+		       var skip_record =true;	
+		       var execution_id=item.provenance.analysis_execution_id;
+		       // view curation result, only keep composite_dataset
+               var substring="composite_dataset";
+		       var position = execution_id.indexOf(substring);	
+               //find record			
+   		       if(position !== -1) {
+			    skip_record=false;}                    
+		       if(!skip_record){	
+                    	var tm = 'default';
+                    	var value = tm + ',' + config.default_db + ',' + item.provenance.analysis_execution_id;
+                    	var attr = '';
+                    	var exec = item.provenance.analysis_execution_id;
 
-            // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
-            if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
+                    	if (disableArray.indexOf(tm) > -1) {
+                        	attr = 'disabled';}
+
+                    	if (tm == selection.cancer_type) {
+                        	if (selection.execution_id == null) {
+                            	selection.execution_id = item.provenance.analysis_execution_id;
+                        	}
+
+                        	if (selection.execution_id == item.provenance.analysis_execution_id) {
+                           	 selection.db = config.default_db;
+                           	 selection.execution_id = item.provenance.analysis_execution_id;
+                            	selection.cancer_type = 'default';
+                            	attr = 'selected';
+                       	    }
+                    	}
+
+			 if (Object.prototype.hasOwnProperty.call(execSet,exec)==false) {
+                        var select_title="composite_dataset_"+select_index;   
+                 		selectTumorHTML += '<option value="' + value + '" ' + attr + '>' + select_title + '</option>';
+				        execSet[exec] = true;
+                        select_index+=1;
+		    	}
+		      }	    
+			}//end 
+            else {
+			   // skip the record containing composite_input
+		      var skip_record =false;	
+		      var execution_id=item.provenance.analysis_execution_id;
+		      var substring="composite_input";
+		      var position = execution_id.indexOf(substring);									
+   		      if(position !== -1) //find record
+			   skip_record=true;                    
+              // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
+              if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
                 skip_record = true;
             }
-
-		    if(!skip_record){
+                    
+		    if(!skip_record){	
                     	var tm = 'default';
-                    	var value = tm + ',' + 'quip' + ',' + item.provenance.analysis_execution_id;
+                    	var value = tm + ',' + config.default_db + ',' + item.provenance.analysis_execution_id;
                     	var attr = '';
                     	var exec = item.provenance.analysis_execution_id;
 
@@ -191,7 +240,7 @@ abcUtil = {
                         	}
 
                         	if (selection.execution_id == item.provenance.analysis_execution_id) {
-                           	 selection.db = 'quip';
+                           	 selection.db = config.default_db;
                            	 selection.execution_id = item.provenance.analysis_execution_id;
                             	selection.cancer_type = 'default';
                             	attr = 'selected';
@@ -199,12 +248,11 @@ abcUtil = {
                     	}
 
 			 if (Object.prototype.hasOwnProperty.call(execSet,exec)==false) {
-                    		selectTumorHTML += '<option value="' + value + '" ' + attr + '>'
-                        		+ exec + '</option>';
-				execSet[exec] = true;
+                		selectTumorHTML += '<option value="' + value + '" ' + attr + '>'+ exec + '</option>';
+				        execSet[exec] = true;
 		    	}
-		  }
-
+		     }	
+		  }//end	    
                 });
             }
         });
@@ -223,8 +271,7 @@ abcUtil = {
             if (selection.findhost) {
                 console.log("selection.findhost", selection.findhost);
                 console.log("selection.findport", selection.findport);
-
-                url = selection.findhost + ':' + selection.findport + '/?limit=1000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&project={"_id":0,"image.subject_id":1,"image.case_id":1}&db=' + selection.db;
+                url = selection.findhost + ':' + selection.findport + '/?limit=10000&collection=metadata&find={"provenance.analysis_execution_id":"' + selection.execution_id + '"}&project={"_id":0,"image.subject_id":1,"image.case_id":1}&db=' + selection.db;
             }
             else {
                 console.log("No selection.findhost, using default from config file.");

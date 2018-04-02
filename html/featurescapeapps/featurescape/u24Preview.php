@@ -12,6 +12,9 @@
 <script>
     w3IncludeHTML();
 </script>
+<script>
+  var case_id = <?php echo json_encode($_GET['case_id']); ?> ;
+</script>    
 <!-- Begin Content -->
 <div id="header">
     <h3>
