@@ -93,6 +93,8 @@ EXPOSE 22
 
 
 ### prereqs for openslide
+RUN apt-get clean
+RUN apt-get -q update
 RUN apt-get -q -y install zlib1g-dev libpng12-dev libjpeg-dev libtiff5-dev libgdk-pixbuf2.0-dev libxml2-dev libsqlite3-dev libcairo2-dev libglib2.0-dev
 
 WORKDIR /root/src
