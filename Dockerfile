@@ -73,9 +73,11 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
+COPY ports.conf /etc/apache2/ports.conf
 
 ## expose some ports
 EXPOSE 80
+EXPOSE 8080
 #EXPOSE 443
 
 ## setup a mount point for images.  - this is external to the docker container.
@@ -151,10 +153,8 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
 RUN rm -rf /var/www/html
-RUN git clone -b release  https://github.com/camicroscope/Security.git /var/www/html
-RUN git clone -b release https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
-
-
+RUN git clone -b seer_dev  https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b seer_dev https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 
 #RUN service apache2 start
 
