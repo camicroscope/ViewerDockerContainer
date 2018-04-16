@@ -3,6 +3,7 @@
 #nohup nodejs bin/www &
 #cd ../bindaas/bin
 #sh startup.sh &
+mkdir /var/www/html/composite_results
 #------ new version starting here -----------
 mkdir -p /var/www/html2
 mkdir /var/www/html2/composite_results
