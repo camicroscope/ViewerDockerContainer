@@ -40,7 +40,9 @@
 <div id="footer"></div>
 
 <script src="../js/config.js"></script>
-<!--<script src="../js/findapi_config.js"></script>-->
+<script>
+  config.default_db = '<?php echo $_SESSION["db_name"]?>';
+</script>
 <script src="../../js/config.js"></script>
 <script src="../js/abcUtil.js"></script>
 <script src="u24Preview.js"></script>
