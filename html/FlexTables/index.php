@@ -28,6 +28,9 @@ $app = new \Slim\Slim();
 $CONFIG_FILE = "config.json";
 
 $config = file_get_contents($CONFIG_FILE);
+if($_SESSION["db_name"] == "quip_comp"){
+  $config = str_replace("Camicroscope_DataLoader","Camicroscope_DataLoader_comp",$config);
+}
 $config_json = json_decode($config, JSON_UNESCAPED_SLASHES);
 
 
