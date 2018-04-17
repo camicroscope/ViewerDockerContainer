@@ -3,7 +3,7 @@
 #
 # VERSION               0.3.1
 
-# this version provides 
+# this version provides
 #	modified ruven iipsrv (ported changes from my fork of cytomine) with
 #		misc bug fixes in resolution calculations.  since v0.3
 #		fixed cache key hash. since v0.1.1
@@ -26,6 +26,10 @@ MAINTAINER Ganesh Iyer "lastlegion@gmail.com"
 RUN apt-get -q update
 RUN apt-get -q -y upgrade
 RUN apt-get -q -y dist-upgrade
+RUN apt-get clean
+RUN apt-get -q update
+
+# OpenSSH server
 RUN apt-get -q -y install openssh-server
 
 ### need build tools for building openslide and later iipsrv
@@ -50,6 +54,7 @@ RUN a2enmod rewrite
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/apache2/php.ini
 RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php5/apache2/php.ini
+RUN sed -i "s/; max_input_vars = 1000/max_input_vars = 100000/" /etc/php5/apache2/php.ini
 
 
 ## get our configuration files
@@ -68,9 +73,11 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
+COPY ports.conf /etc/apache2/ports.conf
 
 ## expose some ports
 EXPOSE 80
+EXPOSE 8080
 #EXPOSE 443
 
 ## setup a mount point for images.  - this is external to the docker container.
@@ -86,6 +93,8 @@ EXPOSE 22
 
 
 ### prereqs for openslide
+RUN apt-get clean
+RUN apt-get -q update
 RUN apt-get -q -y install zlib1g-dev libpng12-dev libjpeg-dev libtiff5-dev libgdk-pixbuf2.0-dev libxml2-dev libsqlite3-dev libcairo2-dev libglib2.0-dev
 
 WORKDIR /root/src
@@ -104,10 +113,10 @@ WORKDIR /root/src
 ## get my fork from openslide source cdoe
 RUN git clone https://bitbucket.org/tcpan/openslide.git
 
-## build openslide 
+## build openslide
 WORKDIR /root/src/openslide
 RUN git checkout tags/v0.3.1
-RUN autoreconf -i 
+RUN autoreconf -i
 #RUN ./configure --enable-static --enable-shared=no
 # may need to set OPENJPEG_CFLAGS='-I/usr/local/include' and OPENJPEG_LIBS='-L/usr/local/lib -lopenjp2'
 # and the corresponding TIFF flags and libs to where bigtiff lib is installed.
@@ -147,7 +156,7 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 #COPY html /var/www/html/
 RUN rm -rf /var/www/html/*
 RUN rmdir /var/www/html
-RUN git clone -b 1.0.0rc0  https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b release https://github.com/camicroscope/Security.git /var/www/html
 RUN git clone -b release https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 
 
@@ -161,7 +170,10 @@ COPY run.sh /root/run.sh
 RUN  apt-get install -y default-jdk
 
 COPY html/FlexTables/ /var/www/html/FlexTables/
-COPY html/featurescapeapps/ /var/www/html/featurescapeapps/ 
+COPY html/featurescapeapps/ /var/www/html/featurescapeapps/
+
+# Tile Overlay Directory
+RUN mkdir -p /data/images/overlays
 
 CMD ["sh", "/root/run.sh"]
 
