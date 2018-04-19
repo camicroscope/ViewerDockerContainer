@@ -13,8 +13,10 @@ sed -i -e "s/Camicroscope_Annotations/Camicroscope_Annotations_comp/g"  /var/www
 sed -i -e "s/Camicroscope_DataLoader/Camicroscope_DataLoader_comp/g"  /var/www/html2/FlexTables/config.json
 sed -i -e "s/default_db: 'quip'/default_db: 'quip_comp'/g"  /var/www/html2/featurescapeapps/js/config.js
 # -- end of new version -------
-# tile overlay symlink
-ln -s /data/images/overlays /var/www/html/overlays
+
+# Tile Overlay Directory and Symlink
+mkdir -p /data/images/overlays/ && ln -s /data/images/overlays /var/www/html/overlays
+
 rm -f /var/run/apache2.pid
 service apache2 start
 sed '/Listen 80/a Listen 8080' /etc/apache2/ports.conf
