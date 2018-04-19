@@ -154,8 +154,9 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 # use "service apache2 start"
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
-RUN rm -rf /var/www/html
-RUN git clone -b release  https://github.com/camicroscope/Security.git /var/www/html
+RUN rm -rf /var/www/html/*
+RUN rmdir /var/www/html
+RUN git clone -b release https://github.com/camicroscope/Security.git /var/www/html
 RUN git clone -b release https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 
 
@@ -172,7 +173,7 @@ COPY html/FlexTables/ /var/www/html/FlexTables/
 COPY html/featurescapeapps/ /var/www/html/featurescapeapps/
 
 # Tile Overlay Directory
-RUN mkdir -p /data/images/overlays
+RUN mkdir -p /data/images/overlays/
 
 CMD ["sh", "/root/run.sh"]
 
