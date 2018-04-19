@@ -173,7 +173,7 @@ COPY html/FlexTables/ /var/www/html/FlexTables/
 COPY html/featurescapeapps/ /var/www/html/featurescapeapps/
 
 # Tile Overlay Directory
-RUN mkdir -p /data/images/overlays
+RUN mkdir -p /data/images/overlays/
 
 CMD ["sh", "/root/run.sh"]
 
