@@ -4,8 +4,10 @@
 #cd ../bindaas/bin
 #sh startup.sh &
 mkdir /var/www/html/composite_results
-# tile overlay symlink
-ln -s /data/images/overlays /var/www/html/overlays
+
+# Tile Overlay Directory and Symlink
+mkdir -p /data/images/overlays/ && ln -s /data/images/overlays /var/www/html/overlays
+
 rm -f /var/run/apache2.pid
 service apache2 start
 
