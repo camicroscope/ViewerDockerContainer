@@ -211,12 +211,14 @@ abcUtil = {
 		      }	    
 			}//end 
             else {
-			   // skip the record containing composite_input
+			   // skip the record containing composite_input and Tumor
 		      var skip_record =false;	
 		      var execution_id=item.provenance.analysis_execution_id;
 		      var substring="composite_input";
-		      var position = execution_id.indexOf(substring);									
-   		      if(position !== -1) //find record
+		      var position = execution_id.indexOf(substring);	
+		      var substring2="Tumor";
+                      var position2 = execution_id.indexOf(substring2);
+   		      if(position !== -1 || position2 !== -1 ) //find record
 			   skip_record=true;                    
               // skip the record if execution_id contains 'lym_v' or 'humanmark' (lymphocyte project)
               if (execution_id.includes(execIdSubstring.lymphHeatmap) || execution_id.includes(execIdSubstring.lymphHumanmark)){
