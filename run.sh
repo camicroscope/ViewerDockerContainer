@@ -3,7 +3,11 @@
 #nohup nodejs bin/www &
 #cd ../bindaas/bin
 #sh startup.sh &
-mkdir /var/www/html/composite_results
+
+composite_dir="/var/www/html/composite_results"
+if [ ! -d "$composite_dir" ]; then
+  mkdir "$composite_dir"
+fi
 
 # Tile Overlay Directory and Symlink
 mkdir -p /data/images/overlays/ && ln -s /data/images/overlays /var/www/html/overlays
