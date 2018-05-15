@@ -73,6 +73,7 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 ## Add configuration file
 COPY apache2.conf /etc/apache2/apache2.conf
+COPY ports.conf /etc/apache2/ports.conf
 
 ## expose some ports
 EXPOSE 80
@@ -91,6 +92,8 @@ EXPOSE 22
 
 
 ### prereqs for openslide
+RUN apt-get clean
+RUN apt-get -q update
 RUN apt-get -q -y install zlib1g-dev libpng12-dev libjpeg-dev libtiff5-dev libgdk-pixbuf2.0-dev libxml2-dev libsqlite3-dev libcairo2-dev libglib2.0-dev
 
 WORKDIR /root/src
@@ -150,8 +153,9 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 # use "service apache2 start"
 #CMD ["/usr/sbin/sshd", "-D"]
 #COPY html /var/www/html/
-RUN rm -rf /var/www/html
-RUN git clone -b release  https://github.com/camicroscope/Security.git /var/www/html
+RUN rm -rf /var/www/html/*
+RUN rmdir /var/www/html
+RUN git clone -b release https://github.com/camicroscope/Security.git /var/www/html
 RUN git clone -b release https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 
 
@@ -166,6 +170,9 @@ RUN  apt-get install -y default-jdk
 
 COPY html/FlexTables/ /var/www/html/FlexTables/
 COPY html/featurescapeapps/ /var/www/html/featurescapeapps/
+
+# Tile Overlay Directory
+#RUN mkdir -p /data/images/overlays/
 
 CMD ["sh", "/root/run.sh"]
 

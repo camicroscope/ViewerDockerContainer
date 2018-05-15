@@ -1,3 +1,17 @@
+<?php
+
+ if (!isset($_GET["db_name"]) || empty($_GET["db_name"]))
+  {
+    $db_name="quip";
+    $_SESSION["db_name"] = $db_name;
+ }
+ else {
+   $db_name=$_GET["db_name"];
+   $_SESSION["db_name"] = $db_name;
+ }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +26,9 @@
 <script>
     w3IncludeHTML();
 </script>
+<script>
+  var case_id = <?php echo json_encode($_GET['case_id']); ?> ;
+</script>    
 <!-- Begin Content -->
 <div id="header">
     <h3>
@@ -37,7 +54,9 @@
 <div id="footer"></div>
 
 <script src="../js/config.js"></script>
-<!--<script src="../js/findapi_config.js"></script>-->
+<script>
+  config.default_db = '<?php echo $_SESSION["db_name"]?>';
+</script>
 <script src="../../js/config.js"></script>
 <script src="../js/abcUtil.js"></script>
 <script src="u24Preview.js"></script>
