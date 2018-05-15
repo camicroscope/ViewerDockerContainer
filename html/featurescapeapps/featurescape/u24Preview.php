@@ -1,3 +1,17 @@
+<?php
+
+ if (!isset($_GET["db_name"]) || empty($_GET["db_name"]))
+  {
+    $db_name="quip";
+    $_SESSION["db_name"] = $db_name;
+ }
+ else {
+   $db_name=$_GET["db_name"];
+   $_SESSION["db_name"] = $db_name;
+ }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
