@@ -10,7 +10,11 @@ if [ ! -d "$composite_dir" ]; then
 fi
 
 # Tile Overlay Directory and Symlink
-mkdir -p /data/images/overlays/ && ln -s /data/images/overlays /var/www/html/overlays
+overlays_dir="/data/images/overlays/"
+if [ ! -d "$overlays_dir" ]; then
+  mkdir "$overlays_dir"
+  ln -s "$overlays_dir" /var/www/html/overlays
+fi
 
 rm -f /var/run/apache2.pid
 service apache2 start
