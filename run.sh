@@ -10,7 +10,7 @@ if [ ! -d "$composite_dir" ]; then
 fi
 
 # Tile Overlay Directory and Symlink
-overlays_dir="/data/images/overlays/"
+overlays_dir="/data/images/overlays"
 if [ ! -d "$overlays_dir" ]; then
   mkdir "$overlays_dir"
 fi
