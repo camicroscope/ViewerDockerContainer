@@ -99,7 +99,7 @@ RUN apt-get -q -y install zlib1g-dev libpng12-dev libjpeg-dev libtiff5-dev libgd
 WORKDIR /root/src
 
 ### openjpeg version in ubuntu 14.04 is 1.3, too old and does not have openslide required chroma subsampled images support.  download 2.1.0 from source and build
-RUN wget http://sourceforge.net/projects/openjpeg.mirror/files/2.1.0/openjpeg-2.1.0.tar.gz
+RUN wget https://sourceforge.net/projects/openjpeg.mirror/files/2.1.0/openjpeg-2.1.0.tar.gz
 RUN tar xvfz openjpeg-2.1.0.tar.gz
 RUN mkdir /root/src/openjpeg-bin
 WORKDIR /root/src/openjpeg-bin
@@ -155,8 +155,8 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 #COPY html /var/www/html/
 RUN rm -rf /var/www/html/*
 RUN rmdir /var/www/html
-RUN git clone -b release https://github.com/camicroscope/Security.git /var/www/html
-RUN git clone -b release https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
+RUN git clone -b '2.0.1' --single-branch https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b '2.0.1' --single-branch https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 
 
 
