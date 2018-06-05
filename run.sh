@@ -14,7 +14,7 @@ overlays_dir="/data/images/overlays/"
 if [ ! -d "$overlays_dir" ]; then
   mkdir "$overlays_dir"
 fi
-ln -s "$overlays_dir" /var/www/html/overlays
+ln -sTf "$overlays_dir" /var/www/html/overlays
 
 rm -f /var/run/apache2.pid
 service apache2 start
