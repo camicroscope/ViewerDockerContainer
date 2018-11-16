@@ -155,7 +155,7 @@ RUN sed -i "2i extension=mongo.so" /etc/php5/apache2/php.ini
 #COPY html /var/www/html/
 RUN rm -rf /var/www/html/*
 RUN rmdir /var/www/html
-RUN git clone -b '2.0.1' --single-branch https://github.com/camicroscope/Security.git /var/www/html
+RUN git clone -b '2.0.2' --single-branch https://github.com/camicroscope/Security.git /var/www/html
 RUN git clone -b '2.0.1' --single-branch https://github.com/camicroscope/caMicroscope.git /var/www/html/camicroscope
 
 
